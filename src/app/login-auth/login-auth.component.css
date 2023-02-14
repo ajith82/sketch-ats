@@ -1,0 +1,31 @@
+.main {
+    width: 100%;
+    height: 975px;
+    display: flex;
+    justify-content: center;
+    background-color: #ededed;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    gap: 50px;
+}
+
+.signIn {
+    width: 280px;
+    height: 100px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 35px;
+}
+
+.signIn h2 {
+    font-weight: 400;
+}
