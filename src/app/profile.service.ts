@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import {OAuthService} from 'ngx-oauth';
 import { map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Data } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  constructor(private oauthService: OAuthService) { }
+  constructor(private http: HttpClient) { }
 
-  get profileName$(): Observable<string | undefined> {
-    return this.oauthService.userInfo$.pipe(
-      map(v => `${v.name}&nbsp;${this.getPicture(v.picture)}`)
-    );
+
+
+  details(data:any):Observable<any>{
+    return this.http.post('http://localhost:3000/posts/', data);
   }
 
-  getPicture(picture?: string) {
-    return picture && `<img class="rounded-circle img-thumbnail" src="${picture}">` || ''
+  getDetails(){
+    return this.http.get('http://localhost:3000/posts/');
   }
 }

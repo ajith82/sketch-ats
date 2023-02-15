@@ -5,6 +5,7 @@ import * as auth from 'firebase/auth';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-login-auth',
@@ -20,13 +21,15 @@ export class LoginAuthComponent implements OnInit {
   provider: any;
   credential: any;
   succeed:any;
+  details:any;
   googleLogoURL = 
 "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private profileService: ProfileService
   ) {
     this.matIconRegistry.addSvgIcon(
 "logo",
@@ -44,8 +47,12 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
     this.provider = new auth.GoogleAuthProvider();
     this.afAuth.signInWithPopup(this.provider)
       .then((credential) => {
-        console.log(credential.additionalUserInfo?.profile);
+        this.details = credential;
+        console.log("credential",credential);
         if (credential.additionalUserInfo?.profile) {
+          this.profileService.details(this.details).subscribe((data) =>{
+            
+          })
           this.router.navigate(['home']);
         } else {
           console.log('oops');

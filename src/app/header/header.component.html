@@ -1,0 +1,24 @@
+<div class="header">
+  <header>
+    <div class="logoAndOption">
+      <div class="logo">
+        <img src="../../images/sb-logo.svg" alt="logo" />
+      </div>
+      <div class="option">
+        <div class="dashboard">
+            <input id="dashboard" name="sort" value="date" type="radio">
+          <label routerLink="dashboard" for="dashboard" class="optionType">Dashboard</label>
+        </div>
+        <div class="candidates">
+            <input id="candidates" name="sort" value="date" type="radio">
+          <label routerLink="candiadte" for="candidates" class="optionType">Candidates</label>
+        </div>
+      </div>
+    </div>
+    <div class="profile">
+        <div class="profileImg">
+            <img [src]="photoUrl" alt="profileimg">
+        </div>
+    </div>
+  </header>
+</div>

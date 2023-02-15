@@ -1,25 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
-import { OAuthModule, OAuthStorage, OAuthService } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
-import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-import { MatIconModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatFormFieldModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
-import { PROFILE_SERVICE } from './login.service';
-import { ProfileService } from './profile.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginAuthComponent } from './login-auth/login-auth.component';
 import { LoginBtnComponent } from './login-btn/login-btn.component';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -37,6 +32,9 @@ const firebaseConfig = {
     LoginAuthComponent,
     LoginBtnComponent,
     HomeComponent,
+    HeaderComponent,
+    DashboardComponent,
+    CandidatesComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +43,11 @@ const firebaseConfig = {
     AngularFireAuthModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
