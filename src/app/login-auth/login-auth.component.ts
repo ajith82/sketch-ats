@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthLoginI18n } from 'ngx-oauth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { ProfileService } from '../profile.service';
@@ -22,6 +22,7 @@ export class LoginAuthComponent implements OnInit {
   credential: any;
   succeed:any;
   details:any;
+  id:any;
   googleLogoURL = 
 "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
   constructor(
@@ -48,12 +49,16 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
     this.afAuth.signInWithPopup(this.provider)
       .then((credential) => {
         this.details = credential;
-        console.log("credential",credential);
+      this.id=credential.operationType;
+        console.log("credential",credential.operationType);
         if (credential.additionalUserInfo?.profile) {
           this.profileService.details(this.details).subscribe((data) =>{
             
           })
-          this.router.navigate(['home']);
+      localStorage.setItem('id',this.id);
+          this.router.navigate(['dashboard']).then(() => {
+            window.location.reload();
+          });
         } else {
           console.log('oops');
           this.router.navigate(['']);

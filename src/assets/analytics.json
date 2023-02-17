@@ -1,0 +1,20 @@
+{
+    "status": true,
+    "message": "Candidate analytics fetched successfully",
+    "code": 200,
+    "data": {
+        "yetToContact": 23,
+        "screening": 0,
+        "dsRoundAPI": 79,
+        "designTaskGiven": 7,
+        "designTechCall": 11,
+        "technicalInterview": 11,
+        "hrRound": 1,
+        "offered": 0,
+        "offerAccepted": 2,
+        "OfferDeclined": 4,
+        "rejected": 495,
+        "joined": 3,
+        "taskVerification": 0
+    }
+}

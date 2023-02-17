@@ -7,7 +7,8 @@ import { Data } from '@angular/router';
   providedIn: 'root'
 })
 export class ProfileService {
-
+  private analyticsUrl = '/assets/analytics.json'
+  private candidates = '/assets/candidates.json'
   constructor(private http: HttpClient) { }
 
 
@@ -18,5 +19,22 @@ export class ProfileService {
 
   getDetails(){
     return this.http.get('http://localhost:3000/posts/');
+  }
+
+  sendAnalytics(): Observable<any> {
+    const url = 'hiring/get/candidate/analytics';
+    return this.http.get(this.analyticsUrl);
+  }
+
+  getCandidates():Observable<any> {
+    return this.http.get(this.candidates);
+  }
+
+  getData():Observable<any>{
+    return this.http.get('http://localhost:3000/profile/')
+  }
+
+  IsLoggedIn(){
+    return !!localStorage.getItem("id");
   }
 }

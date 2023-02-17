@@ -4,12 +4,13 @@ import { LoginAuthComponent } from './login-auth/login-auth.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:'',component:LoginAuthComponent},
-  {path:'home',component:HomeComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'candiadte',component:CandidatesComponent}
+  {path:'home',component:HomeComponent, canActivate:[AuthGuard]},
+  {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:'candiadte',component:CandidatesComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/compat';
 import { ProfileService } from '../profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +12,26 @@ export class HeaderComponent implements OnInit {
   details:any;
   selectedOne:any;
   photoUrl:any;
-  constructor(private profileService:ProfileService) { }
+  showDropdown: boolean = false;
+  constructor(private profileService:ProfileService, private route:Router) { }
 
   ngOnInit(): void {
     this.profileService.getDetails().subscribe((res) => {
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];
       this.photoUrl = this.selectedOne.user.photoURL;
-      console.log(this.selectedOne);
     })
+  }
+
+  toggleDropdown(){
+    this.showDropdown = !this.showDropdown;
+  }
+  logout(){
+    localStorage.removeItem("id");
+    this.route.navigate(['']).then(() =>{
+      window.location.reload();
+    });
+    // location.reload();
   }
 
 }

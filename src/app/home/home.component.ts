@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,12 +8,31 @@ import { ProfileService } from '../profile.service';
 })
 export class HomeComponent implements OnInit {
   details:any;
-  constructor(private profileService:ProfileService) { }
+  isLoginAuth = false;
+  location :any;
+  constructor(private profileService:ProfileService, private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginAuth = event.url.includes('/login-auth');
+      }
+    });
+   }
 
   ngOnInit(): void {    
     this.profileService.getDetails().subscribe((res) => {
-      console.log(res);
       this.details = res;
+      this.details.length
+      console.log("aaaaaaaaaaaaaaaa",this.details[this.details.length - 1]);
+
+      console.log(location.href);
+      this.location = location.href;
+
+
+      // this.router.events.subscribe(event => {
+      //   if (event instanceof NavigationEnd) {
+      //     window.location.reload();
+      //   }
+      // });
     })
   }
 

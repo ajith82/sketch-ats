@@ -6,19 +6,25 @@
       </div>
       <div class="option">
         <div class="dashboard">
-            <input id="dashboard" name="sort" value="date" type="radio">
+            <input id="dashboard" name="sort" value="date" type="radio" [checked]="true">
           <label routerLink="dashboard" for="dashboard" class="optionType">Dashboard</label>
         </div>
         <div class="candidates">
             <input id="candidates" name="sort" value="date" type="radio">
-          <label routerLink="candiadte" for="candidates" class="optionType">Candidates</label>
+          <label routerLink="/candiadte" for="candidates" class="optionType">Candidates</label>
         </div>
       </div>
     </div>
     <div class="profile">
-        <div class="profileImg">
-            <img [src]="photoUrl" alt="profileimg">
+        <div class="dropdown" *ngIf="showDropdown">
+            <ul>
+                <li><a (click)="logout()">Logout</a></li>
+            </ul>
         </div>
+        <div class="profileImg">
+            <img (click)="toggleDropdown()" [src]="photoUrl" alt="profileimg">
+        </div>
+        
     </div>
   </header>
 </div>

@@ -1,0 +1,7 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.language.colorizedBracketPairs": [],
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": false,
+  "editor.guides.bracketPairs": "active"
+}

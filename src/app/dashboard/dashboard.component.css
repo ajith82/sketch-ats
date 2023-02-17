@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
+    align-items: center;
 }
 
 .sort {
@@ -51,27 +52,32 @@
 
 .updates {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .offered {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    width: 700px;
+    width: 600px;
     height: 500px;
 }
 
 .accepted {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-    width: 700px;
+    width: 600px;
     height: 500px;
 }
 
 .rejected {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-    width: 700px;
+    width: 600px;
     height: 500px;
 }
 
@@ -119,3 +125,15 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+.interviewer label {
+    font-size: 14px;
+}
+
+::ng-deep ngx-daterangepicker-material 
+    .md-drppicker {
+       min-width: 540px !important;
+       top: 150px !important;
+       left: 1200px !important;
+    }
+  

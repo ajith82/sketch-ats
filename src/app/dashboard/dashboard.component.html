@@ -23,7 +23,7 @@
           </select>
         </div>
         <div class="calendar">
-          <!-- <input type="date" name="date" id="" /> -->
+          <!-- <input type="date" name="date" id="" /> to <input type="date" name="date" id="" /> -->
           <!-- <mat-form-field appearance="fill">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
@@ -32,59 +32,70 @@
                 </mat-date-range-input>
                 <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-date-range-input #picker></mat-date-range-input>
               </mat-form-field> -->
+          <input
+            type="text"
+            matInput
+            ngxDaterangepickerMd
+            style="width: 180px"
+            [locale]="{ applyLabel: 'ok', format: 'DD-MM-YYYY' }"
+            [(ngModel)]="selected"
+            name="daterange"
+            placeholder="DD-MM-YYYY~DD-MM-YYYY"
+            #pickerr
+          />
         </div>
       </div>
     </div>
     <div class="dashboardDetails">
       <div class="interviewDetails">
         <h5 class="detailReview">Yet to contact</h5>
-        <h5 class="result">17</h5>
+        <h5 class="result">{{ data.yetToContact }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Screening</h5>
-        <h5 class="result">0</h5>
+        <h5 class="result">{{ data.screening }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Design Task Given</h5>
-        <h5 class="result">8</h5>
+        <h5 class="result">{{ data.designTaskGiven }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Design Technical Call</h5>
-        <h5 class="result">11</h5>
+        <h5 class="result">{{ data.designTechCall }}</h5>
       </div>
       <div class="interviewDetails">
-        <h5 class="detailReview">Task Verificatio</h5>
-        <h5 class="result">0</h5>
+        <h5 class="detailReview">Task Verification</h5>
+        <h5 class="result">{{ data.taskVerification }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">DS Round & API</h5>
-        <h5 class="result">71</h5>
+        <h5 class="result">{{ data.dsRoundAPI }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Technical Interview</h5>
-        <h5 class="result">11</h5>
+        <h5 class="result">{{ data.technicalInterview }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">HR Round</h5>
-        <h5 class="result">1</h5>
+        <h5 class="result">{{ data.hrRound }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Offered</h5>
-        <h5 class="result">0</h5>
+        <h5 class="result">{{ data.offered }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Offer Accepted</h5>
-        <h5 class="result">3</h5>
+        <h5 class="result">{{ data.offerAccepted }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Offer Declined</h5>
-        <h5 class="result">4</h5>
+        <h5 class="result">{{ data.rejected }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Joined</h5>
-        <h5 class="result">2</h5>
+        <h5 class="result">{{ data.joined }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Rejected</h5>
@@ -97,27 +108,29 @@
         <div class="updatesHead">
           <h6>Offered</h6>
         </div>
-        <div class="updateDetails">
+        <div class="updateDetails" *ngIf="offered == ''">
           <img src="../../images/nodata.jpg" alt="nodata" />
           <p>No data found</p>
+        </div>
+        <div class="candidateDetails" *ngFor="let offered of offered">
+          <div class="person">
+            <p>Name:{{ offered.firstName }}</p>
+            <p>Joining Date: {{ offered.expectedJoiningDate | date }}</p>
+          </div>
         </div>
       </div>
       <div class="accepted">
         <div class="updatesHead">
           <h6>Offer Accepted</h6>
         </div>
-        <div class="candidateDetails">
+        <div class="updateDetails" *ngIf="offerAccepted == ''">
+          <img src="../../images/nodata.jpg" alt="nodata" />
+          <p>No data found</p>
+        </div>
+        <div class="candidateDetails" *ngFor="let offerAccept of offerAccepted">
           <div class="person">
-            <p>Name:Prabin</p>
-            <p>Joining Date: Invalid date</p>
-          </div>
-          <div class="person">
-            <p>Name:Prabin</p>
-            <p>Joining Date: Invalid date</p>
-          </div>
-          <div class="person">
-            <p>Name:Prabin</p>
-            <p>Joining Date: Invalid date</p>
+            <p>Name:{{ offerAccept.firstName }}</p>
+            <p>Joining Date: {{ offerAccept.expectedJoiningDate | date }}</p>
           </div>
         </div>
       </div>
@@ -125,19 +138,54 @@
         <div class="updatesHead">
           <h6>Candidates Rejected</h6>
         </div>
-        <div class="candidateDetails">
-            <div class="person">
-                <p>Name:Prabin</p>
-                <p>Joining Date: Invalid date</p>
-              </div>
-              <div class="person">
-                <p>Name:Prabin</p>
-                <p>Joining Date: Invalid date</p>
-              </div>
-              <div class="person">
-                <p>Name:Prabin</p>
-                <p>Joining Date: Invalid date</p>
-              </div>
+        <div class="updateDetails" *ngIf="candidateReject == ''">
+          <img src="../../images/nodata.jpg" alt="nodata" />
+          <p>No data found</p>
+        </div>
+        <div
+          class="candidateDetails"
+          *ngFor="let candReject of candidateReject"
+        >
+          <div class="person">
+            <p>Name:{{ candReject.firstName }}</p>
+            <p>Joining Date: {{ candReject.expectedJoiningDate }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="rejected">
+        <div class="updatesHead">
+          <h6>Candidates Joined</h6>
+        </div>
+        <div class="updateDetails" *ngIf="candidateJoined == ''">
+          <img src="../../images/nodata.jpg" alt="nodata" />
+          <p>No data found</p>
+        </div>
+        <div
+          class="candidateDetails"
+          *ngFor="let candJoined of candidateJoined"
+        >
+          <div class="person">
+            <p>Name:{{ candJoined.firstName }}</p>
+            <p>Joining Date: {{ candJoined.expectedJoiningDate | date }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="rejected">
+        <div class="updatesHead">
+          <h6>Candidates Offer Declined</h6>
+        </div>
+        <div class="updateDetails" *ngIf="candidateDeclined == ''">
+          <img src="../../images/nodata.jpg" alt="nodata" />
+          <p>No data found</p>
+        </div>
+        <div
+          class="candidateDetails"
+          *ngFor="let candDeclined of candidateDeclined"
+        >
+          <div class="person">
+            <p>Name:{{ candDeclined.firstName }}</p>
+            <p>Joining Date: {{ candDeclined.expectedJoiningDate | date }}</p>
+          </div>
         </div>
       </div>
     </div>
