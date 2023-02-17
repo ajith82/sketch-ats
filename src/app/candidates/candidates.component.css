@@ -93,6 +93,10 @@ td {
     font-weight: 600;
 }
 
+.document {
+    text-align: center;
+}
+
 .date {
     color: gray;
     font-weight: 300;
