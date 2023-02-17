@@ -1,0 +1,131 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(239, 237, 237);
+}
+
+.container {
+    padding: 30px;
+}
+
+.overviewHead h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.overviewAndFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchAndFilter {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.search input {
+    background: url('../../images/search.png') no-repeat scroll 2px;
+    background-size: 12px;
+    padding-left:17px;
+    padding-right: 10px;
+    border: 1px solid gray;
+    background-color: #fff;
+    height: 19px;
+}
+
+.filter button {
+    width: 80px;
+    padding: 4px;
+    background-color: rgb(201, 200, 200);
+    color: black;
+    border: none;
+    border-radius: 5px;
+}
+
+.addCandidate button {
+    width: 110px;
+    padding: 4px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.candidateTable {
+    background-color: #fff;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* padding: 15px; */
+}
+
+.mainHead {
+    background-color: rgb(239, 237, 237);
+    height: 50px;
+}
+
+th {
+    font-size: 12px;
+    font-weight: 600;
+    color: gray;
+    text-align: left;
+    width: 0px;
+    /* padding-left: 10px; */
+}
+
+.candidateName {
+    color: skyblue;
+    font-weight: 600;
+}
+
+.canNum {
+    color: gray;
+    font-weight: 200;
+}
+
+td {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.date {
+    color: gray;
+    font-weight: 300;
+}
+
+.rejected {
+    color: red;
+    font-weight: 600;
+    background-color: rgb(249, 178, 178);
+    width: 80px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.screening {
+    color: gray;
+    font-weight: 600;
+    background-color: rgb(217, 216, 216);
+    width: 80px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.DSRound{
+    color: gray;
+    font-weight: 600;
+    background-color: rgb(217, 216, 216);
+    width: 80px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.details {
+    height: 50px;
+    border-bottom: 1px solid rgb(205, 204, 204);
+}
