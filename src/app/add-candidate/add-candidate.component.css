@@ -216,6 +216,12 @@ input:checked ~ .tab-content {
   border: 1px solid rgb(187, 186, 186);
 }
 
+.deleteBtnn {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+
 .experience {
   width: 92%;
 }

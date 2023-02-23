@@ -143,12 +143,19 @@
             <label>Education Details</label>
             <label class="tab-label" for="checkk" (click)="addEdu()">+Add</label>
           </div>
-          <div class="eduDetails" *ngIf="educationBtn">
+          <div *ngIf="educationBtn" class="eduDetails">
             <div class="deleteBtn">
-            <button>Delete</button>
+            
           </div>
           <div  *ngFor="let education of education;let i = index">
+            <div class="deleteBtnn">
+            <button type="button" (click)="deleteEduObj()" *ngIf="education.fieldName == 'degree'">Delete</button>
+            <button type="button" (click)="deleteEduObj()" *ngIf="education.fieldName == 'degree_2'">Delete</button>
+            <button type="button" (click)="deleteEduObj()" *ngIf="education.fieldName == 'degree_3'">Delete</button>
+            <button type="button" (click)="deleteEduObj()" *ngIf="education.fieldName == 'degree_4'">Delete</button>
+          </div>
             <label for="">{{ education.fieldDisplayName }}</label><br>
+            <ng-container *ngFor="let newEducation of newEducation">
             <input [(ngModel)]="education.value" name="{{education.fieldName}}" *ngIf="education.type == 'TEXT'" type="text" />
             <select [(ngModel)]="education.value" name="{{education.fieldName}}" id="" *ngIf="education.type == 'RADIO'">
               <option *ngFor="let option of education.options" value="{{option.value}}">
@@ -156,10 +163,11 @@
               </option>
             </select>
             <input [(ngModel)]="education.value" name="{{education.fieldName}}" type="date" *ngIf="education.dataType == 'date'" />
+          </ng-container>
           </div>
         </div>
 
-        <div class="eduDetails" *ngIf="educationBtn && educationCount > 1">
+        <!-- <div class="eduDetails" *ngIf="educationBtn && educationCount > 1">
           <div class="deleteBtn">
           <button>Delete</button>
         </div>
@@ -173,7 +181,7 @@
           </select>
           <input [(ngModel)]="education.value" name="{{education.fieldName}}" type="date" *ngIf="education.dataType == 'date'" />
         </div>
-      </div>
+      </div> -->
         </div>
         <div class="experience">
           <input class="checkbox" type="checkbox" id="checkexp" />
