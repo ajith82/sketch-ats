@@ -1,81 +1,104 @@
 <div class="main">
-    <div class="container">
-        <div class="overviewAndFilter">
-            <div class="overviewHead">
-                <h4>Candidate Overview(670)</h4>
-            </div>
-            <div class="searchAndFilter">
-                <div class="search">
-                    <input type="text" placeholder="Search Candidate ID/Name">
-                </div>
-                <div class="filter">
-                    <button>Filters</button>
-                </div>
-                <div class="addCandidate">
-                    <button>Add Candidate</button>
-                </div>
-            </div>
+  <div class="container">
+    <div class="overviewAndFilter">
+      <div class="overviewHead">
+        <h4>Candidate Overview(670)</h4>
+      </div>
+      <div class="searchAndFilter">
+        <div class="search">
+          <input type="text" placeholder="Search Candidate ID/Name" />
         </div>
-        <div class="candidateTable">
-            <table>
-                <tbody>
-                    <tr class="mainHead">
-                        <th>CANDIDATE NAME</th>
-                        <th>APPLIED ROLE</th>
-                        <th>REL EXP</th>
-                        <th>N PERIOD</th>
-                        <th>CTC</th>
-                        <th>ADDED BY</th>
-                        <th>STATUS</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr class="details">
-                        <td class="candidateName">Nirmal Nirmal <br><span class="canNum">SBC0987/Others</span></td>
-                        <td>React JS</td>
-                        <td>1.5 yrs</td>
-                        <td>15 Days</td>
-                        <td>3,00,000</td>
-                        <td>Bharathi B <br><span class="date">17 Feb 2023</span></td>
-                        <td><span class="rejected">Rejected</span></td>
-                        <td class="document"><img src="../../images/search.png" alt="doc"></td>
-                        <td><img src="../../images/search.png" alt="doc"></td>
-                    </tr>
-                    <tr class="details">
-                        <td class="candidateName">Ajay Singh <br><span class="canNum">SBC0987/Others</span></td>
-                        <td>React JS</td>
-                        <td>1.5 yrs</td>
-                        <td>15 Days</td>
-                        <td>3,00,000</td>
-                        <td>Lakshmi Narasimhan Kumar <br><span class="date">17 Feb 2023</span></td>
-                        <td><span class="screening">Screening</span></td>
-                        <td class="document"><img src="../../images/search.png" alt="doc"></td>
-                        <td><img src="../../images/search.png" alt="doc"></td>
-                    </tr>
-                    <tr class="details">
-                        <td class="candidateName">Ajay Singh <br><span class="canNum">SBC0987/Others</span></td>
-                        <td>Angular</td>
-                        <td>1.5 yrs</td>
-                        <td>15 Days</td>
-                        <td>3,00,000</td>
-                        <td>Lakshmi Narasimhan Kumar <br><span class="date">17 Feb 2023</span></td>
-                        <td><span class="DSRound">DS Round & API</span></td>
-                        <td class="document"><img src="../../images/search.png" alt="doc"></td>
-                        <td><img src="../../images/search.png" alt="doc"></td>
-                    </tr>
-                    <tr class="details">
-                        <td class="candidateName">Nirmal Nirmal <br><span class="canNum">SBC0987/Others</span></td>
-                        <td>React JS</td>
-                        <td>1.5 yrs</td>
-                        <td>15 Days</td>
-                        <td>3,00,000</td>
-                        <td>Bharathi B <br><span class="date">17 Feb 2023</span></td>
-                        <td><span class="rejected">Rejected</span></td>
-                        <td class="document"><img src="../../images/search.png" alt="doc"></td>
-                        <td><img src="../../images/search.png" alt="doc"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="filter">
+          <button>Filters</button>
         </div>
+        <div class="addCandidate">
+          <button routerLink="/addcandidate">Add Candidate</button>
+        </div>
+      </div>
     </div>
+    <div class="candidateTable">
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="side" [opened]="showSidenav">
+          <app-sidenav [candidate]="selectedCandidate"></app-sidenav>
+        </mat-sidenav>
+        <table>
+          <tbody>
+            <tr class="mainHead">
+              <th>CANDIDATE NAME</th>
+              <th>APPLIED ROLE</th>
+              <th>REL EXP</th>
+              <th>N PERIOD</th>
+              <!-- <th>CTC</th> -->
+              <th>ADDED BY</th>
+              <th>STATUS</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr
+              class="details"
+              *ngFor="
+                let candidate of candidateDetails | paginate : config;
+                let i = index
+              "
+            >
+              <td class="candidateName">
+                {{ candidate.firstName }} {{ candidate.lastName }} <br /><span
+                  class="canNum"
+                  >SBC0987/Others</span
+                >
+              </td>
+              <td>{{ candidate.currentJobTitle }}</td>
+              <td>{{ candidate.relevantExperience }}</td>
+              <td>{{ candidate.noticePeriod }}</td>
+              <!-- <td>3,00,000</td> -->
+              <td class="addedBy">
+                {{ candidate.interviewBy }} <br /><span class="date">{{
+                  candidate.modifiedDate | date
+                }}</span>
+              </td>
+              <td *ngIf="candidate.status == 'Rejected'">
+                <span class="rejected">Rejected</span>
+              </td>
+              <td *ngIf="candidate.status == 'Screening'">
+                <span class="screening">Screening</span>
+              </td>
+              <td *ngIf="candidate.status == 'DsRound'">
+                <span class="DSRound">DS Round & API</span>
+              </td>
+              <td class="document">
+                <div class="resumeDownload">
+                  <img
+                    (click)="resumeClick(candidate)"
+                    src="../../images/resume.png"
+                    alt="doc"
+                  />
+                </div>
+              </td>
+              <td class="list">
+                <img src="../../images/search.png" alt="doc" />
+              </td>
+            </tr>
+            <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
+              <div class="sidenav-content">
+                <button (click)="closeSidenav()">Close</button>
+
+                <!-- <h2>
+                  {{ selectedCandidate?.firstName }}
+                  {{ selectedCandidate?.lastName }}
+                </h2> -->
+                <iframe [src]="resumeUrl" style="width:718px; height:700px;" frameborder="0"></iframe>
+              </div>
+            </div>
+          </tbody>
+        </table>
+      </mat-sidenav-container>
+      <div class="pagination">
+        <pagination-controls
+          (pageChange)="gty((page = $event))"
+        ></pagination-controls>
+      </div>
+      <!-- <mat-paginator [length]="length" #paginator [pageSize]="5" aria-label="Select page">
+      </mat-paginator> -->
+    </div>
+  </div>
 </div>

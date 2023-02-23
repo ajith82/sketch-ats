@@ -1,0 +1,198 @@
+<div class="main">
+  <div class="container">
+    <div class="heading">
+      <h4>Add Candidate</h4>
+    </div>
+    <div class="form">
+      <form #userForm="ngForm" (ngSubmit)="submitData(userForm)">
+        <div class="uploadResume">
+          <h3>Upload Resume</h3>
+          <ng-container *ngFor="let resume of resume">
+            <label for="">{{ resume.fieldDisplayName }}</label
+            ><br />
+            <input #fieldName="ngModel" [(ngModel)]="resume.value" name="{{resume.fieldName}}" type="file" />
+          </ng-container>
+        </div>
+        <h3>Basic Details</h3>
+        <div class="basicDetails">
+          <div *ngFor="let form of basicDetails;let i = index">
+            <ng-container *ngIf="form.modelType == 'details'">
+              <label>{{ form.fieldDisplayName }}</label
+              ><br />
+              <input [(ngModel)]="form.value" name="{{form.fieldName}}" type="{{ form.type }}" />
+            </ng-container>
+          </div>
+        </div>
+        <div class="proDetails">
+          <h3>Professional Details</h3>
+          <div class="exp">
+            <h5>Total Experience</h5>
+            <h5>Relevant Experience</h5>
+            <h5 class="currentSalary">Current Salary</h5>
+            <h5 class="expSalary">Expected Salary</h5>
+          </div>
+          <div class="professionalDetail">
+            <div *ngFor="let form of professionalDetails;let i = index">
+              <ng-container *ngIf="form.modelType == 'exp'">
+                <label>{{ form.fieldDisplayName }}</label
+                ><br />
+                <input [(ngModel)]="form.value" name="{{form.fieldName}}" *ngIf="form.type !== 'RADIO'" type="{{ form.type }}" />
+                <select [(ngModel)]="form.value" name="{{form.fieldName}}" *ngIf="form.type == 'RADIO'">
+                  <option *ngFor="let exp of form.options" value="{{exp.value}}">
+                    {{ exp.display }}
+                  </option>
+                </select>
+                <br />
+              </ng-container>
+            </div>
+          </div>
+          <div class="pDetails">
+            <div class="roleAndSkill" *ngFor="let form of professionalDetails;let i = index">
+              <ng-container *ngIf="form.modelType == 'det'">
+                <label>{{ form.fieldDisplayName }}</label
+                ><br />
+                <input
+                [(ngModel)]="form.value"
+                  *ngIf="form.fieldName == 'exp_joining_date'"
+                  type="date"
+                  name="{{form.fieldName}}"
+                />
+                <input [(ngModel)]="form.value" name="{{form.fieldName}}" *ngIf="form.fieldName == 'offered_value'" type="text" name="{{form.fieldName}}"/>
+                <select [(ngModel)]="form.value" name="{{form.fieldName}}" *ngIf="form.type == 'RADIO'">
+                  <option *ngFor="let option of form.options" value="{{option.value}}">
+                    {{ option.display }}
+                  </option>
+                </select>
+              </ng-container>
+            </div>
+            <div *ngFor="let form of professionalDetails;let i = index">
+              <ng-container *ngIf="form.modelType == 'field'">
+                <label>{{ form.fieldDisplayName }}</label
+                ><br />
+                <input
+                [(ngModel)]="form.value"
+                name="{{form.fieldName}}"
+                  *ngIf="form.fieldName == 'exp_joining_date'"
+                  type="date"
+                />
+                <input *ngIf="form.fieldName == 'offered_value'" type="text" [(ngModel)]="form.value" name="{{form.fieldName}}"/>
+                <select [(ngModel)]="form.value" name="{{form.fieldName}}" *ngIf="form.type == 'RADIO'">
+                  <option *ngFor="let option of form.options" value="{{option.value}}">
+                    {{ option.display }}
+                  </option>
+                </select>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="notes" *ngFor="let notes of any">
+          <label for="">{{ notes.fieldName }}</label
+          ><br />
+          <textarea [(ngModel)]="notes.value" name="{{notes.fieldName}}" id="" cols="206" rows="8"></textarea>
+        </div>
+        <div class="address">
+          <div class="tabs">
+            <div class="tab">
+              <input class="checkBox" type="checkbox" id="check" />
+              <div class="head">
+                <label>Address Details</label>
+                <label class="tab-label" for="check">Show</label>
+              </div>
+              <div class="tab-content">
+                <div *ngFor="let address of address;let i = index">
+                  <label
+                    *ngIf="address.fieldName == 'current_address'"
+                    for=""
+                    >{{ address.fieldDisplayName }}</label
+                  ><br />
+                  <textarea
+                  [(ngModel)]="address.value"
+                    *ngIf="address.fieldName == 'current_address'"
+                    name="{{address.fieldName}}"
+                    id=""
+                    cols="98"
+                    rows="8"
+                  ></textarea>
+                </div>
+                <div *ngFor="let address of address;let i = index">
+                  <label
+                    *ngIf="address.fieldName == 'permanent_address'"
+                    for=""
+                    >{{ address.fieldDisplayName }}</label
+                  ><br />
+                  <textarea
+                    [(ngModel)]="address.value"
+                    *ngIf="address.fieldName == 'permanent_address'"
+                    name="{{address.fieldName}}"
+                    id=""
+                    cols="98"
+                    rows="8"
+                  ></textarea>
+                  <div class="checkAddress">
+                  <input class="addressCheck" (change)="copyCurrentAddress(address)" *ngIf="address.fieldName == 'permanent_address'" type="checkbox" name="" id="">
+                  <label *ngIf="address.fieldName == 'permanent_address'" for="">Same as Current Address</label>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="education">
+          <input class="checkbox" type="checkbox" id="checkk" />
+          <div class="head">
+            <label>Education Details</label>
+            <label class="tab-label" for="checkk" (click)="addEdu()">+Add</label>
+          </div>
+          <div class="eduDetails" *ngIf="educationBtn">
+            <div class="deleteBtn">
+            <button>Delete</button>
+          </div>
+          <div  *ngFor="let education of education;let i = index">
+            <label for="">{{ education.fieldDisplayName }}</label><br>
+            <input [(ngModel)]="education.value" name="{{education.fieldName}}" *ngIf="education.type == 'TEXT'" type="text" />
+            <select [(ngModel)]="education.value" name="{{education.fieldName}}" id="" *ngIf="education.type == 'RADIO'">
+              <option *ngFor="let option of education.options" value="{{option.value}}">
+                {{ option.display }}
+              </option>
+            </select>
+            <input [(ngModel)]="education.value" name="{{education.fieldName}}" type="date" *ngIf="education.dataType == 'date'" />
+          </div>
+        </div>
+
+        <div class="eduDetails" *ngIf="educationBtn && educationCount > 1">
+          <div class="deleteBtn">
+          <button>Delete</button>
+        </div>
+        <div  *ngFor="let education of education;let i = index">
+          <label for="">{{ education.fieldDisplayName }}</label><br>
+          <input [(ngModel)]="education.value" name="{{education.fieldName}}" *ngIf="education.type == 'TEXT'" type="text" />
+          <select [(ngModel)]="education.value" name="{{education.fieldName}}" id="" *ngIf="education.type == 'RADIO'">
+            <option *ngFor="let option of education.options" value="{{option.value}}">
+              {{ option.display }}
+            </option>
+          </select>
+          <input [(ngModel)]="education.value" name="{{education.fieldName}}" type="date" *ngIf="education.dataType == 'date'" />
+        </div>
+      </div>
+        </div>
+        <div class="experience">
+          <input class="checkbox" type="checkbox" id="checkexp" />
+          <div class="head">
+            <label>Experience Details</label>
+            <label class="tab-label" for="checkexp" (click)="addExp()">+Add</label>
+          </div>
+          <div class="eduDetails" *ngIf="expBtn">
+          <div  *ngFor="let experience of experience">
+            <label for="">{{ experience.fieldDisplayName }}</label><br>
+            <input [(ngModel)]="experience.value" name="{{experience.fieldName}}" *ngIf="experience.type == 'TEXT'" type="text" />
+            <input type="date" [(ngModel)]="experience.value" name="{{experience.fieldName}}" *ngIf="experience.dataType == 'date'" />
+          </div>
+        </div>
+        </div>
+        <div class="btn">
+        <button class="submitBtn">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

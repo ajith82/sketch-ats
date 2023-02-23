@@ -1,0 +1,22 @@
+export const resume = [{
+    modelType: 'field',
+    id: '6221c40483ee70124c825e9b',
+    type: 'DOCUMENT',
+    dataType: 'STRING',
+    fieldName: 'resume',
+    fieldDisplayName: 'Resume',
+    camera: false,
+    editable: true,
+    mandatory: true,
+    displayOrder: 1,
+    galleryEnabled: false,
+    gpsenabled: false,
+    description: '',
+    helpText: '',
+    fileTypes: ['.jpg', '.jpeg', '.png'],
+    sampleImageURL: '',
+    multiQuestions: [],
+    arrayType: false,
+    children: [],
+    value:''
+  }]

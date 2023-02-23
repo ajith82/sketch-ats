@@ -9,6 +9,10 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MaterialExampleModule } from '../material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { AngularPaginatorModule } from 'angular-paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +22,8 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CandidatesComponent } from './candidates/candidates.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -38,6 +44,8 @@ const firebaseConfig = {
     HeaderComponent,
     DashboardComponent,
     CandidatesComponent,
+    SidenavComponent,
+    AddCandidateComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +62,11 @@ const firebaseConfig = {
     MaterialExampleModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+    MatPaginatorModule,
+    AngularPaginatorModule,
+    NgxPaginationModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],
