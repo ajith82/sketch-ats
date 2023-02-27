@@ -90,4 +90,35 @@ export class ProfileService {
       { headers: reqHeader }
     );
   }
+
+  candidateDashboard():Observable<any>{
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/analytics`,
+      { headers: reqHeader }
+    );
+  }
+
+  offerAccepted():Observable<any>{
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(
+      `${this.BASE_URL}/get/candidates/offerAccepted`,
+      { headers: reqHeader }
+    );
+  }
+
+  addCandidate():Observable<any>{
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/allCandidates?pageNumber=1&pageSize=10`,
+      { headers: reqHeader }
+    );
+  }
+
 }

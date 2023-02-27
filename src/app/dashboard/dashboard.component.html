@@ -59,12 +59,12 @@
         <h5 class="result">{{ data.taskVerification }}</h5>
       </div>
       <div class="interviewDetails">
-        <h5 class="detailReview">DS Round & API</h5>
-        <h5 class="result">{{ data.dsRoundAPI }}</h5>
+        <h5 class="detailReview">Round 1</h5>
+        <h5 class="result">{{ data.Round_1 }}</h5>
       </div>
       <div class="interviewDetails">
-        <h5 class="detailReview">Technical Interview</h5>
-        <h5 class="result">{{ data.technicalInterview }}</h5>
+        <h5 class="detailReview">ROund 2</h5>
+        <h5 class="result">{{ data.Round_2 }}</h5>
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">HR Round</h5>
@@ -88,7 +88,7 @@
       </div>
       <div class="interviewDetails">
         <h5 class="detailReview">Rejected</h5>
-        <h5 class="result">444</h5>
+        <h5 class="result">{{ data.rejected }}</h5>
       </div>
     </div>
     <h4>Recent Updates</h4>
@@ -119,7 +119,7 @@
         <div class="candidateDetails" *ngFor="let offerAccept of offerAccepted">
           <div class="person">
             <p>Name:{{ offerAccept.firstName }}</p>
-            <p>Joining Date: {{ offerAccept.expectedJoiningDate | date }}</p>
+            <p>Joining Date: {{ offerAccept.modifiedDate | date }}</p>
           </div>
         </div>
       </div>

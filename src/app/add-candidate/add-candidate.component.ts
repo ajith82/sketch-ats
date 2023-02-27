@@ -7,6 +7,7 @@ import { address } from '../formData/address';
 import { education } from '../formData/education';
 import { experience } from '../formData/experience';
 import { NgForm } from '@angular/forms';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-add-candidate',
@@ -88,9 +89,12 @@ export class AddCandidateComponent implements OnInit {
     ],
   };
 
-  constructor() {}
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
+    this.profileService.addCandidate().subscribe((res) => {
+      console.log("addddddddddddddddd",res);
+    })
   }
 
   addEdu() {
@@ -221,7 +225,6 @@ export class AddCandidateComponent implements OnInit {
     this.eduDetails = [];
     // eduDetails.splice(0, eduDetails.length, combinedDetails);
     this.detailsObject.eduDetails = detailValue;
-    
     console.log(this.detailsObject, "this.educationCount",detailValue);
   }
 
@@ -356,7 +359,6 @@ export class AddCandidateComponent implements OnInit {
     this.address.forEach((detail) => {
       this.detailsObject[detail.fieldName] = detail.value;
     });
-
   
     console.log('detailsObject', this.detailsObject);
   }

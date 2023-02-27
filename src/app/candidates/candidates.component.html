@@ -27,7 +27,7 @@
         <label for="">Job Opening</label><br />
         <select>
           <option value="">Please Select</option>
-          <option *ngFor="let jobOpening of candidateSkillSetsArr" value="">
+          <option *ngFor="let jobOpening of candidateSkillSetsArr" value="{{ jobOpening }}">
             {{ jobOpening }}
           </option>
         </select>
@@ -36,7 +36,7 @@
         <label for="">Notice Period</label><br />
         <select>
           <option value="">Please Select</option>
-          <option *ngFor="let NoticePeriod of NoticePeriodArr" value="">
+          <option *ngFor="let NoticePeriod of NoticePeriodArr" value="{{ NoticePeriod }}">
             {{ NoticePeriod }}
           </option>
         </select>
@@ -45,7 +45,7 @@
         <label for="">Source</label><br />
         <select>
           <option value="">Please Select</option>
-          <option *ngFor="let source of SourceArr" value="">
+          <option *ngFor="let source of SourceArr" value="{{ source }}">
             {{ source }}
           </option>
         </select>
@@ -54,7 +54,7 @@
         <label for="">Added by</label><br />
         <select>
           <option value="">Please Select</option>
-          <option *ngFor="let interviewedBy of interviewedByArr" value="">
+          <option *ngFor="let interviewedBy of interviewedByArr" value="{{ interviewedBy }}">
             {{ interviewedBy }}
           </option>
         </select>

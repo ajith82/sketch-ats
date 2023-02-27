@@ -24,15 +24,28 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {    
       this.profileService.sendAnalytics().subscribe(res => {
         console.log("resssss",res);
+      })
+
+      this.profileService.candidateDashboard().subscribe((res: any) => {
+        console.log("vvvvvvvvvvvvv",res);
         this.data = res.data;
       })
 
-      this.profileService.getCandidates().subscribe(res => {
-        this.offerAccepted = res.data.getCandidatesJoined;
+      this.profileService.offerAccepted().subscribe((res) => {
+        console.log("acccccc",res);
+        this.offerAccepted = res.data.getCandidatesofferAccepted;
         this.candidateReject = res.data.getCandidatesRejected;
         this.candidateJoined = res.data.getCandidatesJoined;
         this.candidateDeclined = res.data.getCandidatesOfferDeclined;
         this.offered = res.data.getCandidatesoffered;
+      })
+
+      this.profileService.getCandidates().subscribe(res => {
+        // this.offerAccepted = res.data.getCandidatesJoined;
+        // this.candidateReject = res.data.getCandidatesRejected;
+        // this.candidateJoined = res.data.getCandidatesJoined;
+        // this.candidateDeclined = res.data.getCandidatesOfferDeclined;
+        // this.offered = res.data.getCandidatesoffered;
         console.log("candidatesssss",res);
       })
   }
