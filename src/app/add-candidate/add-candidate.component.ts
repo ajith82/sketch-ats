@@ -198,7 +198,7 @@ export class AddCandidateComponent implements OnInit {
     })}
     
     
-    this.education.forEach((detail) => {
+    this.education.forEach((detail) => {      
       this.eduDetails.push({
         institute: detail.fieldName == `institute_name_${sectionNumber}` ? detail.value : '',
         degree: detail.fieldName == `degree_${sectionNumber}` ? detail.value : '',
@@ -216,7 +216,7 @@ export class AddCandidateComponent implements OnInit {
       };
     }, {});
 
-    const detailValue = [ ]
+    const detailValue = []
     detailValue.push(combinedDetails);
     this.eduDetails = [];
     // eduDetails.splice(0, eduDetails.length, combinedDetails);

@@ -23,6 +23,8 @@ export class LoginAuthComponent implements OnInit {
   succeed:any;
   details:any;
   id:any;
+  data:any;
+  resToken:any;
   googleLogoURL = 
 "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
   constructor(
@@ -45,27 +47,36 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
   }
 
   signInWithGoogle() {
-    this.provider = new auth.GoogleAuthProvider();
-    this.afAuth.signInWithPopup(this.provider)
-      .then((credential) => {
-        this.details = credential;
-      this.id=credential.operationType;
-        console.log("credential",credential.operationType);
-        if (credential.additionalUserInfo?.profile) {
-          this.profileService.details(this.details).subscribe((data) =>{
+    // this.provider = new auth.GoogleAuthProvider();
+    // this.afAuth.signInWithPopup(this.provider)
+    //   .then((credential) => {
+    //     this.details = credential;
+    //   this.id=credential.operationType;
+    //     console.log("credential",credential.operationType);
+    //     if (credential.additionalUserInfo?.profile) {
+    //       this.profileService.details(this.details).subscribe((data) =>{
             
-          })
-      localStorage.setItem('id',this.id);
-          this.router.navigate(['dashboard']).then(() => {
-            window.location.reload();
-          });
-        } else {
-          console.log('oops');
-          this.router.navigate(['']);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    //       })
+    //   localStorage.setItem('id',this.id);
+    //       this.router.navigate(['dashboard']).then(() => {
+    //         window.location.reload();
+    //       });
+    //     } else {
+    //       console.log('oops');
+    //       this.router.navigate(['']);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+  }
+
+  googleLogin(){
+    this.profileService.googleAuth().subscribe((res) => {
+      this.resToken = res.data.token;
+      console.log("ressss",res.data.token);
+      localStorage.setItem('token',this.resToken);
+      this.router.navigate(['dashboard']);
+    })
   }
 }

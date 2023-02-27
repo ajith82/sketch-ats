@@ -6,7 +6,13 @@
       </div>
       <div class="searchAndFilter">
         <div class="search">
-          <input type="text" placeholder="Search Candidate ID/Name" />
+          <input
+            [(ngModel)]="serachValue"
+            (ngModelChange)="search(serachValue)"
+            name="search"
+            type="text"
+            placeholder="Search Candidate ID/Name"
+          />
         </div>
         <div class="filter">
           <button>Filters</button>
@@ -16,11 +22,68 @@
         </div>
       </div>
     </div>
+    <div class="filterSec">
+      <div class="jobOpening">
+        <label for="">Job Opening</label><br />
+        <select>
+          <option value="">Please Select</option>
+          <option *ngFor="let jobOpening of candidateSkillSetsArr" value="">
+            {{ jobOpening }}
+          </option>
+        </select>
+      </div>
+      <div class="noticePeriod">
+        <label for="">Notice Period</label><br />
+        <select>
+          <option value="">Please Select</option>
+          <option *ngFor="let NoticePeriod of NoticePeriodArr" value="">
+            {{ NoticePeriod }}
+          </option>
+        </select>
+      </div>
+      <div class="source">
+        <label for="">Source</label><br />
+        <select>
+          <option value="">Please Select</option>
+          <option *ngFor="let source of SourceArr" value="">
+            {{ source }}
+          </option>
+        </select>
+      </div>
+      <div class="AddedBy">
+        <label for="">Added by</label><br />
+        <select>
+          <option value="">Please Select</option>
+          <option *ngFor="let interviewedBy of interviewedByArr" value="">
+            {{ interviewedBy }}
+          </option>
+        </select>
+      </div>
+      <div class="startAndEndDate">
+        <label for="">Start and End Date</label><br />
+        <input type="date" name="" id="" />
+      </div>
+    </div>
     <div class="candidateTable">
       <mat-sidenav-container>
         <mat-sidenav #sidenav mode="side" [opened]="showSidenav">
           <app-sidenav [candidate]="selectedCandidate"></app-sidenav>
         </mat-sidenav>
+        <ul>
+          <li
+            (click)="candStatus(i)"
+            class="optionType"
+            *ngFor="
+              let candidateStatusCustom of candidateStatusCustom;
+              let i = index
+            "
+          >
+            <input type="radio" name="" id="" />
+            <ng-container>
+              {{ candidateStatusCustom.name }}
+            </ng-container>
+          </li>
+        </ul>
         <table>
           <tbody>
             <tr class="mainHead">
@@ -28,7 +91,6 @@
               <th>APPLIED ROLE</th>
               <th>REL EXP</th>
               <th>N PERIOD</th>
-              <!-- <th>CTC</th> -->
               <th>ADDED BY</th>
               <th>STATUS</th>
               <th></th>
@@ -37,7 +99,7 @@
             <tr
               class="details"
               *ngFor="
-                let candidate of candidateDetails | paginate : config;
+                let candidate of candidateIndo | paginate : config;
                 let i = index
               "
             >
@@ -50,7 +112,6 @@
               <td>{{ candidate.currentJobTitle }}</td>
               <td>{{ candidate.relevantExperience }}</td>
               <td>{{ candidate.noticePeriod }}</td>
-              <!-- <td>3,00,000</td> -->
               <td class="addedBy">
                 {{ candidate.interviewBy }} <br /><span class="date">{{
                   candidate.modifiedDate | date
@@ -82,11 +143,11 @@
               <div class="sidenav-content">
                 <button (click)="closeSidenav()">Close</button>
 
-                <!-- <h2>
-                  {{ selectedCandidate?.firstName }}
-                  {{ selectedCandidate?.lastName }}
-                </h2> -->
-                <iframe [src]="resumeUrl" style="width:718px; height:700px;" frameborder="0"></iframe>
+                <iframe
+                  [src]="resumeUrl"
+                  style="width: 718px; height: 700px"
+                  frameborder="0"
+                ></iframe>
               </div>
             </div>
           </tbody>
@@ -97,8 +158,6 @@
           (pageChange)="gty((page = $event))"
         ></pagination-controls>
       </div>
-      <!-- <mat-paginator [length]="length" #paginator [pageSize]="5" aria-label="Select page">
-      </mat-paginator> -->
     </div>
   </div>
 </div>
