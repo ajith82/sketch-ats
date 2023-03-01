@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { form } from '../formData/candidateForm';
 import { resume } from '../formData/resume';
@@ -37,15 +38,15 @@ export class AddCandidateComponent implements OnInit {
   experienceCount: number = 0;
   eduDetails: any[] = [];
   edu: any = {};
-  newEducation = [
-    {
-      id: 0,
-      institute: '',
-      degree: '',
-      start_date: '',
-      end_date: '',
-    },
-  ];
+  // newEducation = [
+  //   {
+  //     id: 0,
+  //     institute: '',
+  //     degree: '',
+  //     start_date: '',
+  //     end_date: '',
+  //   },
+  // ];
   // items = [{ id: 0, institute: '', degree: '', startTime: '', endTime: '' }];
   items:any = [];
   id = 1;
@@ -53,6 +54,16 @@ export class AddCandidateComponent implements OnInit {
   expId = 1;
   value = false;
   evalue = false;
+
+  skillSet = [
+    {label:'React JS',value:'React JS'},
+    {label:'Angular',value:'Angular'},
+    {label:'NodeJS',value:'NodeJS'}
+  ];
+  selectedSkill:any = [];
+  candidateResume:any;
+  resumeCand:any;
+  skills:any;
 
   educationBtn: boolean = false;
   expereinceBtn:boolean = false;
@@ -101,7 +112,7 @@ export class AddCandidateComponent implements OnInit {
     ],
   };
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService, private route:Router) {}
 
   ngOnInit(): void {}
 
@@ -368,11 +379,8 @@ export class AddCandidateComponent implements OnInit {
     this.detailsObject.expDetails = expDetails;
   }
 
-  submitData(form: NgForm) {
-    // const detailsObject: any = {};
-    this.resume.forEach((detail) => {
-      this.detailsObject[detail.fieldName] = detail.value;
-    });
+  submitData(form: NgForm,resume:any) {
+    const detailsObject: any = {};
     this.basicDetails.forEach((detail) => {
       this.detailsObject[detail.fieldName] = detail.value;
     });
@@ -385,16 +393,18 @@ export class AddCandidateComponent implements OnInit {
     this.address.forEach((detail) => {
       this.detailsObject[detail.fieldName] = detail.value;
     });
+    this.resumeCand = this.candidateResume;
+    this.skills = this.selectedSkill;
     this.detailsObject['educationInfo'] = this.items;
     this.detailsObject['experienceInfo'] = this.exp;
     this.detailsObject['isNegotiable'] = this.value;
     this.detailsObject['servedNoticePeriod'] = this.evalue;
 
-    this.profileService.addCandidate(this.detailsObject, this.eduObj, this.expObj).subscribe((res) => {
+    this.profileService.addCandidate(this.detailsObject, this.resumeCand, this.skills).subscribe((res) => {
       console.log('addeddddd', res);
     });
-
     console.log('detailsObject', this.detailsObject, this.eduObj,this.expObj);
+    // this.route.navigate(['candiadte'])
   }
 
   copyCurrentAddress(permanentAddressField: any) {
@@ -455,6 +465,30 @@ export class AddCandidateComponent implements OnInit {
   onDropdownChange(event: any) {
     this.evalue = (event.target.value === 'true');
     console.log(this.evalue);
+    
+  }
+
+  onSkillSelect(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+  const selectedIndex = selectElement.selectedIndex;
+  const selectedSkill = this.skillSet[selectedIndex];
+    this.selectedSkill.push(selectedSkill)
+  console.log(this.selectedSkill);
+  }
+
+  onFileSelected(event: any) {
+    // var reader = new FileReader();
+    // reader.readAsDataURL(event.target.files[0]);
+    // reader.onload = (event) => {
+    //   console.log(event);
+    // const url = event.target?.result;
+    // this.candidateResume = url;
+    // console.log(url);
+    // };
+    // console.log(this.candidateResume);
+    const file = event.target.files[0];
+    this.candidateResume = file;
+   console.log(file);
     
   }
 }

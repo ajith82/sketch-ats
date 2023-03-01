@@ -300,6 +300,28 @@ export const professionalDetails = [
         value:''
       },
       {
+        modelType: 'exp',
+        id: '622040bd83ee70124c825bd8',
+        type: 'NUMBER',
+        dataType: 'DECIMAL',
+        fieldName: 'offeredValue',
+        fieldDisplayName: 'Offered Value',
+        camera: false,
+        editable: true,
+        mandatory: true,
+        displayOrder: 1,
+        galleryEnabled: false,
+        gpsenabled: false,
+        description: 'Calculate age of user in years',
+        helpText: '',
+        fileTypes: [],
+        sampleImageURL: '',
+        multiQuestions: [],
+        arrayType: false,
+        children: [],
+        value:''
+      },
+      {
         modelType: 'det',
         id: '622040bd83ee70124c825bcf',
         type: 'RADIO',
@@ -333,7 +355,7 @@ export const professionalDetails = [
       {
         modelType: 'det',
         id: '622040bd83ee70124c825bca',
-        type: 'RADIO',
+        type: 'dropdown',
         dataType: 'STRING',
         fieldName: 'skillSet',
         fieldDisplayName: 'Skills',

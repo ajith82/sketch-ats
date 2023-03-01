@@ -60,6 +60,7 @@ form {
 .professionalDetail {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .professionalDetail select {

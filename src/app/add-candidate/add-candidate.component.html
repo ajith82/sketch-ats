@@ -4,13 +4,14 @@
       <h4>Add Candidate</h4>
     </div>
     <div class="form">
-      <form #userForm="ngForm" (ngSubmit)="submitData(userForm)">
+      <form #userForm="ngForm" (ngSubmit)="submitData(userForm,resume)">
         <div class="uploadResume">
           <h3>Upload Resume</h3>
           <ng-container *ngFor="let resume of resume">
             <label for="">{{ resume.fieldDisplayName }}</label
             ><br />
             <input
+            (change)="onFileSelected($event)"
               #fieldName="ngModel"
               [(ngModel)]="resume.value"
               name="{{ resume.fieldName }}"
@@ -100,6 +101,12 @@
                     
                   </option>
                 </select>
+                <ng-container *ngIf="form.type == 'dropdown'">
+                  <select (change)="onSkillSelect($event)" name="skill" id="">
+                    <option value="">Select Your skill</option>
+                    <option *ngFor="let skills of skillSet;let i = index" [value]="skills.value">{{skills.label}}</option>
+                  </select>
+                </ng-container>
               </ng-container>
             </div>
             <div *ngFor="let form of professionalDetails; let i = index">
@@ -130,6 +137,7 @@
                     {{ option.display }}
                   </option>
                 </select>
+                
                 <ng-container *ngIf="form.type == 'boolean'">
                 <select name="notice" (change)="onDropdownChange($event)" [(ngModel)]="evalue">
                   <option [value]="true">Yes</option>
