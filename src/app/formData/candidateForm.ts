@@ -4,7 +4,7 @@ export const form = [
     id: '622040bd83ee70124c825bd7',
     type: 'TEXT',
     dataType: 'STRING',
-    fieldName: 'any',
+    fieldName: 'status',
     fieldDisplayName: 'Notes',
     camera: false,
     editable: true,

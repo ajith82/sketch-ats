@@ -31,19 +31,31 @@ export class AddCandidateComponent implements OnInit {
   educationValue: any;
   experienceValue: any;
   detailsObject: any = {};
+  eduObj:any = [];
+  expObj:any = [];
   educationCount: number = 0;
-  experienceCount:number = 0;
+  experienceCount: number = 0;
   eduDetails: any[] = [];
-  edu:any={};
-  newEducation = [{
-    id: 0,
-    institute: '',
-    degree: '',
-    start_date: '',
-    end_date: ''
-}]
+  edu: any = {};
+  newEducation = [
+    {
+      id: 0,
+      institute: '',
+      degree: '',
+      start_date: '',
+      end_date: '',
+    },
+  ];
+  // items = [{ id: 0, institute: '', degree: '', startTime: '', endTime: '' }];
+  items:any = [];
+  id = 1;
+  exp:any = [];
+  expId = 1;
+  value = false;
+  evalue = false;
 
   educationBtn: boolean = false;
+  expereinceBtn:boolean = false;
   expBtn: boolean = false;
 
   formDetails = {
@@ -91,141 +103,150 @@ export class AddCandidateComponent implements OnInit {
 
   constructor(private profileService: ProfileService) {}
 
-  ngOnInit(): void {
-    this.profileService.addCandidate().subscribe((res) => {
-      console.log("addddddddddddddddd",res);
-    })
-  }
+  ngOnInit(): void {}
 
   addEdu() {
     this.educationBtn = true;
     this.educationCount++;
-    
+
     // eduDetails.push({});
     const sectionNumber = this.educationCount;
-    if(this.educationCount>1){
-    this.education.push({
-      fieldName: "institute_name_" + sectionNumber,
-      fieldDisplayName: "Institute " + sectionNumber,
-      type: "TEXT",
-      dataType: "string",
-      value: "",
-      modelType: '',
-      id: '',
-      camera: false,
-      editable: false,
-      mandatory: false,
-      displayOrder: 0,
-      galleryEnabled: false,
-      gpsenabled: false,
-      description: '',
-      helpText: '',
-      fileTypes: [],
-      multiQuestions: [],
-      options:[],
-      arrayType: false,
-      children: []
-    }, {
-      fieldName: "degree_" + sectionNumber,
-      fieldDisplayName: "Degree " + sectionNumber,
-      type: "RADIO",
-      dataType: "string",
-      value: "",
-      modelType: '',
-      id: '',
-      camera: false,
-      editable: false,
-      mandatory: false,
-      displayOrder: 0,
-      galleryEnabled: false,
-      gpsenabled: false,
-      description: '',
-      helpText: '',
-      fileTypes: [],
-      multiQuestions: [],
-      options:[{
-        display: 'Btech',
-        value: 'Btech',
-      },
-      {
-        display: 'BCA',
-        value: 'BCA',
-      },
-      {
-        display: 'Bsc',
-        value: 'Bsc',
-      }],
-      arrayType: false,
-      children: []
-    }, {
-      fieldName: "start_date_" + sectionNumber,
-      fieldDisplayName: "Start Date " + sectionNumber,
-      type: "NUMBER",
-      dataType: "date",
-      value: "",
-      modelType: '',
-      id: '',
-      camera: false,
-      editable: false,
-      mandatory: false,
-      displayOrder: 0,
-      galleryEnabled: false,
-      gpsenabled: false,
-      description: '',
-      helpText: '',
-      fileTypes: [],
-      multiQuestions: [],
-      options:[],
-      arrayType: false,
-      children: []
-    }, {
-      fieldName: "end_date_" + sectionNumber,
-      fieldDisplayName: "End Date " + sectionNumber,
-      type: "NUMBER",
-      dataType: "date",
-      value: "",
-      modelType: '',
-      id: '',
-      camera: false,
-      editable: false,
-      mandatory: false,
-      displayOrder: 0,
-      galleryEnabled: false,
-      gpsenabled: false,
-      description: '',
-      helpText: '',
-      fileTypes: [],
-      multiQuestions: [],
-      options:[],
-      arrayType: false,
-      children: []
-    })}
-    
-    
-    this.education.forEach((detail) => {      
+    if (this.educationCount > 1) {
+      this.education.push(
+        {
+          fieldName: 'institute_name_' + sectionNumber,
+          fieldDisplayName: 'Institute ' + sectionNumber,
+          type: 'TEXT',
+          dataType: 'string',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          options: [],
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'degree_' + sectionNumber,
+          fieldDisplayName: 'Degree ' + sectionNumber,
+          type: 'RADIO',
+          dataType: 'string',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          options: [
+            {
+              display: 'Btech',
+              value: 'Btech',
+            },
+            {
+              display: 'BCA',
+              value: 'BCA',
+            },
+            {
+              display: 'Bsc',
+              value: 'Bsc',
+            },
+          ],
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'start_date_' + sectionNumber,
+          fieldDisplayName: 'Start Date ' + sectionNumber,
+          type: 'NUMBER',
+          dataType: 'date',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          options: [],
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'end_date_' + sectionNumber,
+          fieldDisplayName: 'End Date ' + sectionNumber,
+          type: 'NUMBER',
+          dataType: 'date',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          options: [],
+          arrayType: false,
+          children: [],
+        }
+      );
+    }
+
+    this.education.forEach((detail) => {
       this.eduDetails.push({
-        institute: detail.fieldName == `institute_name_${sectionNumber}` ? detail.value : '',
-        degree: detail.fieldName == `degree_${sectionNumber}` ? detail.value : '',
-        start_date: detail.fieldName == `start_date_${sectionNumber}` ? detail.value : '',
-        end_date: detail.fieldName == `end_date_${sectionNumber}` ? detail.value : '',
+        institute:
+          detail.fieldName == `institute_name_${sectionNumber}`
+            ? detail.value
+            : '',
+        degree:
+          detail.fieldName == `degree_${sectionNumber}` ? detail.value : '',
+        start_date:
+          detail.fieldName == `start_date_${sectionNumber}` ? detail.value : '',
+        end_date:
+          detail.fieldName == `end_date_${sectionNumber}` ? detail.value : '',
       });
     });
     const combinedDetails = this.eduDetails.reduce((acc, cur) => {
       return {
-        id:sectionNumber,
+        id: sectionNumber,
         institute: acc.institute || cur.institute || '',
         degree: acc.degree || cur.degree || '',
         start_date: acc.start_date || cur.start_date || '',
-        end_date: acc.end_date || cur.end_date || '', 
+        end_date: acc.end_date || cur.end_date || '',
       };
     }, {});
 
-    const detailValue = []
+    const detailValue = [];
     detailValue.push(combinedDetails);
     this.eduDetails = [];
     // eduDetails.splice(0, eduDetails.length, combinedDetails);
     this.detailsObject.eduDetails = detailValue;
-    console.log(this.detailsObject, "this.educationCount",detailValue);
+    console.log(this.detailsObject, 'this.educationCount', detailValue);
   }
 
   addExp() {
@@ -233,95 +254,100 @@ export class AddCandidateComponent implements OnInit {
     this.experienceCount++;
     const expDetails: any[] = [];
     const sectionNumber = this.experienceCount;
-    if(this.experienceCount>1){
-      this.experience.push({
-        fieldName: "company_name_" + sectionNumber,
-        fieldDisplayName: "Company Name " + sectionNumber,
-        type: "TEXT",
-        dataType: "string",
-        value: "",
-        modelType: '',
-        id: '',
-        camera: false,
-        editable: false,
-        mandatory: false,
-        displayOrder: 0,
-        galleryEnabled: false,
-        gpsenabled: false,
-        description: '',
-        sampleImageURL: '',
-        helpText: '',
-        fileTypes: [],
-        multiQuestions: [],
-        arrayType: false,
-        children: []
-      }, {
-        fieldName: "job_title_" + sectionNumber,
-        fieldDisplayName: "Job Title " + sectionNumber,
-        type: "TEXT",
-        dataType: "STRING",
-        value: "",
-        modelType: '',
-        id: '',
-        camera: false,
-        editable: false,
-        mandatory: false,
-        displayOrder: 0,
-        galleryEnabled: false,
-        gpsenabled: false,
-        description: '',
-        helpText: '',
-        fileTypes: [],
-        multiQuestions: [],
-        sampleImageURL: '',
-        arrayType: false,
-        children: []
-      }, {
-        fieldName: "start_date_" + sectionNumber,
-        fieldDisplayName: "Start Date " + sectionNumber,
-        type: "NUMBER",
-        dataType: "date",
-        value: "",
-        modelType: '',
-        id: '',
-        camera: false,
-        editable: false,
-        mandatory: false,
-        displayOrder: 0,
-        galleryEnabled: false,
-        gpsenabled: false,
-        description: '',
-        helpText: '',
-        fileTypes: [],
-        multiQuestions: [],
-        sampleImageURL: '',
-        arrayType: false,
-        children: []
-      }, {
-        fieldName: "end_date_" + sectionNumber,
-        fieldDisplayName: "End Date " + sectionNumber,
-        type: "NUMBER",
-        dataType: "date",
-        value: "",
-        modelType: '',
-        id: '',
-        camera: false,
-        editable: false,
-        mandatory: false,
-        displayOrder: 0,
-        galleryEnabled: false,
-        gpsenabled: false,
-        description: '',
-        helpText: '',
-        fileTypes: [],
-        multiQuestions: [],
-        sampleImageURL: '',
-        arrayType: false,
-        children: []
-      })
+    if (this.experienceCount > 1) {
+      this.experience.push(
+        {
+          fieldName: 'company_name_' + sectionNumber,
+          fieldDisplayName: 'Company Name ' + sectionNumber,
+          type: 'TEXT',
+          dataType: 'string',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          sampleImageURL: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'job_title_' + sectionNumber,
+          fieldDisplayName: 'Job Title ' + sectionNumber,
+          type: 'TEXT',
+          dataType: 'STRING',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          sampleImageURL: '',
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'start_date_' + sectionNumber,
+          fieldDisplayName: 'Start Date ' + sectionNumber,
+          type: 'NUMBER',
+          dataType: 'date',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          sampleImageURL: '',
+          arrayType: false,
+          children: [],
+        },
+        {
+          fieldName: 'end_date_' + sectionNumber,
+          fieldDisplayName: 'End Date ' + sectionNumber,
+          type: 'NUMBER',
+          dataType: 'date',
+          value: '',
+          modelType: '',
+          id: '',
+          camera: false,
+          editable: false,
+          mandatory: false,
+          displayOrder: 0,
+          galleryEnabled: false,
+          gpsenabled: false,
+          description: '',
+          helpText: '',
+          fileTypes: [],
+          multiQuestions: [],
+          sampleImageURL: '',
+          arrayType: false,
+          children: [],
+        }
+      );
     }
     console.log(sectionNumber);
-    
+
     this.experience.forEach((detail) => {
       expDetails.push({
         company: detail.fieldName == 'company_name' ? detail.value : '',
@@ -359,8 +385,16 @@ export class AddCandidateComponent implements OnInit {
     this.address.forEach((detail) => {
       this.detailsObject[detail.fieldName] = detail.value;
     });
-  
-    console.log('detailsObject', this.detailsObject);
+    this.detailsObject['educationInfo'] = this.items;
+    this.detailsObject['experienceInfo'] = this.exp;
+    this.detailsObject['isNegotiable'] = this.value;
+    this.detailsObject['servedNoticePeriod'] = this.evalue;
+
+    this.profileService.addCandidate(this.detailsObject, this.eduObj, this.expObj).subscribe((res) => {
+      console.log('addeddddd', res);
+    });
+
+    console.log('detailsObject', this.detailsObject, this.eduObj,this.expObj);
   }
 
   copyCurrentAddress(permanentAddressField: any) {
@@ -372,7 +406,55 @@ export class AddCandidateComponent implements OnInit {
     }
   }
 
-  deleteEduObj(){
+  deleteEduObj() {}
+
+  addEduu() {
+    if (!this.educationBtn) {
+      this.items.push({
+        institute: '',
+        degree: '',
+        startTime: '',
+        endTime: '',
+      });
+      this.id++
+      console.log(this.items);
+      
+    } 
+  }
+
+  addExpp(){
+    if (!this.expereinceBtn) {
+      this.exp.push({
+        company: '',
+        jobTitle: '',
+        startTime: '',
+        endTime: '',
+      });
+      this.id++
+      console.log(this.exp);
+      
+    } 
+  }
+
+  deleteEdu(id:any) {
+    this.items.splice(id,1);
+    console.log(this.items);
+  }
+
+  deleteExp(id:any) {
+    this.exp.splice(id,1);
+    console.log(this.exp);
+  }
+
+  onCheckboxChange(event: any) {
+    this.value = event.target.checked;
+    console.log(this.value);
+    
+  }
+
+  onDropdownChange(event: any) {
+    this.evalue = (event.target.value === 'true');
+    console.log(this.evalue);
     
   }
 }

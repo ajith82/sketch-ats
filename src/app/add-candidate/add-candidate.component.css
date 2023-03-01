@@ -195,6 +195,7 @@ input:checked ~ .tab-content {
     flex-wrap: wrap;
     gap: 60px;
     padding-top: 25px;
+    justify-content: center;
 }
 
 .eduDetails .deleteBtn {
@@ -205,15 +206,83 @@ input:checked ~ .tab-content {
 }
 
 .eduDetails input {
-    min-width: 780px;
+    /* min-width: 780px; */
+    min-width: 680px;
+
   height: 25px;
   border: 1px solid rgb(187, 186, 186);
 }
 
+.expSec {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.companyName {
+  display: flex;
+  align-items: center;
+}
+
+.companyName label {
+  width: 113px;
+}
+
+.startDate {
+  display: flex;
+  align-items: center;
+}
+
+.startDate label {
+  width: 73px;
+}
+
+.educationDet input {
+  min-width: 680px;
+  height: 25px;
+  border: 1px solid rgb(187, 186, 186);
+}
+
+.educationDet button {
+  height: 22px;
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.educationDet {
+  justify-content: center;
+    padding-top: 20px;
+}
+
 .eduDetails select {
-    min-width: 780px;
+    /* min-width: 780px; */
+    min-width: 680px;
+
     height: 25px;
   border: 1px solid rgb(187, 186, 186);
+}
+
+.educationDet {
+  display: flex;
+  gap: 35px;
+}
+
+.instituteDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .deleteBtnn {
