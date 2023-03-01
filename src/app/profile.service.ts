@@ -111,10 +111,12 @@ export class ProfileService {
     );
   }
 
-  addCandidate(data:any, res:any,skill:any):Observable<any>{
+  addCandidate(data:any, res:any,skill:any, edu:any,exp:any):Observable<any>{
     console.log("diffff",skill);
     let resume = res;
     let skillSet = skill;
+    let eduArr = edu;
+    let expArr = exp;
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
@@ -127,6 +129,8 @@ export class ProfileService {
     })
     fd.append('resume',resume)
     fd.append('skillSet',JSON.stringify(skillSet))
+    fd.append('educationInfo',JSON.stringify(eduArr))
+    fd.append('experienceInfo',JSON.stringify(expArr))
     
     // fd.append("educationInfo",JSON.stringify(edu));
     // fd.append("experienceInfo",JSON.stringify(exp));

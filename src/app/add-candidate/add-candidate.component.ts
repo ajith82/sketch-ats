@@ -32,8 +32,8 @@ export class AddCandidateComponent implements OnInit {
   educationValue: any;
   experienceValue: any;
   detailsObject: any = {};
-  eduObj:any = [];
-  expObj:any = [];
+  eduObj: any = [];
+  expObj: any = [];
   educationCount: number = 0;
   experienceCount: number = 0;
   eduDetails: any[] = [];
@@ -48,25 +48,28 @@ export class AddCandidateComponent implements OnInit {
   //   },
   // ];
   // items = [{ id: 0, institute: '', degree: '', startTime: '', endTime: '' }];
-  items:any = [];
+  items: any = [];
   id = 1;
-  exp:any = [];
+  exp: any = [];
   expId = 1;
   value = false;
   evalue = false;
 
   skillSet = [
-    {label:'React JS',value:'React JS'},
-    {label:'Angular',value:'Angular'},
-    {label:'NodeJS',value:'NodeJS'}
+    { label: 'React JS', value: 'React JS' },
+    { label: 'Angular', value: 'Angular' },
+    { label: 'NodeJS', value: 'NodeJS' },
   ];
-  selectedSkill:any = [];
-  candidateResume:any;
-  resumeCand:any;
-  skills:any;
+  selectedSkill: any = [];
+  candidateResume: any;
+  resumeCand: any;
+  skills: any;
+  eduArr: any;
+  expArr: any;
+  skillBtn = false;
 
   educationBtn: boolean = false;
-  expereinceBtn:boolean = false;
+  expereinceBtn: boolean = false;
   expBtn: boolean = false;
 
   formDetails = {
@@ -112,7 +115,7 @@ export class AddCandidateComponent implements OnInit {
     ],
   };
 
-  constructor(private profileService: ProfileService, private route:Router) {}
+  constructor(private profileService: ProfileService, private route: Router) {}
 
   ngOnInit(): void {}
 
@@ -379,32 +382,45 @@ export class AddCandidateComponent implements OnInit {
     this.detailsObject.expDetails = expDetails;
   }
 
-  submitData(form: NgForm,resume:any) {
+  submitData(form: NgForm, resume: any) {
     const detailsObject: any = {};
-    this.basicDetails.forEach((detail) => {
-      this.detailsObject[detail.fieldName] = detail.value;
-    });
-    this.professionalDetails.forEach((detail) => {
-      this.detailsObject[detail.fieldName] = detail.value;
-    });
-    this.any.forEach((detail) => {
-      this.detailsObject[detail.fieldName] = detail.value;
-    });
-    this.address.forEach((detail) => {
-      this.detailsObject[detail.fieldName] = detail.value;
-    });
-    this.resumeCand = this.candidateResume;
-    this.skills = this.selectedSkill;
-    this.detailsObject['educationInfo'] = this.items;
-    this.detailsObject['experienceInfo'] = this.exp;
-    this.detailsObject['isNegotiable'] = this.value;
-    this.detailsObject['servedNoticePeriod'] = this.evalue;
+    if (form.valid) {
+      this.basicDetails.forEach((detail) => {
+        this.detailsObject[detail.fieldName] = detail.value;
+      });
+      this.professionalDetails.forEach((detail) => {
+        this.detailsObject[detail.fieldName] = detail.value;
+      });
+      this.any.forEach((detail) => {
+        this.detailsObject[detail.fieldName] = detail.value;
+      });
+      this.address.forEach((detail) => {
+        this.detailsObject[detail.fieldName] = detail.value;
+      });
+      this.resumeCand = this.candidateResume;
+      this.skills = this.selectedSkill;
+      this.eduArr = this.items;
+      this.expArr = this.exp;
+      // this.detailsObject['educationInfo'] = this.items;
+      // this.detailsObject['experienceInfo'] = this.exp;
+      this.detailsObject['isNegotiable'] = this.value;
+      this.detailsObject['servedNoticePeriod'] = this.evalue;
 
-    this.profileService.addCandidate(this.detailsObject, this.resumeCand, this.skills).subscribe((res) => {
-      console.log('addeddddd', res);
-    });
-    console.log('detailsObject', this.detailsObject, this.eduObj,this.expObj);
-    // this.route.navigate(['candiadte'])
+      this.profileService
+        .addCandidate(
+          this.detailsObject,
+          this.resumeCand,
+          this.skills,
+          this.eduArr,
+          this.expArr
+        )
+        .subscribe((res) => {
+          console.log('addeddddd', res);
+        });
+      // this.route.navigate(['candiadte'])
+    } else {
+      console.log('errorrrrr');
+    }
   }
 
   copyCurrentAddress(permanentAddressField: any) {
@@ -426,13 +442,12 @@ export class AddCandidateComponent implements OnInit {
         startTime: '',
         endTime: '',
       });
-      this.id++
+      this.id++;
       console.log(this.items);
-      
-    } 
+    }
   }
 
-  addExpp(){
+  addExpp() {
     if (!this.expereinceBtn) {
       this.exp.push({
         company: '',
@@ -440,40 +455,38 @@ export class AddCandidateComponent implements OnInit {
         startTime: '',
         endTime: '',
       });
-      this.id++
+      this.id++;
       console.log(this.exp);
-      
-    } 
+    }
   }
 
-  deleteEdu(id:any) {
-    this.items.splice(id,1);
+  deleteEdu(id: any) {
+    this.items.splice(id, 1);
     console.log(this.items);
   }
 
-  deleteExp(id:any) {
-    this.exp.splice(id,1);
+  deleteExp(id: any) {
+    this.exp.splice(id, 1);
     console.log(this.exp);
   }
 
   onCheckboxChange(event: any) {
     this.value = event.target.checked;
     console.log(this.value);
-    
   }
 
   onDropdownChange(event: any) {
-    this.evalue = (event.target.value === 'true');
+    this.evalue = event.target.value === 'true';
     console.log(this.evalue);
-    
   }
 
   onSkillSelect(event: any) {
+    this.skillBtn = true;
     const selectElement = event.target as HTMLSelectElement;
-  const selectedIndex = selectElement.selectedIndex;
-  const selectedSkill = this.skillSet[selectedIndex];
-    this.selectedSkill.push(selectedSkill)
-  console.log(this.selectedSkill);
+    const selectedIndex = selectElement.selectedIndex;
+    const selectedSkill = this.skillSet[selectedIndex];
+    this.selectedSkill.push(selectedSkill);
+    console.log(this.selectedSkill);
   }
 
   onFileSelected(event: any) {
@@ -488,7 +501,6 @@ export class AddCandidateComponent implements OnInit {
     // console.log(this.candidateResume);
     const file = event.target.files[0];
     this.candidateResume = file;
-   console.log(file);
-    
+    console.log(file);
   }
 }

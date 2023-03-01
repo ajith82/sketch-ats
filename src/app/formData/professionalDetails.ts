@@ -561,12 +561,12 @@ export const professionalDetails = [
         gpsenabled: false,
         options: [
           {
-            display: 'Yes',
-            value: 'Yes',
+            display: 'LinkedIn',
+            value: 'LinkedIn',
           },
           {
-            display: 'No',
-            value: 'No',
+            display: 'Naukri',
+            value: 'Naukri',
           }
         ],
         description: 'Marital status of individual',
