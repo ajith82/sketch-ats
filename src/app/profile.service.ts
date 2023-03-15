@@ -13,6 +13,11 @@ export class ProfileService {
   BASE_URL = `http://localhost:8000/sketch-one-hr`;
   section: any;
   page: any;
+  candId: any;
+  currentJobTitle: any;
+  filterNoticePeriod: any;
+  filterSource:any;
+  filterAddedBy:any;
   details(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/posts/', data);
   }
@@ -51,7 +56,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyNWY4ZGJjZjk3ZGM3ZWM0MDFmMDE3MWZiNmU2YmRhOWVkOWU3OTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2Nzc1NTk5NjgsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2Nzc1NjAyNjgsImV4cCI6MTY3NzU2Mzg2OCwianRpIjoiZTQ4ZjM5MzE2ODE5NGFkMTRhY2Y2NzE0ODM4ZGI4YWQyYWZkMjE4ZiJ9.QcscrBOlzy4KAKCEst_SxF9r_drmiOUpFewQ-gj0sGLGrbGabYOTM0PvbiZrHBazeAlxvjlhSvnMUSVYZvXpjKLrJnSNRRoYaZT0HmQNcVF2-Iev3GbaBwHC2Z1vMthOtpCYS-AdCcmsfL_o5re_ks-YthlsnSkyUknDJwols5z_g680LrFTWNxj_pyrV0EEWa-yWxQ3X23kva829gudULD8QceM-cdEuY4ME5zzX8lOAxXh592_ofk0eU4C6jzwpg90FrFzXd9fw36ft3UgT_DNotSt-Dh7amh-kt_WqxX_udVHrqCO2UdEkwuRGUSHfoRXp7Gty4x5x_LFiZSclQ',
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjVkZjFmOTQ1ZmY5MDZhZWFlZmE5M2MyNzY5OGRiNDA2ZDYwNmIwZTgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2Nzg4NTQxNDQsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2Nzg4NTQ0NDQsImV4cCI6MTY3ODg1ODA0NCwianRpIjoiNTNhMjJlOWJlYWRlZTY2NmMxODJiNTQzZDUxMWI2NmI4NzAyNTAyNSJ9.i-zVxBmK_PVnmjjqOO6A_xf82S3nPy6-iYquqlOFVm6rHh3WrHxN2zvbMaZhVHfUKzxXYvbFqeRcGIf6WO0j1Dr0HKoR2M7VIsoQ-RTol_bAePoayil6xwxVcolZlidweb3DF2o_Ou5PkzUEBBy4cuKyPYBiiU3wnImnXPi4SxyBrE62bJpk6-BbTU0pvAORNPtr7cSsX4NS_R6pdYXmz8un6_qmQAIKSbBPaQEmS-CiLNQ1iZtcQMXmUdwGsY3ytCcz4QlIWYAWOk_9KkS1HAjnzzyH6TAl1wqJmFNlOGgsp8Gea19lGhO0JNsX9BZrf8MpVLhFoc1k7Nyxtf3dPw',
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -81,7 +86,7 @@ export class ProfileService {
     );
   }
 
-  search(value:any):Observable<any> {
+  search(value: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
@@ -91,28 +96,32 @@ export class ProfileService {
     );
   }
 
-  candidateDashboard():Observable<any>{
+  candidateDashboard(): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    return this.http.get(
-      `${this.BASE_URL}/hiring/get/candidate/analytics`,
-      { headers: reqHeader }
-    );
+    return this.http.get(`${this.BASE_URL}/hiring/get/candidate/analytics`, {
+      headers: reqHeader,
+    });
   }
 
-  offerAccepted():Observable<any>{
+  offerAccepted(): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    return this.http.get(
-      `${this.BASE_URL}/get/candidates/offerAccepted`,
-      { headers: reqHeader }
-    );
+    return this.http.get(`${this.BASE_URL}/get/candidates/offerAccepted`, {
+      headers: reqHeader,
+    });
   }
 
-  addCandidate(data:any, res:any,skill:any, edu:any,exp:any):Observable<any>{
-    console.log("diffff",skill);
+  addCandidate(
+    data: any,
+    res: any,
+    skill: any,
+    edu: any,
+    exp: any
+  ): Observable<any> {
+    console.log('diffff', skill);
     let resume = res;
     let skillSet = skill;
     let eduArr = edu;
@@ -120,28 +129,134 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log("data in server",data);
+    console.log('data in server', data);
     // let sendDate = JSON.stringify(data);
     // let params = new HttpParams().set('sendDate', JSON.stringify(data));
     let fd = new FormData();
     let map = Object.keys(data).map((key) => {
-      fd.append(key,data[key])
-    })
-    fd.append('resume',resume)
-    fd.append('skillSet',JSON.stringify(skillSet))
-    fd.append('educationInfo',JSON.stringify(eduArr))
-    fd.append('experienceInfo',JSON.stringify(expArr))
-    
+      fd.append(key, data[key]);
+    });
+    fd.append('resume', resume);
+    fd.append('skillSet', JSON.stringify(skillSet));
+    fd.append('educationInfo', JSON.stringify(eduArr));
+    fd.append('experienceInfo', JSON.stringify(expArr));
+
     // fd.append("educationInfo",JSON.stringify(edu));
     // fd.append("experienceInfo",JSON.stringify(exp));
 
-    
-    return this.http.post(
-      `${this.BASE_URL}/hiring/add/candidates`,fd,
-      { 
+    return this.http.post(`${this.BASE_URL}/hiring/add/candidates`, fd, {
+      headers: reqHeader,
+    });
+  }
+
+  getCandidateDetails(id: any): Observable<any> {
+    console.log('candidateId:', id);
+    this.candId = id;
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(`${this.BASE_URL}/hiring/get/candidate?_id=${id}`, {
+      headers: reqHeader,
+    });
+  }
+
+  getCandDetails(): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate?_id=${this.candId}`,
+      { headers: reqHeader }
+    );
+  }
+
+  editCandidate(data: any): Observable<any> {
+    console.log(data.skillSet);
+
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let fd = new FormData();
+    let map = Object.keys(data).map((key) => {
+      if (
+        key !== 'modifiedBY' &&
+        key !== 'modifiedDate' &&
+        key !== '__v' &&
+        key !== 'candidateStatus' &&
+        key !== 'resume' &&
+        key !== 'expectedJoiningDate'
+      ) {
+        if (key === 'skillSet') {
+          fd.append(key, JSON.stringify(data[key]));
+        } else {
+          fd.append(key, data[key]);
+        }
+      }
+    });
+    // fd.append('skillSet',JSON.stringify(data.skillSet))
+    return this.http.put(`${this.BASE_URL}/hiring/update/candidates`, fd, {
+      headers: reqHeader,
+    });
+  }
+
+  jobOpening(data: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    console.log(data);
+    this.currentJobTitle = data;
+    const encodedJobTitle = encodeURIComponent(data.currentJobTitle);
+    let fd = new FormData();
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${data}`,
+      {
         headers: reqHeader,
       }
     );
   }
 
+  noticePeriod(data: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    console.log(data);
+    this.filterNoticePeriod = data;
+    let fd = new FormData();
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${this.currentJobTitle}&noticePeriod=${data}`,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
+
+  source(data: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    console.log(data);
+    this.filterSource = data;
+    let fd = new FormData();
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${this.currentJobTitle}&noticePeriod=${this.filterNoticePeriod}&source=${data}`,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
+
+  addedBy(data: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    console.log(data);
+    this.filterAddedBy = data;
+    let fd = new FormData();
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${this.currentJobTitle}&noticePeriod=${this.filterNoticePeriod}&source=${this.filterSource}&interviewBy=${data}`,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
 }

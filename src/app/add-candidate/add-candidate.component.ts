@@ -68,6 +68,8 @@ export class AddCandidateComponent implements OnInit {
   expArr: any;
   skillBtn = false;
 
+  modifiedBY:any;
+
   educationBtn: boolean = false;
   expereinceBtn: boolean = false;
   expBtn: boolean = false;
@@ -401,6 +403,7 @@ export class AddCandidateComponent implements OnInit {
       this.skills = this.selectedSkill;
       this.eduArr = this.items;
       this.expArr = this.exp;
+
       // this.detailsObject['educationInfo'] = this.items;
       // this.detailsObject['experienceInfo'] = this.exp;
       this.detailsObject['isNegotiable'] = this.value;

@@ -25,7 +25,7 @@
     <div class="filterSec">
       <div class="jobOpening">
         <label for="">Job Opening</label><br />
-        <select>
+        <select (change)="jobOpenings($event)">
           <option value="">Please Select</option>
           <option *ngFor="let jobOpening of candidateSkillSetsArr" value="{{ jobOpening }}">
             {{ jobOpening }}
@@ -34,7 +34,7 @@
       </div>
       <div class="noticePeriod">
         <label for="">Notice Period</label><br />
-        <select>
+        <select (change)="noticePeriod($event)">
           <option value="">Please Select</option>
           <option *ngFor="let NoticePeriod of NoticePeriodArr" value="{{ NoticePeriod }}">
             {{ NoticePeriod }}
@@ -43,7 +43,7 @@
       </div>
       <div class="source">
         <label for="">Source</label><br />
-        <select>
+        <select (change)="source($event)">
           <option value="">Please Select</option>
           <option *ngFor="let source of SourceArr" value="{{ source }}">
             {{ source }}
@@ -52,7 +52,7 @@
       </div>
       <div class="AddedBy">
         <label for="">Added by</label><br />
-        <select>
+        <select (change)="addedBy($event)">
           <option value="">Please Select</option>
           <option *ngFor="let interviewedBy of interviewedByArr" value="{{ interviewedBy }}">
             {{ interviewedBy }}
@@ -61,7 +61,18 @@
       </div>
       <div class="startAndEndDate">
         <label for="">Start and End Date</label><br />
-        <input type="date" name="" id="" />
+        <input
+            type="text"
+            matInput
+            ngxDaterangepickerMd
+            style="width: 180px"
+            [locale]="{ applyLabel: 'ok', format: 'DD-MM-YYYY' }"
+            [(ngModel)]="selected"
+            name="daterange"
+            placeholder="DD-MM-YYYY~DD-MM-YYYY"
+            #pickerr
+            (change)="date()"
+          />
       </div>
     </div>
     <div class="candidateTable">
@@ -103,7 +114,7 @@
                 let i = index
               "
             >
-              <td class="candidateName">
+              <td class="candidateName" (click)="candidatesDetails(candidate._id)">
                 {{ candidate.firstName }} {{ candidate.lastName }} <br /><span
                   class="canNum"
                   >SBC0987/Others</span

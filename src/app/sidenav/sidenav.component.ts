@@ -12,6 +12,7 @@ export class SidenavComponent implements OnInit {
   data:any;
   tempData:any;
   controllerSrc!: SafeUrl;
+  showSidenav = false;
   constructor(private profileService: ProfileService, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
@@ -28,6 +29,10 @@ export class SidenavComponent implements OnInit {
       console.log("cccccccccccccccc",this.controllerSrc);
       
     })
+  }
+
+  toggleSidenav() {
+    this.showSidenav = !this.showSidenav;
   }
 
 }

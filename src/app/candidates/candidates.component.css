@@ -148,6 +148,7 @@ th {
     padding-top: 5px;
     color: skyblue;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .canNum {

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
+import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
 
 @Component({
   selector: 'app-candidates',
@@ -26,53 +27,56 @@ export class CandidatesComponent implements OnInit {
   resumeUrl: any;
   secureLink: any;
   candidateIndo: any[] = [];
-  serachValue:any;
+  serachValue: any;
+  @ViewChild(DaterangepickerDirective, { static: true })
+  picker!: DaterangepickerDirective;
+  selected!: { startDate: moment.Moment; endDate: moment.Moment };
 
   NoticePeriodArr = [
-    "15 Days",
-    "30 Days",
-    "45 Days",
-    "60 Days",
-    "90 Days",
-    "Immediate joiner"
+    '15 Days',
+    '30 Days',
+    '45 Days',
+    '60 Days',
+    '90 Days',
+    'Immediate joiner',
   ];
 
   SourceArr = [
-    "Naukri",
-    "Linkedin",
-    "Monster",
-    "Indeed",
-    "Hirect",
-    "Angelist",
-    "PyjamaHr",
-    "Referral",
-    "Others"
+    'Naukri',
+    'Linkedin',
+    'Monster',
+    'Indeed',
+    'Hirect',
+    'Angelist',
+    'PyjamaHr',
+    'Referral',
+    'Others',
   ];
 
   candidateSkillSetsArr = [
-    "UI UX Design",
-    "Lead Generation",
-    "Motion Graphics Designer",
-    "React Js",
-    "Angular Js",
-    "Vue Js",
-    "React Native",
-    "Flutter",
-    "Node Js",
-    "UI Development",
-    "GO Lang",
-    "Python",
-    "Ruby on Rails",
-    "Software Tester",
-    "Devops"
+    'UI UX Design',
+    'Lead Generation',
+    'Motion Graphics Designer',
+    'React Js',
+    'Angular Js',
+    'Vue Js',
+    'React Native',
+    'Flutter',
+    'Node Js',
+    'UI Development',
+    'GO Lang',
+    'Python',
+    'Ruby on Rails',
+    'Software Tester',
+    'Devops',
   ];
 
   interviewedByArr = [
-    "Sketchbrahma Technologies",
-    "Lakshmi Narasimhan Kumar",
-    "Bharathi B",
-    "Sahana Patil",
-    "Shivakumar Swain"
+    'Sketchbrahma Technologies',
+    'Lakshmi Narasimhan Kumar',
+    'Bharathi B',
+    'Sahana Patil',
+    'Shivakumar Swain',
   ];
 
   candidateStatusCustom = [
@@ -126,7 +130,7 @@ export class CandidatesComponent implements OnInit {
       );
       this.dataSource = new MatTableDataSource(this.candidateDetails);
       this.length = res.data.totalCount;
-      console.log('detailsssssss', this.candidateDetails);      
+      console.log('detailsssssss', this.candidateDetails);
     });
   }
 
@@ -173,13 +177,63 @@ export class CandidatesComponent implements OnInit {
       });
   }
 
-  search(value:any){
+  search(value: any) {
     console.log(value);
     this.profileService.search(value).subscribe((res) => {
       console.log(res);
       this.candidateIndo = res.data.searchResults;
-    })
+    });
   }
+
+  candidatesDetails(id: any) {
+    this.profileService.getCandidateDetails(id).subscribe((res) => {
+      console.log(res);
+    });
+    this.router.navigate(['details']);
+  }
+
+  jobOpenings(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    console.log(selectedValue);
+    this.profileService.jobOpening(selectedValue).subscribe((res) => {
+      console.log(res);
+      this.candidateIndo = res.data.searchResults;
+    });
+  }
+
+  noticePeriod(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    console.log(selectedValue);
+    this.profileService.noticePeriod(selectedValue).subscribe((res) => {
+      console.log(res);
+      this.candidateIndo = res.data.searchResults;
+    });
+  }
+
+  source(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    this.profileService.source(selectedValue).subscribe((res) => {
+      this.candidateIndo = res.data.searchResults;
+    });
+  }
+
+  addedBy(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    this.profileService.addedBy(selectedValue).subscribe((res) => {
+      this.candidateIndo = res.data.searchResults;
+    });
+  }
+
+  date() {
+    const endDate = this.selected.endDate;
+    const endDateValue = endDate.get('date');
+    console.log(endDateValue);
+  }
+  
 }
 
 //For TableHeading

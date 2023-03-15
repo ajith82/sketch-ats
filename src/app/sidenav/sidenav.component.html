@@ -1,8 +1,23 @@
-<!-- <p *ngFor="let candidate of data.data.getCandidates"> -->
-    <!-- <img src="{{candidate.resume}}" alt=""> -->
-    <!-- <embed src="{{candidate.resume}}" width="800px" height="2100px" /> -->
- <!-- {{candidate.resume}} -->
-<!-- </p> -->
-<p>
+<!-- <p>
     <iFrame src="{{controllerSrc}}" width="800px" height="2100px" type=""></iFrame>
-</p>
+</p> -->
+
+<div class="form-container">
+    <form>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  
+  

@@ -24,6 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
+import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
+import { DetailsComponent } from './details/details.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -46,6 +48,8 @@ const firebaseConfig = {
     CandidatesComponent,
     SidenavComponent,
     AddCandidateComponent,
+    CandidateDetailsComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
