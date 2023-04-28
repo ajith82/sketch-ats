@@ -56,7 +56,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjVkZjFmOTQ1ZmY5MDZhZWFlZmE5M2MyNzY5OGRiNDA2ZDYwNmIwZTgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2Nzg4NTQxNDQsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2Nzg4NTQ0NDQsImV4cCI6MTY3ODg1ODA0NCwianRpIjoiNTNhMjJlOWJlYWRlZTY2NmMxODJiNTQzZDUxMWI2NmI4NzAyNTAyNSJ9.i-zVxBmK_PVnmjjqOO6A_xf82S3nPy6-iYquqlOFVm6rHh3WrHxN2zvbMaZhVHfUKzxXYvbFqeRcGIf6WO0j1Dr0HKoR2M7VIsoQ-RTol_bAePoayil6xwxVcolZlidweb3DF2o_Ou5PkzUEBBy4cuKyPYBiiU3wnImnXPi4SxyBrE62bJpk6-BbTU0pvAORNPtr7cSsX4NS_R6pdYXmz8un6_qmQAIKSbBPaQEmS-CiLNQ1iZtcQMXmUdwGsY3ytCcz4QlIWYAWOk_9KkS1HAjnzzyH6TAl1wqJmFNlOGgsp8Gea19lGhO0JNsX9BZrf8MpVLhFoc1k7Nyxtf3dPw',
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2OTY5YWVjMzdhNzc4MGYxODgwNzg3NzU5M2JiYmY4Y2Y1ZGU1Y2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODI2NjM0MzcsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODI2NjM3MzcsImV4cCI6MTY4MjY2NzMzNywianRpIjoiMjMyNmE5MjUzMzA2M2Y0N2RmODFhNzRmMzNjNWJiZjkzZjU3YzBmNSJ9.uUg0-j29yPrc6qqkVhhZymVWcQ4lOk-9HhEjjfGvLGJJ-fy-kKS-vTA9xjWtUeFQjCjOhgAEEw113YVp6meJ6jFAEmVHeVDLO4HyCUfHkgECZh5wNzv8wi5Lo_fud0i54ls3ee4fPUxL1Zt2ERv5BNpzMK3aoH63I2k_EvdO8X0QWK7NRh0-GMBQ6LyzDeEKrOQm9G1LbneQxGN-H185rcb9Reub_HU27Xce9YGSuJAI1xPTIabpkR2p6ynWN9QytwExTAyjb9xJCpJw9f-2n3M988Y-3PNZaEOT8uEDuM4A8SEDv3Hs4B6fPNuynL7yPhrKRh687apb-4RnpKfJOA",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -203,7 +203,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log(data);
     this.currentJobTitle = data;
     const encodedJobTitle = encodeURIComponent(data.currentJobTitle);
     let fd = new FormData();
@@ -219,11 +218,11 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log(data);
+    console.log("serrrrrrrrrrr",data);
     this.filterNoticePeriod = data;
     let fd = new FormData();
     return this.http.get(
-      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${this.currentJobTitle}&noticePeriod=${data}`,
+      `${this.BASE_URL}/sketch-one-hr/hiring/get/candidate/analytics?currentJobTitle=&interviewBy=&startDate=&endDate=&noticePeriod=${data}&source=`,
       {
         headers: reqHeader,
       }
@@ -254,6 +253,18 @@ export class ProfileService {
     let fd = new FormData();
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${this.currentJobTitle}&noticePeriod=${this.filterNoticePeriod}&source=${this.filterSource}&interviewBy=${data}`,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
+
+  getAdmins():Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.get(
+      `${this.BASE_URL}/getAllUser?pageNumber=1&pageSize=100`,
       {
         headers: reqHeader,
       }

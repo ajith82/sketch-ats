@@ -13,6 +13,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AngularPaginatorModule } from 'angular-paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
 import { DetailsComponent } from './details/details.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -50,6 +53,7 @@ const firebaseConfig = {
     AddCandidateComponent,
     CandidateDetailsComponent,
     DetailsComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ const firebaseConfig = {
     MatPaginatorModule,
     AngularPaginatorModule,
     NgxPaginationModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DetailsComponent } from './details/details.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {path:'',component:LoginAuthComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'candiadte',component:CandidatesComponent, canActivate:[AuthGuard]},
   {path:'addcandidate', component:AddCandidateComponent, canActivate:[AuthGuard]},
   {path:'details',component:CandidateDetailsComponent, canActivate:[AuthGuard]},
-  {path:'details/candDetails',component:DetailsComponent, canActivate:[AuthGuard]}
+  {path:'details/candDetails',component:DetailsComponent, canActivate:[AuthGuard]},
+  {path:'admin',component:AdminPanelComponent}
 ];
 
 @NgModule({

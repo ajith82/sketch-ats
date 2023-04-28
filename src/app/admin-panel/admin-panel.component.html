@@ -1,0 +1,45 @@
+<section class="adminPanel">
+    <div class="navBar">
+        <ul>
+            <li><a href="">Admin Panel</a></li>
+        </ul>
+    </div>
+    <div class="adminRoles">
+        <div class="mainBody">
+            <div class="head">
+                <div class="roleHeading">
+                    <img src="../../images/close.svg" alt="back">
+                    <h3>User Role</h3>
+                </div>
+                <div class="addUser">
+                    <button>Add User</button>
+                </div>
+            </div>
+            <div class="adminDetails">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 28%;">NAME</th>
+                            <th style="width: 28%;">EMAIL ID</th>
+                            <th style="width: 28%;">ROLE</th>
+                            <th style="width: 5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let roles of adminDetails.data.user">
+                            <td>{{roles.name}}</td>
+                            <td>{{roles.email}}</td>
+                            <td>{{roles.role}}</td>
+                            <td>
+                                <ul>
+                                    <li><button mat-button (click)="openDialog()">E</button></li>
+                                    <li>D</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

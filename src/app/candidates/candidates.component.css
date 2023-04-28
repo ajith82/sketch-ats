@@ -33,7 +33,12 @@
     /* border: 1px solid gray; */
     border: none;
     background-color: #fff;
-    height: 19px;
+    height: 36px;
+    width: 250px;
+    padding: 0px 12px;
+    padding-left: 32px;
+    border: 1px solid #dddfe3;
+    outline: none;
 }
 
 .filter button {

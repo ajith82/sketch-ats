@@ -28,6 +28,7 @@ export class CandidatesComponent implements OnInit {
   secureLink: any;
   candidateIndo: any[] = [];
   serachValue: any;
+  selectedOptions: string[] = [];
   @ViewChild(DaterangepickerDirective, { static: true })
   picker!: DaterangepickerDirective;
   selected!: { startDate: moment.Moment; endDate: moment.Moment };
@@ -232,6 +233,20 @@ export class CandidatesComponent implements OnInit {
     const endDate = this.selected.endDate;
     const endDateValue = endDate.get('date');
     console.log(endDateValue);
+  }
+
+  addOption(event: any): void {
+    const selectedOption = event.target.value;
+    if (selectedOption && !this.selectedOptions.includes(selectedOption)) {
+      this.selectedOptions.push(selectedOption);
+    }
+  }
+  
+  removeOption(option: string): void {
+    const index = this.selectedOptions.indexOf(option);
+    if (index >= 0) {
+      this.selectedOptions.splice(index, 1);
+    }
   }
   
 }
