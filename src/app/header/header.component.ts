@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   photoUrl: any;
   showDropdown: boolean = false;
   isAdminPage: boolean = false;
+  isHomePage: boolean = false;
   constructor(
     private profileService: ProfileService,
     private route: Router,
@@ -28,6 +29,9 @@ export class HeaderComponent implements OnInit {
       this.photoUrl = this.selectedOne.user.photoURL;
     });
     this.isAdminPage = window.location.pathname === '/admin';    
+    this.isHomePage = window.location.pathname === '/';
+    console.log("aaaaaaaaaaaaaaaaaa",window.location.pathname);
+    
   }
 
   toggleDropdown() {

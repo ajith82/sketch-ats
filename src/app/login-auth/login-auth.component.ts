@@ -76,7 +76,9 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
       this.resToken = res.data.token;
       console.log("ressss",res.data.token);
       localStorage.setItem('token',this.resToken);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']).then(() => {
+        window.location.reload();
+      })
     })
   }
 }
