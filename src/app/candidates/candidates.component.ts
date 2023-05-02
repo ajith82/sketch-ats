@@ -32,6 +32,7 @@ export class CandidatesComponent implements OnInit {
   @ViewChild(DaterangepickerDirective, { static: true })
   picker!: DaterangepickerDirective;
   selected!: { startDate: moment.Moment; endDate: moment.Moment };
+  selectedIndex: any = null;
 
   NoticePeriodArr = [
     '15 Days',
@@ -168,6 +169,7 @@ export class CandidatesComponent implements OnInit {
   }
 
   candStatus(id: any) {
+    this.selectedIndex = id;
     console.log('aaaaaaaaaaaaaa', this.candidateStatusCustom[id].api);
     this.profileService
       .getCandidate(this.candidateStatusCustom[id].api)

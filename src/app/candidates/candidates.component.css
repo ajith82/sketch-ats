@@ -99,14 +99,23 @@
     display: flex;
     gap: 40px;
     width: 62%;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(193, 192, 192);
 }
 
 .candidateTable ul li {
     list-style-type: none;
+    white-space: nowrap;
     cursor: pointer;
+    padding-bottom: 10px;
+}
+.candidateTable ul li.selected {
+    border-bottom: 2px solid black;
+  }
+
+.bntStyle {
+    
 }
 
 .candidateTable ul input[type="radio"] {
