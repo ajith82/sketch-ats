@@ -23,6 +23,8 @@ export class AdminPanelComponent implements OnInit {
   adminDetails: any;
   editPopup = false;
   editAdminDetails:any;
+  isEdit = false;
+  popupHeading = "Edit User";
   adminRoles = [
     "Admin",
     "Manager",
@@ -54,7 +56,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   openPopup(data:any) {
-    console.log(data);
     this.editPopup = true;
     this.editAdminDetails = data;
   }
@@ -64,10 +65,40 @@ export class AdminPanelComponent implements OnInit {
   }
 
   updateAdmin() {
-    this.profileService.editAdmin(this.editAdminDetails).subscribe((res) => {
-      console.log("gottttt",res);
-      this.editPopup = false;
-    })  
+    if (this.isEdit) {
+      this.profileService.editAdmin(this.editAdminDetails).subscribe((res) => {
+        this.editPopup = false;
+      });
+    } else {
+      this.popupHeading = "Add User";
+      this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
+        // this.editPopup = false;
+      });
+    }
+  }
+
+  // openEditPopup(admin:any) {    
+  //   this.editAdminDetails = {
+  //     name: admin.name,
+  //     email: admin.email,
+  //     role: admin.role
+  //   };
+  //   this.isEdit = true;
+  //   this.editPopup = true;
+  // }
+
+  openAddPopup() {
+    this.editAdminDetails = {
+      name: '',
+      email: '',
+      role: ''
+    };    
+    this.isEdit = false;
+    this.editPopup = true;
+  }
+
+  addAdmin() {
+    console.log(this.editAdminDetails );
   }
 }
 

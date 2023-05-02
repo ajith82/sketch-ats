@@ -12,7 +12,7 @@
           <h3>User Role</h3>
         </div>
         <div class="addUser">
-          <button>Add User</button>
+          <button (click)="openAddPopup()">Add User</button>
         </div>
       </div>
       <div class="adminDetails">
@@ -33,11 +33,15 @@
               <td>
                 <ul>
                   <li>
-                    <button (click)="openDialog(roles); openPopup(roles)">
-                      E
-                    </button>
+                    <img
+                      (click)="openDialog(roles); openPopup(roles)"
+                      src="../../images/edit.svg"
+                      alt="edit"
+                    />
                   </li>
-                  <li>D</li>
+                  <li>
+                    <img src="../../images/delete.svg" alt="delete" />
+                  </li>
                 </ul>
               </td>
             </tr>
@@ -47,7 +51,7 @@
       <div *ngIf="editPopup" class="editAdminSection">
         <div class="editAdmin" *ngIf="editPopup">
           <div class="editAdminHead">
-            <h3>Edit User</h3>
+            <h3>{{ popupHeading }} User</h3>
             <img
               style="width: 20px"
               (click)="closePopup()"
@@ -55,7 +59,7 @@
               alt="close"
             />
           </div>
-          <form (ngSubmit)="updateAdmin()">
+          <form (ngSubmit)="updateAdmin(); addAdmin()">
             <div class="adminName">
               <label for="">Name</label>
               <input

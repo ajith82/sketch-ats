@@ -279,4 +279,12 @@ export class ProfileService {
       headers: reqHeader,
     });
   }
+  addAdmin(data:any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.put(`${this.BASE_URL}/update/user`, data, {
+      headers: reqHeader,
+    }); 
+  }
 }
