@@ -53,12 +53,16 @@
 
 .addCandidate button {
     width: 110px;
-    padding: 4px;
     background-color: black;
     color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    padding: 0px 14px;
+    box-shadow: none !important;
+    cursor: pointer;
+    min-width: 120px;
+    height: 36px;
 }
 
 .filterSec {

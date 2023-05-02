@@ -14,9 +14,9 @@
             placeholder="Search Candidate ID/Name"
           />
         </div>
-        <div class="filter">
+        <!-- <div class="filter">
           <button>Filters</button>
-        </div>
+        </div> -->
         <div class="addCandidate">
           <button routerLink="/addcandidate">Add Candidate</button>
         </div>
@@ -25,26 +25,31 @@
     <div class="filterSec">
       <div class="jobOpening">
         <label for="">Job Opening</label><br />
-<!-- <mat-chip-list>
+        <!-- <mat-chip-list>
   <mat-chip *ngFor="let selectedOption of selectedOptions" removable (removed)="removeOption(selectedOption)">
     {{ selectedOption }}
     <mat-icon matChipRemove>cancel</mat-icon>
   </mat-chip>
 </mat-chip-list> -->
 
-<select (change)="addOption($event)">
-  <option value="">Please Select</option>
-  <option *ngFor="let jobOpening of candidateSkillSetsArr" value="{{ jobOpening }}">
-    {{ jobOpening }}
-  </option>
-</select>
-
+        <select (change)="jobOpenings($event)">
+          <option value="">Please Select</option>
+          <option
+            *ngFor="let jobOpening of candidateSkillSetsArr"
+            value="{{ jobOpening }}"
+          >
+            {{ jobOpening }}
+          </option>
+        </select>
       </div>
       <div class="noticePeriod">
         <label for="">Notice Period</label><br />
         <select (change)="noticePeriod($event)">
           <option value="">Please Select</option>
-          <option *ngFor="let NoticePeriod of NoticePeriodArr" value="{{ NoticePeriod }}">
+          <option
+            *ngFor="let NoticePeriod of NoticePeriodArr"
+            value="{{ NoticePeriod }}"
+          >
             {{ NoticePeriod }}
           </option>
         </select>
@@ -62,7 +67,10 @@
         <label for="">Added by</label><br />
         <select (change)="addedBy($event)">
           <option value="">Please Select</option>
-          <option *ngFor="let interviewedBy of interviewedByArr" value="{{ interviewedBy }}">
+          <option
+            *ngFor="let interviewedBy of interviewedByArr"
+            value="{{ interviewedBy }}"
+          >
             {{ interviewedBy }}
           </option>
         </select>
@@ -70,17 +78,17 @@
       <div class="startAndEndDate">
         <label for="">Start and End Date</label><br />
         <input
-            type="text"
-            matInput
-            ngxDaterangepickerMd
-            style="width: 180px"
-            [locale]="{ applyLabel: 'ok', format: 'DD-MM-YYYY' }"
-            [(ngModel)]="selected"
-            name="daterange"
-            placeholder="DD-MM-YYYY~DD-MM-YYYY"
-            #pickerr
-            (change)="date()"
-          />
+          type="text"
+          matInput
+          ngxDaterangepickerMd
+          style="width: 180px"
+          [locale]="{ applyLabel: 'ok', format: 'DD-MM-YYYY' }"
+          [(ngModel)]="selected"
+          name="daterange"
+          placeholder="DD-MM-YYYY~DD-MM-YYYY"
+          #pickerr
+          (change)="date()"
+        />
       </div>
     </div>
     <div class="candidateTable">
@@ -122,7 +130,10 @@
                 let i = index
               "
             >
-              <td class="candidateName" (click)="candidatesDetails(candidate._id)">
+              <td
+                class="candidateName"
+                (click)="candidatesDetails(candidate._id)"
+              >
                 {{ candidate.firstName }} {{ candidate.lastName }} <br /><span
                   class="canNum"
                   >SBC0987/Others</span

@@ -45,4 +45,9 @@ export class HeaderComponent implements OnInit {
       window.location.reload();
     })
   }
+  candRoute() {
+    this.route.navigate(['candiadte']).then(() => {
+      window.location.reload();
+    })
+  }
 }

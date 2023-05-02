@@ -18,7 +18,8 @@
     <div class="profile">
         <div class="dropdown" *ngIf="showDropdown">
             <ul>
-                <li><a (click)="adminRoute()">ADMIN</a></li>
+                <li *ngIf="!isAdminPage"><a (click)="adminRoute()">ADMIN</a></li>
+                <li *ngIf="isAdminPage"><a (click)="candRoute()">CANDIDATE</a></li>
                 <li><a (click)="logout()">LOGOUT</a></li>
             </ul>
         </div>

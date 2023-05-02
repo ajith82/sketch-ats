@@ -208,7 +208,7 @@ export class CandidatesComponent implements OnInit {
     const selectedValue = selectElement.value;
     console.log(selectedValue);
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
-      console.log(res);
+      console.log("noticeeee",res);
       this.candidateIndo = res.data.searchResults;
     });
   }
