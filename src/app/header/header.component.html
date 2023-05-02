@@ -4,7 +4,7 @@
       <div class="logo">
         <img src="../../images/sb-logo.svg" alt="logo" />
       </div>
-      <div class="option">
+      <div *ngIf="!isAdminPage" class="option">
         <div class="dashboard">
             <input id="dashboard" name="sort" value="date" type="radio" [checked]="true">
           <label routerLink="dashboard" for="dashboard" class="optionType">Dashboard</label>
@@ -18,8 +18,8 @@
     <div class="profile">
         <div class="dropdown" *ngIf="showDropdown">
             <ul>
-                <li><a (click)="logout()">Logout</a></li>
-                <li><a routerLink="admin">Admin</a></li>
+                <li><a (click)="adminRoute()">ADMIN</a></li>
+                <li><a (click)="logout()">LOGOUT</a></li>
             </ul>
         </div>
         <div class="profileImg">

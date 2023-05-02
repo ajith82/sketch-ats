@@ -108,7 +108,6 @@ export class AdminPanelComponent implements OnInit {
     console.log(this.editAdminDetails );
     this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
       this.editPopup = false;
-      console.log("created",res);
     });
     window.location.reload()
   }

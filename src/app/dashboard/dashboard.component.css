@@ -79,6 +79,7 @@
     background-color: #fff;
     width: 600px;
     height: 500px;
+    overflow: scroll;
 }
 
 .updatesHead {
