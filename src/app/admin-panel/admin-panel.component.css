@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     display: inline-flex;
+    position: relative;
 }
 .navBar {
     width: 11%;
@@ -88,4 +89,79 @@ table thead tr th {
 }
 .adminDetails tbody ul li {
     cursor: pointer;
+}
+.editAdminSection {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #01010187;
+}
+.editAdmin {
+    padding: 10px;
+    min-width: 500px;
+    /* height: 400px; */
+    background-color: #ffffff;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.editAdminHead {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding: 0 0 12px;
+}
+.editAdminHead h3 {
+    font-size: 28px;
+    line-height: 42px;
+}
+.editAdminHead img {
+    cursor: pointer;
+}
+.editAdmin form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 25px;
+}
+.editAdmin form label {
+    font-size: 14px;
+    color: #575757;
+}
+.editAdmin form input {
+    padding: 5px;
+    border: 1px solid #dddfe4;
+    color: #575757;
+}
+.editAdmin form select {
+    padding: 5px;
+    border: 1px solid #dddfe4;
+    color: #575757;
+}
+.editAdmin form button {
+    min-width: 120px;
+    cursor: pointer;
+    background-color: #191919;
+    color: #fff;
+    text-decoration: none;
+    height: 36px;
+    display: flex;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 14px;
+    border: 1px solid #191919;
+}
+.adminName, .adminEmail, .adminRole {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.adminSubmit {
+    display: flex;
+    justify-content: flex-end;
 }

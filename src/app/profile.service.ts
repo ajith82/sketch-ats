@@ -16,8 +16,8 @@ export class ProfileService {
   candId: any;
   currentJobTitle: any;
   filterNoticePeriod: any;
-  filterSource:any;
-  filterAddedBy:any;
+  filterSource: any;
+  filterAddedBy: any;
   details(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/posts/', data);
   }
@@ -56,7 +56,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-      "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2OTY5YWVjMzdhNzc4MGYxODgwNzg3NzU5M2JiYmY4Y2Y1ZGU1Y2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODI2NjM0MzcsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODI2NjM3MzcsImV4cCI6MTY4MjY2NzMzNywianRpIjoiMjMyNmE5MjUzMzA2M2Y0N2RmODFhNzRmMzNjNWJiZjkzZjU3YzBmNSJ9.uUg0-j29yPrc6qqkVhhZymVWcQ4lOk-9HhEjjfGvLGJJ-fy-kKS-vTA9xjWtUeFQjCjOhgAEEw113YVp6meJ6jFAEmVHeVDLO4HyCUfHkgECZh5wNzv8wi5Lo_fud0i54ls3ee4fPUxL1Zt2ERv5BNpzMK3aoH63I2k_EvdO8X0QWK7NRh0-GMBQ6LyzDeEKrOQm9G1LbneQxGN-H185rcb9Reub_HU27Xce9YGSuJAI1xPTIabpkR2p6ynWN9QytwExTAyjb9xJCpJw9f-2n3M988Y-3PNZaEOT8uEDuM4A8SEDv3Hs4B6fPNuynL7yPhrKRh687apb-4RnpKfJOA",
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6ImM5YWZkYTM2ODJlYmYwOWViMzA1NWMxYzRiZDM5Yjc1MWZiZjgxOTUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODMwMDQyOTcsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODMwMDQ1OTcsImV4cCI6MTY4MzAwODE5NywianRpIjoiZDkyNzQxZTI3NDgwMjg5NDViODFiMjNlMTIzNDQ5ZjMxN2ZjYTljMSJ9.qNb4Dl9vUH6w0Fpy8FnvGFOfWO-cg5F9sBeBp9ssawohkHMP48oWe1OvLLgOiyKZNoMD7Jh3V21QPU8ZqBSkUuuj1g3u3uLngwQnpj3awLKSITzg_1nIC_gpPU1gXyqBpdCEFPVLAK97-HV4jd0pbTciuddAS3rLOd124Xdfu9PUUdF5b9mrDWL2DEAZZUQd_SILsx5IqCyJ45WaihsJkGQgNDeOAvK_HQXSh6Dn3UtJt0McpvJrj5qKJPCCSb4xk6Dzp90almXIpvTsGjWOWd8wFlbw3YvHXiKHXJZcI4C7tepXEaQg4pW5ctKyhktwBHPARLk4haddE1lpF_P03Q',
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -218,7 +218,7 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log("serrrrrrrrrrr",data);
+    console.log('serrrrrrrrrrr', data);
     this.filterNoticePeriod = data;
     let fd = new FormData();
     return this.http.get(
@@ -259,7 +259,7 @@ export class ProfileService {
     );
   }
 
-  getAdmins():Observable<any> {
+  getAdmins(): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
@@ -269,5 +269,14 @@ export class ProfileService {
         headers: reqHeader,
       }
     );
+  }
+
+  editAdmin(data:any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.put(`${this.BASE_URL}/update/user`, data, {
+      headers: reqHeader,
+    });
   }
 }

@@ -1,45 +1,96 @@
 <section class="adminPanel">
-    <div class="navBar">
-        <ul>
-            <li><a href="">Admin Panel</a></li>
-        </ul>
-    </div>
-    <div class="adminRoles">
-        <div class="mainBody">
-            <div class="head">
-                <div class="roleHeading">
-                    <img src="../../images/close.svg" alt="back">
-                    <h3>User Role</h3>
-                </div>
-                <div class="addUser">
-                    <button>Add User</button>
-                </div>
-            </div>
-            <div class="adminDetails">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 28%;">NAME</th>
-                            <th style="width: 28%;">EMAIL ID</th>
-                            <th style="width: 28%;">ROLE</th>
-                            <th style="width: 5%;"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let roles of adminDetails.data.user">
-                            <td>{{roles.name}}</td>
-                            <td>{{roles.email}}</td>
-                            <td>{{roles.role}}</td>
-                            <td>
-                                <ul>
-                                    <li><button mat-button (click)="openDialog()">E</button></li>
-                                    <li>D</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  <div class="navBar">
+    <ul>
+      <li><a href="">Admin Panel</a></li>
+    </ul>
+  </div>
+  <div class="adminRoles">
+    <div class="mainBody">
+      <div class="head">
+        <div class="roleHeading">
+          <img src="../../images/close.svg" alt="back" />
+          <h3>User Role</h3>
         </div>
+        <div class="addUser">
+          <button>Add User</button>
+        </div>
+      </div>
+      <div class="adminDetails">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 28%">NAME</th>
+              <th style="width: 28%">EMAIL ID</th>
+              <th style="width: 28%">ROLE</th>
+              <th style="width: 5%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let roles of adminDetails.data.user">
+              <td>{{ roles.name }}</td>
+              <td>{{ roles.email }}</td>
+              <td>{{ roles.role }}</td>
+              <td>
+                <ul>
+                  <li>
+                    <button (click)="openDialog(roles); openPopup(roles)">
+                      E
+                    </button>
+                  </li>
+                  <li>D</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="editPopup" class="editAdminSection">
+        <div class="editAdmin" *ngIf="editPopup">
+          <div class="editAdminHead">
+            <h3>Edit User</h3>
+            <img
+              style="width: 20px"
+              (click)="closePopup()"
+              src="../../images/close.svg"
+              alt="close"
+            />
+          </div>
+          <form (ngSubmit)="updateAdmin()">
+            <div class="adminName">
+              <label for="">Name</label>
+              <input
+                [(ngModel)]="editAdminDetails.name"
+                name="adminName"
+                type="text"
+              />
+            </div>
+            <div class="adminEmail">
+              <label for="">Email</label>
+              <input
+                [(ngModel)]="editAdminDetails.email"
+                name="adminEmail"
+                type="text"
+              />
+            </div>
+            <div class="adminRole">
+              <label for="">Role</label>
+              <select [(ngModel)]="editAdminDetails.role" name="role" id="">
+                <!-- <option value="Admin">Admin</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Recruiters">Recruiters</option>
+                  <option value="Interviewers">Interviewers</option>
+                  <option value="Users">Users</option> -->
+                <option *ngFor="let roles of adminRoles" value="{{ roles }}">
+                  {{ roles }}
+                </option>
+              </select>
+            </div>
+            <div class="adminSubmit">
+              <button type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

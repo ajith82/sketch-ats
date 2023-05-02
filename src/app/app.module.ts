@@ -28,7 +28,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
 import { DetailsComponent } from './details/details.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelComponent, DialogContentExampleDialog } from './admin-panel/admin-panel.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -54,6 +54,7 @@ const firebaseConfig = {
     CandidateDetailsComponent,
     DetailsComponent,
     AdminPanelComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,

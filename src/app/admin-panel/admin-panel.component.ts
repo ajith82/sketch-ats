@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
 
 @Component({
   selector: 'app-admin-panel',
@@ -13,20 +21,53 @@ export class AdminPanelComponent implements OnInit {
     public dialog: MatDialog
   ) {}
   adminDetails: any;
+  editPopup = false;
+  editAdminDetails:any;
+  adminRoles = [
+    "Admin",
+    "Manager",
+    "Recruiters",
+    "Interviewers",
+    "Users"
+  ]
 
   ngOnInit(): void {
     this.profileService.getAdmins().subscribe((res) => {
       console.log('resssssssssssssssssz', res);
       this.adminDetails = res;
-      console.log(res.data.user);
+      console.log("rrrrrrrrrr",res.data.user);
     });
   }
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+  openDialog(data:any) {
+    // console.log("aaaaaaaaaa",data);
+    
+    // const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+    //   height: '480px',
+    //   width: '350px',
+    //   data: {
+    //     animal: 'panda',
+    //   },
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log('The dialog was closed', result);
+    // });
+  }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+  openPopup(data:any) {
+    console.log(data);
+    this.editPopup = true;
+    this.editAdminDetails = data;
+  }
+
+  closePopup() {
+    this.editPopup = false;
+  }
+
+  updateAdmin() {
+    this.profileService.editAdmin(this.editAdminDetails).subscribe((res) => {
+      console.log("gottttt",res);
+      this.editPopup = false;
+    })  
   }
 }
 
@@ -34,4 +75,9 @@ export class AdminPanelComponent implements OnInit {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
 })
-export class DialogContentExampleDialog {}
+export class DialogContentExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
+  public dialogRef: MatDialogRef<DialogContentExampleDialog>) {
+    console.log("hhhhhhhhhhhhhhhhhhhh");
+  }
+}
