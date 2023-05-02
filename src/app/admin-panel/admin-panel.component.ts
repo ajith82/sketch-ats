@@ -24,7 +24,7 @@ export class AdminPanelComponent implements OnInit {
   editPopup = false;
   editAdminDetails:any;
   isEdit = false;
-  popupHeading = "Edit User";
+  popupHeading = "Edit";
   adminRoles = [
     "Admin",
     "Manager",
@@ -65,27 +65,33 @@ export class AdminPanelComponent implements OnInit {
   }
 
   updateAdmin() {
-    if (this.isEdit) {
+    if (this.isEdit = true) {
       this.profileService.editAdmin(this.editAdminDetails).subscribe((res) => {
         this.editPopup = false;
       });
+      // window.location.reload();
     } else {
-      this.popupHeading = "Add User";
       this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
-        // this.editPopup = false;
+        this.editPopup = false;
+        console.log("created",res);
       });
+      // window.location.reload();
     }
   }
 
-  // openEditPopup(admin:any) {    
-  //   this.editAdminDetails = {
-  //     name: admin.name,
-  //     email: admin.email,
-  //     role: admin.role
-  //   };
-  //   this.isEdit = true;
-  //   this.editPopup = true;
-  // }
+  openEditPopup(admin:any) {    
+    this.editAdminDetails = {
+      name: admin.name,
+      email: admin.email,
+      role: admin.role
+    };
+    this.profileService.editAdmin(this.editAdminDetails).subscribe((res) => {
+      this.editPopup = false;
+    });
+    this.isEdit = true;
+    this.popupHeading = "Edit";
+    this.editPopup = true;
+  }
 
   openAddPopup() {
     this.editAdminDetails = {
@@ -94,11 +100,24 @@ export class AdminPanelComponent implements OnInit {
       role: ''
     };    
     this.isEdit = false;
+    this.popupHeading = "Add";
     this.editPopup = true;
   }
 
   addAdmin() {
     console.log(this.editAdminDetails );
+    this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
+      this.editPopup = false;
+      console.log("created",res);
+    });
+    window.location.reload()
+  }
+
+  deleteRole(id:any) {
+    this.profileService.deleteRole(id).subscribe((res) => {
+      console.log("deleted",id);
+    })
+    window.location.reload();
   }
 }
 
