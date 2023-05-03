@@ -13,6 +13,7 @@
             </ul>
           </div>
           <div class="editBtn">
+            {{comment}}
             <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
               Edit
             </button>
@@ -510,7 +511,7 @@
       </div>
       <div *ngIf="pipeLineBtn == true" class="pipeLine">
         <div class="status" *ngFor="let candStatus of candidateStatus">
-          <h3>Status:Candidates</h3>
+          <h3>Status: {{candStatus.status}}</h3>
           <p>Date: {{ candStatus.date | date }}</p>
           <p>Modified By : {{ candStatus.modifiedBY }}</p>
           <p>Remarks : {{ candStatus.remarks }}</p>
@@ -518,7 +519,7 @@
 
         <!-- dropdown -->
 
-        <div class="editCandidateStatus">
+        <div *ngIf="isCandidate" class="editCandidateStatus">
           <div class="editCand">
             <div class="editCandHead">
               <h3>Change Status</h3>
@@ -528,10 +529,10 @@
                 alt="close"
               />
             </div>
-            <form>
+            <form (ngSubmit)="updateStatus()">
               <div class="changeCandStatus">
                 <label for="">Change Status</label>
-                <select class="" name="status">
+                <select [(ngModel)]="updateCandidateStatus" class="" name="status">
                   <option value="" disabled="">Please Select</option>
                   <option value="Candidates">Candidates</option>
                   <option value="Screening">Screening</option>
@@ -548,7 +549,9 @@
               </div>
               <div class="candidatesComments">
                 <label for="">Comments</label>
-                <input name="adminName" type="text" />
+                <input [(ngModel)]="comment" name="adminName" type="text" />
+                <span>Please add review, reference and links here </span>
+                <!-- <quill-editor></quill-editor> -->
               </div>
               <div class="statusSubmit">
                 <button type="submit">Save</button>

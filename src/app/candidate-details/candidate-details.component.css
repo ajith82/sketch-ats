@@ -361,3 +361,7 @@
   display: flex;
   justify-content: flex-end;
 }
+.candidatesComments span {
+  font-size: 12px;
+  color: #868889;
+}

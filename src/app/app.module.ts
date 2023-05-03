@@ -15,6 +15,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
+// import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -77,7 +78,8 @@ const firebaseConfig = {
     NgxPaginationModule,
     MatSidenavModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    // QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

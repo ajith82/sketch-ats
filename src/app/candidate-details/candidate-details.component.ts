@@ -22,6 +22,10 @@ notes:any;
 addedBy:any;
 expectedJoiningDate: any;
 candidateStatus:any;
+updateCandidateStatus:any;
+comment:any;
+isCandidate:boolean = false;
+updatedData:any;
 SourceArr = [
   "Naukri",
   "Linkedin",
@@ -47,8 +51,10 @@ SourceArr = [
       this.notes = `${this.data.remarks}`
       this.addedBy = `${this.data.interviewBy}`
       this.expectedJoiningDate = new Date(this.data.expectedJoiningDate).toISOString().substr(0, 10);
-    })
+    });
+    this.updateStatus();
   }
+  
 
   details(){
     this.detailBtn = true;
@@ -93,6 +99,26 @@ SourceArr = [
   }
 
   changeStatus() {
-    
+    this.isCandidate = true;
+  }
+
+  updateStatus() {        
+    const statusUpdate = {
+      status: this.updateCandidateStatus,
+      remarks: this.comment,
+      modifiedBY: this.data.modifiedBY,
+      _id: this.data._id
+    }    
+    console.log(statusUpdate);
+    this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
+      console.log("updateddddddd",res.data.hiringStatus);
+      
+      this.candidateStatus = res.data.hiringStatus;
+    });
+    this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
+      console.log("dataaa",res.data.hiringStatus);
+      // this.candidateStatus = res.data.hiringStatus;
+    })
+    this.isCandidate = false;
   }
 }
