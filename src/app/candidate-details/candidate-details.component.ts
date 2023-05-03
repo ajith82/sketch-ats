@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { ProfileService } from './../profile.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-candidate-details',
@@ -22,6 +23,7 @@ notes:any;
 addedBy:any;
 expectedJoiningDate: any;
 candidateStatus:any;
+candidateStatus$!: Observable<any[]>;
 updateCandidateStatus:any;
 comment:any;
 isCandidate:boolean = false;
@@ -113,12 +115,17 @@ SourceArr = [
     this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
       console.log("updateddddddd",res.data.hiringStatus);
       
-      this.candidateStatus = res.data.hiringStatus;
+      // this.candidateStatus = res.data.hiringStatus;
+      this.candidateStatus.push(res.data.hiringStatus);
     });
     this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
       console.log("dataaa",res.data.hiringStatus);
       // this.candidateStatus = res.data.hiringStatus;
     })
+    this.isCandidate = false;
+  }
+
+  closeStatus() {
     this.isCandidate = false;
   }
 }

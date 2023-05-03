@@ -13,7 +13,6 @@
             </ul>
           </div>
           <div class="editBtn">
-            {{comment}}
             <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
               Edit
             </button>
@@ -524,6 +523,7 @@
             <div class="editCandHead">
               <h3>Change Status</h3>
               <img
+              (click)="closeStatus()"
                 style="width: 20px"
                 src="../../images/close.svg"
                 alt="close"
