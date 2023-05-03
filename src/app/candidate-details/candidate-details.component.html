@@ -13,7 +13,17 @@
             </ul>
           </div>
           <div class="editBtn">
-            <button type="button" (click)="editBtn()">Edit</button>
+            <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
+              Edit
+            </button>
+            <button
+              class="changeStatus"
+              *ngIf="detailBtn == false"
+              type="button"
+              (click)="changeStatus()"
+            >
+              Change Status
+            </button>
           </div>
         </div>
       </div>
@@ -501,9 +511,50 @@
       <div *ngIf="pipeLineBtn == true" class="pipeLine">
         <div class="status" *ngFor="let candStatus of candidateStatus">
           <h3>Status:Candidates</h3>
-          <p>Date: {{candStatus.date | date}}</p>
-          <p>Modified By : {{candStatus.modifiedBY}}</p>
-          <p>Remarks : {{candStatus.remarks}}</p>
+          <p>Date: {{ candStatus.date | date }}</p>
+          <p>Modified By : {{ candStatus.modifiedBY }}</p>
+          <p>Remarks : {{ candStatus.remarks }}</p>
+        </div>
+
+        <!-- dropdown -->
+
+        <div class="editCandidateStatus">
+          <div class="editCand">
+            <div class="editCandHead">
+              <h3>Change Status</h3>
+              <img
+                style="width: 20px"
+                src="../../images/close.svg"
+                alt="close"
+              />
+            </div>
+            <form>
+              <div class="changeCandStatus">
+                <label for="">Change Status</label>
+                <select class="" name="status">
+                  <option value="" disabled="">Please Select</option>
+                  <option value="Candidates">Candidates</option>
+                  <option value="Screening">Screening</option>
+                  <option value="Round 1">Round 1</option>
+                  <option value="Task Verification">Validation</option>
+                  <option value="Round 2">Round 2</option>
+                  <option value="HR Round">HR Round</option>
+                  <option value="Offered">Offered</option>
+                  <option value="Offer Accepted">Accepted</option>
+                  <option value="Offer Declined">Declined</option>
+                  <option value="Joined">Joined</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+              </div>
+              <div class="candidatesComments">
+                <label for="">Comments</label>
+                <input name="adminName" type="text" />
+              </div>
+              <div class="statusSubmit">
+                <button type="submit">Save</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
