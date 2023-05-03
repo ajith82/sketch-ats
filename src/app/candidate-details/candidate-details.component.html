@@ -9,7 +9,7 @@
           <div class="detailAndPipe">
             <ul>
               <li (click)="details()">Details</li>
-              <li (click)="pipeLine()">Pipeline</li>
+              <li (click)="pipeLine(data._id)">Pipeline</li>
             </ul>
           </div>
           <div class="editBtn">
@@ -498,9 +498,14 @@
           </div>
         </div>
       </div>
+      <div *ngIf="pipeLineBtn == true" class="pipeLine">
+        <div class="status" *ngFor="let candStatus of candidateStatus">
+          <h3>Status:Candidates</h3>
+          <p>Date: {{candStatus.date | date}}</p>
+          <p>Modified By : {{candStatus.modifiedBY}}</p>
+          <p>Remarks : {{candStatus.remarks}}</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div *ngIf="pipeLineBtn == true" class="container">
-    <h1>pipeeeee</h1>
   </div>
 </div>

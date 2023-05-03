@@ -10,11 +10,13 @@
 
 .content {
   background-color: #fff;
+  padding: 15px;
 }
 
 .headAndEdit {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .detailSec * {
@@ -42,7 +44,7 @@
 }
 
 .content .heading {
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 .content .heading ul {
@@ -56,7 +58,7 @@
 }
 
 .details {
-  padding: 10px;
+  /* padding: 10px; */
   flex-basis: 46%;
 }
 
@@ -245,4 +247,21 @@
 .expHead {
   display: flex;
   gap: 280px;
+}
+
+.pipeLine .status {
+  border-bottom: 1px solid #dddfe4;
+  padding-top: 15px;
+}
+
+.pipeLine .status h3 {
+  padding-bottom: 16px;
+  font-size: 18px;
+  color: #575757;
+}
+
+.pipeLine .status p {
+  padding-bottom: 12px;
+  font-size: 16px;
+  color: #575757;
 }

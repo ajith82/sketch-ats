@@ -21,6 +21,7 @@ source:any;
 notes:any;
 addedBy:any;
 expectedJoiningDate: any;
+candidateStatus:any;
 SourceArr = [
   "Naukri",
   "Linkedin",
@@ -54,9 +55,13 @@ SourceArr = [
     this.pipeLineBtn = false;
   }
 
-  pipeLine(){
+  pipeLine(id:any){    
     this.detailBtn = false;
     this.pipeLineBtn = true;
+    this.profileService.pipeLine(id).subscribe((res) => {
+      console.log("pipeeeeee",res.data.hiringStatus);
+      this.candidateStatus = res.data.hiringStatus;
+    })
   }
 
   editBtn(){
