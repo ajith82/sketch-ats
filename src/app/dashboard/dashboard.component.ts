@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
       })
 
       this.profileService.offerAccepted().subscribe((res) => {
-        console.log("acccccc",res);
+        console.log("acccccc",res.data);
         this.offerAccepted = res.data.getCandidatesofferAccepted;
         this.candidateReject = res.data.getCandidatesRejected;
         this.candidateJoined = res.data.getCandidatesJoined;

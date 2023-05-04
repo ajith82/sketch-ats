@@ -51,6 +51,16 @@
     align-items: center;
 }
 
+.data-card {
+    width: 32% !important;
+    height: 383px !important;
+    border-radius: 4px;
+}
+
+.candData {
+    overflow: scroll;
+}
+
 .dashboardDetails {
     background-color: #fff;
     display: flex;
@@ -105,11 +115,13 @@
     background-color: #fff;
     width: 600px;
     height: 500px;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .updatesHead {
-    border-bottom: 1px solid rgb(214, 212, 212);
+    /* border-bottom: 1px solid rgb(214, 212, 212); */
+    border-bottom: 1px solid #f1f1f1;
+    padding: 14px 20px;
 }
 
 .updateDetails {
@@ -131,8 +143,10 @@
 }
 
 .updatesHead h6 {
-    padding: 15px;
-    font-size: 15px;
+    /* padding: 15px; */
+    line-height: 34px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .candidateDetails {
@@ -144,12 +158,29 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid rgb(214, 212, 212);
+    padding: 14px 20px;
+    /* border-bottom: 1px solid rgb(214, 212, 212); */
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.candName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.candName strong {
+    font-size: 14px;
+    color: #191919;
+}
+
+.person strong {
+    font-weight: bold;
 }
 
 .person p {
     font-size: 12px;
+    font-size: 13px;
+    color: #191919;
     font-weight: 400;
 }
 
