@@ -154,6 +154,33 @@
               <td *ngIf="candidate.status == 'Screening'">
                 <span class="screening">Screening</span>
               </td>
+              <td *ngIf="candidate.status == 'Round 1'">
+                <span class="screening">Round 1</span>
+              </td>
+              <td *ngIf="candidate.status == 'Round 2'">
+                <span class="screening">Round 2</span>
+              </td>
+              <td *ngIf="candidate.status == 'Task Verification'">
+                <span class="screening">Task Verification</span>
+              </td>
+              <td *ngIf="candidate.status == 'Candidates'">
+                <span class="screening">Candidates</span>
+              </td>
+              <td *ngIf="candidate.status == 'HR Round'">
+                <span class="screening">HR Round</span>
+              </td>
+              <td *ngIf="candidate.status == 'Offered'">
+                <span class="screening">Offered</span>
+              </td>
+              <td *ngIf="candidate.status == 'Offer Accepted'">
+                <span class="screening">Offer Accepted</span>
+              </td>
+              <td *ngIf="candidate.status == 'Offer Declined'">
+                <span class="screening">Offer Declined</span>
+              </td>
+              <td *ngIf="candidate.status == 'Joined'">
+                <span class="screening">Joined</span>
+              </td>
               <td *ngIf="candidate.status == 'DsRound'">
                 <span class="DSRound">DS Round & API</span>
               </td>

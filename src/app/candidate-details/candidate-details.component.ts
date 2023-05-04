@@ -1,67 +1,99 @@
 import { Router } from '@angular/router';
 import { ProfileService } from './../profile.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-candidate-details',
   templateUrl: './candidate-details.component.html',
-  styleUrls: ['./candidate-details.component.css']
+  styleUrls: ['./candidate-details.component.css'],
 })
 export class CandidateDetailsComponent implements OnInit {
-detailBtn = true;
-pipeLineBtn = false;
-data:any;
-fullName:any;
-phoneNumber:any;
-expectedSalaryPerMonth:any;
-expectedSalaryPerYear:any;
-sidenavOpen: boolean = false;
-showAddress:boolean = false;
-source:any;
-notes:any;
-addedBy:any;
-expectedJoiningDate: any;
-candidateStatus:any;
-candidateStatus$!: Observable<any[]>;
-updateCandidateStatus:any;
-comment:any;
-isCandidate:boolean = false;
-updatedData:any;
-detailsClicked = true;
-pipelineClicked = false;
-bgDark:boolean = false;
-SourceArr = [
-  "Naukri",
-  "Linkedin",
-  "Monster",
-  "Indeed",
-  "Hirect",
-  "Angelist",
-  "PyjamaHr",
-  "Referral",
-  "Others"
-];
-  constructor(private profileService:ProfileService, private route: Router) { }
+  detailBtn = true;
+  pipeLineBtn = false;
+  data: any;
+  fullName: any;
+  phoneNumber: any;
+  expectedSalaryPerMonth: any;
+  expectedSalaryPerYear: any;
+  sidenavOpen: boolean = false;
+  showAddress: boolean = false;
+  source: any;
+  notes: any;
+  addedBy: any;
+  expectedJoiningDate: any;
+  candidateStatus: any;
+  candidateStatus$!: Observable<any[]>;
+  updateCandidateStatus: any;
+  comment: any;
+  isCandidate: boolean = false;
+  updatedData: any;
+  detailsClicked = true;
+  pipelineClicked = false;
+  bgDark: boolean = false;
+  SourceArr = [
+    'Naukri',
+    'Linkedin',
+    'Monster',
+    'Indeed',
+    'Hirect',
+    'Angelist',
+    'PyjamaHr',
+    'Referral',
+    'Others',
+  ];
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits!: Observable<string[]>;
+  fruits: string[] = ['Lemon'];
+  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  constructor(
+    private profileService: ProfileService,
+    private route: Router,
+    private _location: Location
+  ) {
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) =>
+        fruit ? this._filter(fruit) : this.allFruits.slice()
+      )
+    );
+  }
 
   ngOnInit(): void {
     this.profileService.getCandDetails().subscribe((res) => {
-      console.log("gottttttt",res);
+      console.log('gottttttt', res);
       this.data = res.data.getCandidates;
-      this.fullName = `${this.data.firstName} ${this.data.lastName}`
-      this.phoneNumber = `${this.data.phoneNumber}`
-      this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`
-      this.expectedSalaryPerMonth = `${this.data.expectedSalaryPerMonth}`
-      this.source = `${this.data.source}`
-      this.notes = `${this.data.remarks}`
-      this.addedBy = `${this.data.interviewBy}`
-      this.expectedJoiningDate = new Date(this.data.expectedJoiningDate).toISOString().substr(0, 10);
+      this.fullName = `${this.data.firstName} ${this.data.lastName}`;
+      this.phoneNumber = `${this.data.phoneNumber}`;
+      this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
+      this.expectedSalaryPerMonth = `${this.data.expectedSalaryPerMonth}`;
+      this.source = `${this.data.source}`;
+      this.notes = `${this.data.remarks}`;
+      this.addedBy = `${this.data.interviewBy}`;
+      this.expectedJoiningDate = new Date(this.data.expectedJoiningDate)
+        .toISOString()
+        .substr(0, 10);
     });
     this.updateStatus();
   }
-  
 
-  details(){
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter((fruit) =>
+      fruit.toLowerCase().includes(filterValue)
+    );
+  }
+
+  details() {
     this.detailBtn = true;
     this.pipeLineBtn = false;
 
@@ -69,74 +101,78 @@ SourceArr = [
     this.pipelineClicked = false;
   }
 
-  resumeClick(resume:any) {
-    window.open(resume)
+  goBack() {
+    this._location.back();
   }
 
-  pipeLine(id:any){    
+  resumeClick(resume: any) {
+    window.open(resume);
+  }
+
+  pipeLine(id: any) {
     this.detailBtn = false;
     this.pipeLineBtn = true;
     this.profileService.pipeLine(id).subscribe((res) => {
-      console.log("pipeeeeee",res.data.hiringStatus);
+      console.log('pipeeeeee', res.data.hiringStatus);
       this.candidateStatus = res.data.hiringStatus;
-    })
+    });
 
     this.detailsClicked = false;
     this.pipelineClicked = true;
   }
 
-  editBtn(){
+  editBtn() {
     this.sidenavOpen = true;
     this.bgDark = true;
   }
 
-  editCand(){
+  editCand() {
     console.log(this.data);
-    this.fullName = `${this.data.firstName} ${this.data.lastName}`
-    this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`
-    this.phoneNumber = `${this.data.phoneNumber}`
-    this.expectedSalaryPerMonth = `${this.data.expectedSalaryPerMonth}`
-    this.source = `${this.data.source}`
-    this.notes = `${this.data.remarks}`
-    this.addedBy = `${this.data.interviewBy}`
+    this.fullName = `${this.data.firstName} ${this.data.lastName}`;
+    this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
+    this.phoneNumber = `${this.data.phoneNumber}`;
+    this.expectedSalaryPerMonth = `${this.data.expectedSalaryPerMonth}`;
+    this.source = `${this.data.source}`;
+    this.notes = `${this.data.remarks}`;
+    this.addedBy = `${this.data.interviewBy}`;
     this.profileService.editCandidate(this.data).subscribe((res) => {
-      console.log("edit donm",res);
-    })
+      console.log('edit donm', res);
+    });
     // this.route.navigate(['candiadte']);
     this.sidenavOpen = false;
   }
 
-  closeSidenav(){
+  closeSidenav() {
     this.sidenavOpen = false;
     this.bgDark = false;
   }
 
-  showAddressTab(){
-    this.showAddress = !this.showAddress
+  showAddressTab() {
+    this.showAddress = !this.showAddress;
   }
 
   changeStatus() {
     this.isCandidate = true;
   }
 
-  updateStatus() {        
+  updateStatus() {
     const statusUpdate = {
       status: this.updateCandidateStatus,
       remarks: this.comment,
       modifiedBY: this.data.modifiedBY,
-      _id: this.data._id
-    }    
+      _id: this.data._id,
+    };
     console.log(statusUpdate);
     this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
-      console.log("updateddddddd",res.data.hiringStatus);
-      
+      console.log('updateddddddd', res.data.hiringStatus);
+
       // this.candidateStatus = res.data.hiringStatus;
       this.candidateStatus.push(res.data.hiringStatus);
     });
     this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
-      console.log("dataaa",res.data.hiringStatus);
+      console.log('dataaa', res.data.hiringStatus);
       // this.candidateStatus = res.data.hiringStatus;
-    })
+    });
     this.isCandidate = false;
   }
 

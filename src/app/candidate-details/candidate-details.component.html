@@ -1,6 +1,6 @@
 <div class="main">
   <div class="container">
-    <div class="backBtn">
+    <div (click)="goBack()" class="backBtn">
       <p><img src="../../images/goback.svg" alt="back" /> Back</p>
     </div>
     <div class="content">
@@ -20,13 +20,13 @@
             <p
               class="viewResume"
               (click)="resumeClick(data.resume)"
-              *ngIf="data.resume"
+              *ngIf="data.resume && detailBtn == true"
             >
               View Resume
             </p>
             <!-- <p *ngIf="!data.resume">No Resume</p> -->
-            <span class="updatedStatus">{{ data.status }}</span>
-            <div class="dropdown">
+            <span *ngIf="detailBtn == true" class="updatedStatus">{{ data.status }}</span>
+            <div *ngIf="detailBtn == true" class="dropdown">
               <ul class="editOption">
                 <li></li>
                 <li></li>
