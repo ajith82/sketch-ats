@@ -18,6 +18,23 @@ export class DashboardComponent implements OnInit {
   offered:any;
   @ViewChild(DaterangepickerDirective, {static: true}) picker!: DaterangepickerDirective;
   selected!: {startDate: moment.Moment, endDate: moment.Moment};
+  candidateSkillSetsArr = [
+    'UI UX Design',
+    'Lead Generation',
+    'Motion Graphics Designer',
+    'React Js',
+    'Angular Js',
+    'Vue Js',
+    'React Native',
+    'Flutter',
+    'Node Js',
+    'UI Development',
+    'GO Lang',
+    'Python',
+    'Ruby on Rails',
+    'Software Tester',
+    'Devops',
+  ];
 
   constructor(private http: HttpClient, private profileService: ProfileService) { }
 

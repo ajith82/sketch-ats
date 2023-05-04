@@ -2,24 +2,22 @@
   <div class="container">
     <div class="dashboardAndSort">
       <div class="dashboardHead">
-        <h4>Candidate Dashboard</h4>
+        <h4>Recent Updates</h4>
       </div>
       <div class="sort">
         <div class="interviewer">
           <label for="cars">Filter By:</label>
-          <select id="cars">
+          <!-- <select id="cars">
             <option value="volvo" selected>Select interviewer</option>
             <option value="saab">Saab</option>
             <option value="vw">VW</option>
             <option value="audi">Audi</option>
-          </select>
+          </select> -->
         </div>
         <div class="role">
-          <select id="cars">
-            <option value="volvo" selected>Select Role</option>
-            <option value="saab">Saab</option>
-            <option value="vw">VW</option>
-            <option value="audi">Audi</option>
+          <select id="skills">
+            <option value="volvo" disabled selected>Select Role</option>
+            <option *ngFor="let skill of candidateSkillSetsArr" value="{{skill}}">{{skill}}</option>
           </select>
         </div>
         <div class="calendar">
@@ -37,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="dashboardDetails">
+    <!-- <div class="dashboardDetails">
       <div class="interviewDetails">
         <h5 class="detailReview">Yet to contact</h5>
         <h5 class="result">{{ data.yetToContact }}</h5>
@@ -90,8 +88,8 @@
         <h5 class="detailReview">Rejected</h5>
         <h5 class="result">{{ data.rejected }}</h5>
       </div>
-    </div>
-    <h4>Recent Updates</h4>
+    </div> -->
+    <!-- <h4>Recent Updates</h4> -->
     <div class="updates">
       <div class="offered">
         <div class="updatesHead">

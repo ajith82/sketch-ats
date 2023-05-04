@@ -5,12 +5,16 @@
 }
 
 .container {
-    padding: 30px;
+    padding: 16px 30px;
 }
 
 .container h4 {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    /* padding-top: 20px;
+    padding-bottom: 20px; */
+    font-size: 20px;
+    color: #000;
+    font-weight: 500;
+    line-height: 34px;
 }
 
 .dashboardAndSort {
@@ -20,9 +24,31 @@
     align-items: center;
 }
 
+.role select {
+    width: 170px;
+    height: 40px;
+    color: #575757;
+    border: 1px solid #dddfe4;
+    padding: 0px 12px;
+    border-radius: 4px;
+}
+
+.interviewer label {
+    color: #575757;
+}
+
+.calendar input {
+    height: 40px;
+    border: none;
+    border-radius: 4px; 
+    padding-left: 10px;
+    padding-right: 32px;
+}
+
 .sort {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .dashboardDetails {
