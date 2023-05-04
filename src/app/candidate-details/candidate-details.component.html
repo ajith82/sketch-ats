@@ -28,12 +28,14 @@
             <span class="updatedStatus">{{ data.status }}</span>
             <div class="dropdown">
               <ul class="editOption">
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
               <div class="dropdown-content">
-                <button type="button" (click)="editBtn()" class="editDetails">Edit</button>
+                <button type="button" (click)="editBtn()" class="editDetails">
+                  Edit
+                </button>
               </div>
             </div>
             <!-- <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
@@ -76,325 +78,332 @@
           </div>
         </div>
 
-        <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
-          <div class="sidenav-content">
-            <form (ngSubmit)="editCand()">
-              <div class="docDetails">
-                <div class="editHeading">
-                  <h3>Document Details</h3>
-                  <div class="closeBtn">
-                    <a
-                      ><img
-                        (click)="closeSidenav()"
-                        src="./../../images/close.svg"
-                        alt="close"
-                    /></a>
+        <div *ngIf="bgDark" class="openNav">
+          <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
+            <div class="sidenav-content">
+              <form (ngSubmit)="editCand()">
+                <div class="docDetails">
+                  <div class="editHeading">
+                    <h3>Document Details</h3>
+                    <div class="closeBtn">
+                      <a
+                        ><img
+                          (click)="closeSidenav()"
+                          src="./../../images/close.svg"
+                          alt="close"
+                      /></a>
+                    </div>
                   </div>
-                </div>
-                <div class="detailSect">
-                  <div class="details">
-                    <label for="">Resume Upload</label><br />
-                    <span>-</span>
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Other Offer</label><br />
-                    <select
-                      [(ngModel)]="data.otherOffers"
-                      name="otheroffer"
-                      id=""
-                    >
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
-                    </select>
-                  </div>
-                  <!-- <div>
-                    <label>Offered Value In LPA *</label>
-                    <input type="text">
-                  </div> -->
-                </div>
-                <!-- <input
-                  type="text"
-                  name="firstName"
-                  [(ngModel)]="data.firstName"
-                /> -->
-              </div>
-
-              <div style="padding-top: 30px" class="docDetails">
-                <div class="editHeading">
-                  <h3>Basic Details</h3>
-                </div>
-                <div class="detailSect">
-                  <div class="details">
-                    <label for="">First Name</label><br />
-                    <input
-                      type="text"
-                      name="firstName"
-                      [(ngModel)]="data.firstName"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Last Name</label><br />
-                    <input
-                      type="text"
-                      name="lastName"
-                      [(ngModel)]="data.lastName"
-                    />
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="details">
-                    <label for="">Phone</label><br />
-                    <input
-                      type="number"
-                      name="phone"
-                      [(ngModel)]="data.phoneNumber"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Email</label><br />
-                    <input type="text" name="email" [(ngModel)]="data.email" />
-                  </div>
-                </div>
-              </div>
-              <div style="padding-top: 30px" class="docDetails">
-                <div class="editHeading">
-                  <h3>Professional Details</h3>
-                </div>
-                <div class="expHead">
-                  <h5>Total Exp</h5>
-                  <h5>Relevant Exp</h5>
-                </div>
-                <div class="profSect">
-                  <div class="details">
-                    <label for="">Years</label><br />
-                    <input
-                      type="text"
-                      name="totalExpYr"
-                      [(ngModel)]="data.totalExperience"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Months</label><br />
-                    <select
-                      [(ngModel)]="data.totalMonthOfExperience"
-                      name="totalMonthExp"
-                      id=""
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Years</label><br />
-                    <input
-                      type="text"
-                      name="relevantExperienceYr"
-                      [(ngModel)]="data.relevantExperience"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Months</label><br />
-                    <select
-                      [(ngModel)]="data.totalMonthOfRelevantExperience"
-                      name="relMonths"
-                      id=""
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="details">
-                    <label for="">Current Salary per Year</label><br />
-                    <input
-                      type="text"
-                      name="currentSalaryPerYear"
-                      [(ngModel)]="data.currentSalaryPerYear"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Current Salary per Month</label><br />
-                    <input
-                      type="text"
-                      name="currentSalaryPerMonth"
-                      [(ngModel)]="data.currentSalaryPerMonth"
-                    />
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="details">
-                    <label for="">Expected Salary per Year</label><br />
-                    <input
-                      type="number"
-                      name="expectedSalaryPerYear"
-                      [(ngModel)]="data.expectedSalaryPerYear"
-                    />
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Expected Salary per Month</label><br />
-                    <input
-                      type="text"
-                      name="expectedSalaryPerMonth"
-                      [(ngModel)]="data.expectedSalaryPerMonth"
-                    />
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="detailTwo" style="padding: 10px">
-                    <label for="">Applied Role</label><br />
-                    <select name="" id="">
-                      <option value="React JS">React JS</option>
-                      <option value="Angular">Angular</option>
-                      <option value="NodeJs">NodeJS</option>
-                    </select>
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Skills</label><br />
-                    <select
-                      *ngFor="let skill of data.skillSet"
-                      name="skillSet"
-                      id=""
-                    >
-                      <option value="{{ skill.value }}">
-                        {{ skill.label }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="detailTwo" style="padding: 10px">
-                    <label for="">Notice Period</label><br />
-                    <select
-                      [(ngModel)]="data.noticePeriod"
-                      name="noticePeriod"
-                      id=""
-                    >
-                      <option value="15">15</option>
-                      <option value="30">30</option>
-                    </select>
-                  </div>
-                  <div class="detailTwo">
-                    <label for="">Expected Joining Date</label><br />
-                    <input
-                      type="date"
-                      name="expectedJoiningDate"
-                      [(ngModel)]="expectedJoiningDate"
-                    />
-                  </div>
-                </div>
-                <div class="detailSect">
-                  <div class="detailTwo" style="padding: 10px">
-                    <label for="">Serving Notice Period</label><br />
-                    <select style="width: 110px" name="" id="">
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
-                    </select>
-                  </div>
-                  <div
-                    class="detailTwo"
-                    style="display: flex; gap: 5px; align-items: center"
-                  >
-                    <input
-                      type="checkbox"
-                      style="width: 10px !important; min-width: 13px !important"
-                    />
-                    <label for="">Is Negotiable</label><br />
-                  </div>
-                </div>
-              </div>
-              <div class="addressDetails">
-                <div style="padding-top: 10px" class="editHeading">
-                  <h3>Address Details</h3>
-                  <h5 (click)="showAddressTab()" *ngIf="!showAddress">Show</h5>
-                  <h5 (click)="showAddressTab()" *ngIf="showAddress">Hide</h5>
-                </div>
-                <div *ngIf="showAddress" class="addressContent">
-                  <div class="currentAddress">
-                    <label>Current Address</label>
-                    <textarea
-                      style="margin: 0 10px"
-                      name="currentAddress"
-                      [(ngModel)]="data.currentAddress"
-                      id=""
-                      cols="40"
-                      rows="10"
-                    ></textarea>
-                  </div>
-                  <div class="sameAddress">
-                    <label>Permanent Address</label>
-                    <textarea
-                      name="permanentAddress"
-                      [(ngModel)]="data.permanentAddress"
-                      id=""
-                      cols="40"
-                      rows="10"
-                    ></textarea>
+                  <div class="detailSect">
+                    <div class="details resumeDetails">
+                      <label for="">Resume Upload</label>
+                      <span (click)="resumeClick(data.resume)">View</span>
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Other Offer</label><br />
+                      <select
+                      class="otherofferDrop"
+                        [(ngModel)]="data.otherOffers"
+                        name="otheroffer"
+                        id=""
+                      >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                    </div>
                     <!-- <div>
-                      <input type="checkbox" name="" id="" />
-                      <p>Same as Current Address</p>
+                      <label>Offered Value In LPA *</label>
+                      <input type="text">
                     </div> -->
                   </div>
+                  <!-- <input
+                    type="text"
+                    name="firstName"
+                    [(ngModel)]="data.firstName"
+                  /> -->
                 </div>
-              </div>
-              <div class="addressDetails">
-                <div style="padding-top: 10px" class="editHeading">
-                  <h3>Education Details</h3>
-                  <h5>Add+</h5>
-                </div>
-                <div style="padding-top: 10px" class="editHeading">
-                  <h3>Experience Details</h3>
-                  <h5>Add+</h5>
-                </div>
-                <div style="padding-top: 10px" class="editHeading">
-                  <h3>Other Details</h3>
-                </div>
-                <div class="detailSect">
-                  <div style="padding: 10px" class="detailTwo">
-                    <label for="">Candidates Status</label><br />
-                    <select name="" id="">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
+  
+                <div style="padding-top: 30px" class="docDetails">
+                  <div class="editHeading">
+                    <h3>Basic Details</h3>
                   </div>
-                  <div class="detailTwo">
-                    <label for="">Source</label><br />
-                    <select [(ngModel)]="data.source" name="source" id="">
-                      <option
-                        *ngFor="let source of SourceArr"
-                        value="{{ source }}"
+                  <div class="detailSect">
+                    <div class="details">
+                      <label for="">First Name</label><br />
+                      <input
+                        type="text"
+                        name="firstName"
+                        [(ngModel)]="data.firstName"
+                      />
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Last Name</label><br />
+                      <input
+                        type="text"
+                        name="lastName"
+                        [(ngModel)]="data.lastName"
+                      />
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="details">
+                      <label for="">Phone</label><br />
+                      <input
+                        type="number"
+                        name="phone"
+                        [(ngModel)]="data.phoneNumber"
+                      />
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Email</label><br />
+                      <input type="text" name="email" [(ngModel)]="data.email" />
+                    </div>
+                  </div>
+                </div>
+                <div style="padding-top: 30px" class="docDetails">
+                  <div class="editHeading">
+                    <h3>Professional Details</h3>
+                  </div>
+                  <div class="expHead">
+                    <label>Total Exp</label>
+                    <label>Relevant Exp</label>
+                  </div>
+                  <div class="profSect">
+                    <div class="expDetails">
+                      <div class="details">
+                        <label for="">Years</label><br />
+                        <input
+                          type="text"
+                          name="totalExpYr"
+                          [(ngModel)]="data.totalExperience"
+                        />
+                      </div>
+                      <div class="detailTwo">
+                        <label for="">Months</label><br />
+                        <select
+                          [(ngModel)]="data.totalMonthOfExperience"
+                          name="totalMonthExp"
+                          id=""
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="expDetails">
+                      <div class="detailTwo">
+                        <label for="">Years</label><br />
+                        <input
+                          type="text"
+                          name="relevantExperienceYr"
+                          [(ngModel)]="data.relevantExperience"
+                        />
+                      </div>
+                      <div class="detailTwo">
+                        <label for="">Months</label><br />
+                        <select
+                          [(ngModel)]="data.totalMonthOfRelevantExperience"
+                          name="relMonths"
+                          id=""
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="details">
+                      <label for="">Current Salary per Year</label><br />
+                      <input
+                        type="text"
+                        name="currentSalaryPerYear"
+                        [(ngModel)]="data.currentSalaryPerYear"
+                      />
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Current Salary per Month</label><br />
+                      <input
+                        type="text"
+                        name="currentSalaryPerMonth"
+                        [(ngModel)]="data.currentSalaryPerMonth"
+                      />
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="details">
+                      <label for="">Expected Salary per Year</label><br />
+                      <input
+                        type="number"
+                        name="expectedSalaryPerYear"
+                        [(ngModel)]="data.expectedSalaryPerYear"
+                      />
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Expected Salary per Month</label><br />
+                      <input
+                        type="text"
+                        name="expectedSalaryPerMonth"
+                        [(ngModel)]="data.expectedSalaryPerMonth"
+                      />
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="detailTwo" style="padding: 10px">
+                      <label for="">Applied Role</label><br />
+                      <select name="" id="">
+                        <option value="React JS">React JS</option>
+                        <option value="Angular">Angular</option>
+                        <option value="NodeJs">NodeJS</option>
+                      </select>
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Skills</label><br />
+                      <select
+                        *ngFor="let skill of data.skillSet"
+                        name="skillSet"
+                        id=""
                       >
-                        {{ source }}
-                      </option>
-                    </select>
+                        <option value="{{ skill.value }}">
+                          {{ skill.label }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="detailTwo" style="padding: 10px">
+                      <label for="">Notice Period</label><br />
+                      <select
+                        [(ngModel)]="data.noticePeriod"
+                        name="noticePeriod"
+                        id=""
+                      >
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                      </select>
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Expected Joining Date</label><br />
+                      <input
+                        type="date"
+                        name="expectedJoiningDate"
+                        [(ngModel)]="expectedJoiningDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div class="detailTwo" style="padding: 10px;flex-basis: 23%;">
+                      <label for="">Serving Notice Period</label><br />
+                      <select name="" id="">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                    </div>
+                    <div
+                      class="detailTwo"
+                      style="display: flex; gap: 5px; align-items: center"
+                    >
+                      <input
+                        type="checkbox"
+                        style="width: 10px !important; min-width: 13px !important"
+                      />
+                      <label for="">Is Negotiable</label><br />
+                    </div>
                   </div>
                 </div>
-                <div class="detailSect">
-                  <div style="padding: 10px" class="detailTwo">
-                    <label for="">Added By</label><br />
-                    <select [(ngModel)]="data.interviewBy" name="addedby" id="">
-                      <option value="Bharathi B">Bharathi B</option>
-                      <option value="Lakshmi Narasimha">
-                        Lakshmi Narasimhan Kumar
-                      </option>
-                    </select>
+                <div class="addressDetails">
+                  <div style="padding-top: 10px" class="editHeading">
+                    <h3>Address Details</h3>
+                    <h5 (click)="showAddressTab()" *ngIf="!showAddress">Show</h5>
+                    <h5 (click)="showAddressTab()" *ngIf="showAddress">Hide</h5>
+                  </div>
+                  <div *ngIf="showAddress" class="addressContent">
+                    <div class="currentAddress">
+                      <label>Current Address</label>
+                      <textarea
+                        style="margin: 0 10px"
+                        name="currentAddress"
+                        [(ngModel)]="data.currentAddress"
+                        id=""
+                        cols="40"
+                        rows="10"
+                      ></textarea>
+                    </div>
+                    <div class="sameAddress">
+                      <label>Permanent Address</label>
+                      <textarea
+                        name="permanentAddress"
+                        [(ngModel)]="data.permanentAddress"
+                        id=""
+                        cols="40"
+                        rows="10"
+                      ></textarea>
+                      <!-- <div>
+                        <input type="checkbox" name="" id="" />
+                        <p>Same as Current Address</p>
+                      </div> -->
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="notes">
-                <label for="">Notes</label><br />
-                <textarea
-                  [(ngModel)]="data.remarks"
-                  name="remarks"
-                  id=""
-                  cols="80"
-                  rows="8"
-                ></textarea>
-              </div>
-              <div class="submitBtn">
-                <button type="submit">Save</button>
-              </div>
-            </form>
+                <div class="addressDetails">
+                  <div style="padding-top: 10px" class="editHeading">
+                    <h3>Education Details</h3>
+                    <h5>Add+</h5>
+                  </div>
+                  <div style="padding-top: 10px" class="editHeading">
+                    <h3>Experience Details</h3>
+                    <h5>Add+</h5>
+                  </div>
+                  <div style="padding-top: 10px" class="editHeading">
+                    <h3>Other Details</h3>
+                  </div>
+                  <div class="detailSect">
+                    <div style="padding: 10px" class="detailTwo">
+                      <label for="">Candidates Status</label><br />
+                      <select disabled name="" id="">
+                        <option selected value="{{data.status}}">{{data.status}}</option>
+                        <!-- <option value="2">2</option> -->
+                      </select>
+                    </div>
+                    <div class="detailTwo">
+                      <label for="">Source</label><br />
+                      <select [(ngModel)]="data.source" name="source" id="">
+                        <option
+                          *ngFor="let source of SourceArr"
+                          value="{{ source }}"
+                        >
+                          {{ source }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="detailSect">
+                    <div style="padding: 10px" class="detailTwo">
+                      <label for="">Added By</label><br />
+                      <select disabled=""  [(ngModel)]="data.interviewBy" name="addedby" id="">
+                        <!-- <option value="Bharathi B">Bharathi B</option> -->
+                        <option selected value="{{data.interviewBy}}">
+                          {{data.interviewBy}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="notes">
+                  <label for="">Notes</label><br />
+                  <textarea
+                    [(ngModel)]="data.remarks"
+                    name="remarks"
+                    id=""
+                    cols="80"
+                    rows="8"
+                  ></textarea>
+                </div>
+                <div class="submitBtn">
+                  <button type="submit">Save</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
 

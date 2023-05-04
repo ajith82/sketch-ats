@@ -30,6 +30,7 @@ isCandidate:boolean = false;
 updatedData:any;
 detailsClicked = true;
 pipelineClicked = false;
+bgDark:boolean = false;
 SourceArr = [
   "Naukri",
   "Linkedin",
@@ -86,6 +87,7 @@ SourceArr = [
 
   editBtn(){
     this.sidenavOpen = true;
+    this.bgDark = true;
   }
 
   editCand(){
@@ -106,6 +108,7 @@ SourceArr = [
 
   closeSidenav(){
     this.sidenavOpen = false;
+    this.bgDark = false;
   }
 
   showAddressTab(){
