@@ -12,7 +12,7 @@
           <h3>Upload Resume</h3>
           <ng-container *ngFor="let resume of resume">
             <label for="">{{ resume.fieldDisplayName }}</label
-            ><br />
+            >
             <input
               (change)="onFileSelected($event)"
               #fieldName="ngModel"
@@ -20,7 +20,7 @@
               name="{{ resume.fieldName }}"
               type="file"
               required
-            /><br />
+            />
             <span *ngIf="userForm.submitted && !resume.value" style="color: red"
               >{{ resume.fieldDisplayName }} Required</span
             >
@@ -31,13 +31,13 @@
           <div *ngFor="let form of basicDetails; let i = index">
             <ng-container *ngIf="form.modelType == 'details'">
               <label>{{ form.fieldDisplayName }}</label
-              ><br />
+              >
               <input
                 [(ngModel)]="form.value"
                 name="{{ form.fieldName }}"
                 type="{{ form.type }}"
                 required
-              /><br />
+              />
               <span *ngIf="userForm.submitted && !form.value" style="color: red"
                 >{{ form.fieldDisplayName }} Required</span
               >
@@ -53,10 +53,10 @@
             <h5 class="expSalary">Expected Salary</h5>
           </div>
           <div class="professionalDetail">
-            <div *ngFor="let form of professionalDetails; let i = index">
+            <div class="proDetailsSection" *ngFor="let form of professionalDetails; let i = index">
               <ng-container *ngIf="form.modelType == 'exp'">
                 <label>{{ form.fieldDisplayName }}</label
-                ><br />
+                >
                 <input
                   [(ngModel)]="form.value"
                   name="{{ form.fieldName }}"
@@ -77,7 +77,7 @@
                     {{ exp.display }}
                   </option>
                 </select>
-                <br />
+                
                 <span
                   *ngIf="userForm.submitted && !form.value"
                   style="color: red"
@@ -93,7 +93,7 @@
             >
               <ng-container *ngIf="form.modelType == 'det'">
                 <label>{{ form.fieldDisplayName }}</label
-                ><br />
+                >
                 <input
                   [(ngModel)]="form.value"
                   *ngIf="form.fieldName == 'exp_joining_date'"
@@ -119,7 +119,7 @@
                   >
                     <ng-container>{{ option.display }}</ng-container>
                   </option></select
-                ><br />
+                >
                 <span
                   *ngIf="
                     form.fieldDisplayName != 'Skills' &&
@@ -143,7 +143,7 @@
                     >
                       {{ skills.label }}
                     </option></select
-                  ><br />
+                  >
                   <span
                     *ngIf="userForm.submitted && skillBtn !== true"
                     style="color: red"
@@ -152,10 +152,10 @@
                 </ng-container>
               </ng-container>
             </div>
-            <div *ngFor="let form of professionalDetails; let i = index">
+            <div class="noticePeriodSection" *ngFor="let form of professionalDetails; let i = index">
               <ng-container *ngIf="form.modelType == 'field'">
                 <label>{{ form.fieldDisplayName }}</label
-                ><br />
+                >
                 <input
                   [(ngModel)]="form.value"
                   name="{{ form.fieldName }}"
@@ -179,7 +179,7 @@
                   >
                     {{ option.display }}
                   </option></select
-                ><br />
+                >
                 <span
                   *ngIf="
                     form.fieldDisplayName == 'Source' &&
@@ -215,7 +215,7 @@
         </div>
         <div class="notes" *ngFor="let notes of any">
           <label for="">{{ notes.fieldName }}</label
-          ><br />
+          >
           <textarea
             [(ngModel)]="notes.value"
             name="{{ notes.fieldName }}"
@@ -230,7 +230,7 @@
             <div class="tab">
               <input class="checkBox" type="checkbox" id="check" />
               <div class="head">
-                <label>Address Details</label>
+                <h3>Address Details</h3>
                 <label class="tab-label" for="check">Show</label>
               </div>
               <div class="tab-content">
@@ -238,7 +238,7 @@
                   <label *ngIf="address.fieldName == 'currentAddress'" for="">{{
                     address.fieldDisplayName
                   }}</label
-                  ><br />
+                  >
                   <textarea
                     [(ngModel)]="address.value"
                     *ngIf="address.fieldName == 'currentAddress'"
@@ -253,7 +253,7 @@
                     *ngIf="address.fieldName == 'permanentAddress'"
                     for=""
                     >{{ address.fieldDisplayName }}</label
-                  ><br />
+                  >
                   <textarea
                     [(ngModel)]="address.value"
                     *ngIf="address.fieldName == 'permanentAddress'"
@@ -285,7 +285,7 @@
         <div class="education">
           <input class="checkbox" type="checkbox" id="checkk" />
           <div class="head">
-            <label>Education Details</label>
+            <h3>Education Details</h3>
             <label class="tab-label" for="checkk" (click)="addEduu()"
               >+Add</label
             >
@@ -321,7 +321,7 @@
                     name="institute_{{ i }}"
                     [(ngModel)]="education.institute"
                     type="text"
-                  /><br />
+                  />
                 </div>
                 <div class="degreeName">
                   <label for="">Degree</label>
@@ -333,7 +333,7 @@
                     <option value="Btech">Btech</option>
                     <option value="BCA">BCA</option>
                     <option value="Bsc">Bsc</option></select
-                  ><br />
+                  >
                 </div>
               </div>
               <div class="date">
@@ -344,7 +344,7 @@
                     [(ngModel)]="education.startTime"
                     type="date"
                     id=""
-                  /><br />
+                  />
                 </div>
                 <div class="endDate">
                   <label for="">End date</label>
@@ -363,7 +363,7 @@
         <div class="experience">
           <input class="checkbox" type="checkbox" id="checkexp" />
           <div class="head">
-            <label>Experience Details</label>
+            <h3>Experience Details</h3>
             <label class="tab-label" for="checkexp" (click)="addExpp()"
               >+Add</label
             >
@@ -387,7 +387,7 @@
                     name="company_{{ i }}"
                     [(ngModel)]="education.company"
                     type="text"
-                  /><br />
+                  />
                 </div>
                 <div class="degreeName">
                   <label for="">Job Title</label>
@@ -406,7 +406,7 @@
                     [(ngModel)]="education.startDate"
                     type="date"
                     id=""
-                  /><br />
+                  />
                 </div>
                 <div class="endDate">
                   <label for="">End date</label>
