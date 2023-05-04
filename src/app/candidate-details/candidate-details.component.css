@@ -19,6 +19,17 @@
   margin-bottom: 20px;
 }
 
+.backBtn {
+  margin-bottom: 20px;
+}
+
+.backBtn p {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
 .detailSec * {
   flex-basis: 25%;
 }
@@ -33,33 +44,115 @@
   font-size: 14px;
 }
 
-.editBtn button {
+.editOption button {
   width: 60px;
-  background-color: blueviolet;
-  color: #fff;
+  color: #000;
+  background-color: #f1f1f1;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  z-index: 1;
+}
+
+.dropdown-content button {
+  width: 60px;
+  color: #000;
+  background-color: #f1f1f1;
   border: none;
   padding: 5px;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.content .heading {
-  /* padding: 15px; */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.editOption:hover  .editOption button {
+  display: block;
 }
 
 .content .heading ul {
   display: flex;
-  gap: 10px;
+  gap: 48px;
+}
+
+.editBtn {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.editBtn p {
+  cursor: pointer;
+}
+
+.editBtn ul {
+  gap: 3px !important;
+  flex-direction: column;
+  position: relative;
+}
+
+/* .editBtn .editDetails {
+  position: absolute;
+  right: -8px;
+  bottom: -27px;
+} */
+
+.editBtn ul li {
+  width: 4px !important;
+  height: 4px !important;
+  background: black;
+}
+
+.editBtn .viewResume {
+  color: #1675e0;
+  text-decoration: none;
+}
+
+.editBtn .updatedStatus {
+  height: 30px;
+  width: 180px;
+  /* padding: 5px; */
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .content .heading ul li {
   list-style-type: none;
   cursor: pointer;
+  color: #3c3665;
+  font-size: 20px;
+  line-height: 50px;
+  font-weight: 600;
+}
+
+.detailAndPipe ul li.active {
+  border-bottom: 1.5px solid #3c3665;
+}
+
+.detailAndPipe ul li.active:first-child {
+  /* border-bottom: none; */
 }
 
 .details {
   /* padding: 10px; */
   flex-basis: 46%;
+  padding-top: 20px;
 }
 
 .details input {

@@ -1,21 +1,44 @@
 <div class="main">
   <div class="container">
     <div class="backBtn">
-      <p>Back</p>
+      <p><img src="../../images/goback.svg" alt="back" /> Back</p>
     </div>
     <div class="content">
       <div class="heading">
         <div class="headAndEdit">
           <div class="detailAndPipe">
             <ul>
-              <li (click)="details()">Details</li>
-              <li (click)="pipeLine(data._id)">Pipeline</li>
+              <li [class.active]="detailsClicked" (click)="details()">
+                Details
+              </li>
+              <li [class.active]="pipelineClicked" (click)="pipeLine(data._id)">
+                Pipeline
+              </li>
             </ul>
           </div>
           <div class="editBtn">
-            <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
+            <p
+              class="viewResume"
+              (click)="resumeClick(data.resume)"
+              *ngIf="data.resume"
+            >
+              View Resume
+            </p>
+            <!-- <p *ngIf="!data.resume">No Resume</p> -->
+            <span class="updatedStatus">{{ data.status }}</span>
+            <div class="dropdown">
+              <ul class="editOption">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+              <div class="dropdown-content">
+                <button type="button" (click)="editBtn()" class="editDetails">Edit</button>
+              </div>
+            </div>
+            <!-- <button *ngIf="detailBtn == true" type="button" (click)="editBtn()">
               Edit
-            </button>
+            </button> -->
             <button
               class="changeStatus"
               *ngIf="detailBtn == false"
@@ -510,7 +533,7 @@
       </div>
       <div *ngIf="pipeLineBtn == true" class="pipeLine">
         <div class="status" *ngFor="let candStatus of candidateStatus">
-          <h3>Status: {{candStatus.status}}</h3>
+          <h3>Status: {{ candStatus.status }}</h3>
           <p>Date: {{ candStatus.date | date }}</p>
           <p>Modified By : {{ candStatus.modifiedBY }}</p>
           <p>Remarks : {{ candStatus.remarks }}</p>
@@ -523,7 +546,7 @@
             <div class="editCandHead">
               <h3>Change Status</h3>
               <img
-              (click)="closeStatus()"
+                (click)="closeStatus()"
                 style="width: 20px"
                 src="../../images/close.svg"
                 alt="close"
@@ -532,7 +555,11 @@
             <form (ngSubmit)="updateStatus()">
               <div class="changeCandStatus">
                 <label for="">Change Status</label>
-                <select [(ngModel)]="updateCandidateStatus" class="" name="status">
+                <select
+                  [(ngModel)]="updateCandidateStatus"
+                  class=""
+                  name="status"
+                >
                   <option value="" disabled="">Please Select</option>
                   <option value="Candidates">Candidates</option>
                   <option value="Screening">Screening</option>

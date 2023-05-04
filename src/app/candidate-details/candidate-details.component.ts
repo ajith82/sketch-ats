@@ -28,6 +28,8 @@ updateCandidateStatus:any;
 comment:any;
 isCandidate:boolean = false;
 updatedData:any;
+detailsClicked = true;
+pipelineClicked = false;
 SourceArr = [
   "Naukri",
   "Linkedin",
@@ -61,6 +63,13 @@ SourceArr = [
   details(){
     this.detailBtn = true;
     this.pipeLineBtn = false;
+
+    this.detailsClicked = true;
+    this.pipelineClicked = false;
+  }
+
+  resumeClick(resume:any) {
+    window.open(resume)
   }
 
   pipeLine(id:any){    
@@ -70,6 +79,9 @@ SourceArr = [
       console.log("pipeeeeee",res.data.hiringStatus);
       this.candidateStatus = res.data.hiringStatus;
     })
+
+    this.detailsClicked = false;
+    this.pipelineClicked = true;
   }
 
   editBtn(){
