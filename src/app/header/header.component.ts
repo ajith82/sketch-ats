@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   showDropdown: boolean = false;
   isAdminPage: boolean = false;
   isHomePage: boolean = false;
+  userLogo?:string;
   constructor(
     private profileService: ProfileService,
     private route: Router,
@@ -23,15 +24,22 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.profileService.getDetails().subscribe((res) => {
+    this.profileService.getString().subscribe((res) => {
+      console.log("userrrrrr",res);
+      // localStorage.setItem('logo',res);
+      this.userLogo = res;
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];
       this.photoUrl = this.selectedOne.user.photoURL;
+      
+
+      // const nameparts = res.data.name.split(" ");
+      // this.firstLetterFirstName = nameparts[0].charAt(0);
+      // this.firstLetterLastName = nameparts[1].charAt(0); 
+      
     });
     this.isAdminPage = window.location.pathname === '/admin';    
     this.isHomePage = window.location.pathname === '/';
-    console.log("aaaaaaaaaaaaaaaaaa",window.location.pathname);
-    
   }
 
   toggleDropdown() {

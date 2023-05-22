@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Data } from '@angular/router';
@@ -18,6 +19,17 @@ export class ProfileService {
   filterNoticePeriod: any;
   filterSource: any;
   filterAddedBy: any;
+  private stringSubject = new BehaviorSubject<string>('');
+
+  setString(data: string) {
+    this.stringSubject.next(data);
+  }
+
+  getString() {
+    return this.stringSubject.asObservable();
+  }
+
+
   details(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/posts/', data);
   }
@@ -56,7 +68,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ3NDgxMzYsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ3NDg0MzYsImV4cCI6MTY4NDc1MjAzNiwianRpIjoiNWYxNjIzZjRiNWJhZGI0MDFiNTRlY2I1Mzg0Yzk3MjRjZGJjYzUyYyJ9.nnWWk48YmN8FqFtWHE6cY4_bK4EmyrRKc4-7L3OvYPP5MCZmQEKQZSkSyjoyAw1AD4pYAsCkUq1uB1hmzUiJepsgmTQ7gdAPsYHT5o7d8U2eIFpHE_rnE4apyaR9HIY3D8nuPePrwfTsQvhHe87Xy3ddzuz5otXJt86HXa1-sLjQs8JlNh0YdTMH5iFyO3yUCo3skAX0eXcCws_v0JSdAw1_UTleLLb-NmgJKMZ3Gf_crZsG8JizGp66EvqdouUUfnK0M2JxhMwQYrvQq10wuwX1tRTVRI6Tt8IJIH7sPG6X3FR3AB3nToeyWPKDlbtS5AUlm7HV71mdy1d4gH_EaQ",
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyMjgzOGMxYzhiZjllZGNmMWY1MDUwNjYyZTU0YmNiMWFkYjViNWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ3NTcyODIsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ3NTc1ODIsImV4cCI6MTY4NDc2MTE4MiwianRpIjoiYTVlOWFmNjI0MDRlNTZjOGViYjhmYTM4OTlhYTg4OGFlODZmZjY0NSJ9.bybr4_3-QSr-wNdZLCQwS45cCt8fKTS8Z6MOztNGurDy8as6GcIDf5PnThvJ9ECtIjtDrdD47fibq00nndu0WN0efSKMCMMlI5rP1UDxalSLHxv2TXQcQYtz4PzWCXGGQHZ8y89V4ZeJZmfw2feFNPs49w8G_aYjnBwiHQiTqSlZ60PI3zYL9xeQWBbInjMSwc0TjTxza2aG0Bz69wBMk9lP-HS8FVyKUVFecj2lUGT4T-6rPq1j0B5BULqpXmsYt_fNzqUYQHgtrS8OrIco6GXgYyZkEq-X8yUUqof9VBvQ_u1mF66y3TXFxs9a_yVIV1n3l3mcbqfdPHqxvswqnQ",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }

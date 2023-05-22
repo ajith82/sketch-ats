@@ -217,7 +217,7 @@
           </div>
         </div>
         <div class="notes" *ngFor="let notes of any">
-          <label for="">{{ notes.fieldName }}</label
+          <label for="">{{ notes.fieldDisplayName }}</label
           >
           <textarea
             [(ngModel)]="notes.value"

@@ -178,7 +178,7 @@ export class CandidatesComponent implements OnInit {
       .subscribe((res) => {
         this.config.totalItems = res.data.totalCount;
         this.candidateIndo = res.data.searchResults;
-        console.log('from serverrrr', this.config.totalItems);
+    // localStorage.setItem('statusCustom',res.data.searchResults)
       });
   }
 

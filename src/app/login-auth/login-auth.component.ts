@@ -78,11 +78,15 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
       this.resToken = res.data.token;
       const nameparts = res.data.name.split(" ");
       this.firstLetterFirstName = nameparts[0].charAt(0);
-      this.firstLetterLastName = nameparts[nameparts.length - 1].charAt(0);      
+      this.firstLetterLastName = nameparts[1].charAt(0);    
+      const dynamicLogo = `${this.firstLetterFirstName}${this.firstLetterLastName}`;  
+      this.profileService.setString(`${this.firstLetterFirstName}${this.firstLetterLastName}`)  
+      localStorage.setItem('logo',`${this.firstLetterFirstName}${this.firstLetterLastName}`)    
       localStorage.setItem('token',this.resToken);
       this.router.navigate(['candiadte']).then(() => {
         // window.location.reload();
       })
     })
+    
   }
 }
