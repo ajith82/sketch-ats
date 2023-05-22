@@ -1,287 +1,287 @@
 .main {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(239, 237, 237);
+  width: 100%;
+  height: 100%;
+  background-color: rgb(239, 237, 237);
 }
 
 .container {
-    padding: 30px;
+  padding: 30px;
 }
 
 .overviewHead h4 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 20px;
-    color: #000;
-    font-weight: 500;
-    line-height: 34px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: #000;
+  font-weight: 500;
+  line-height: 34px;
 }
 
 .overviewAndFilter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .searchAndFilter {
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .search input {
-    background: url('../../images/search.png') no-repeat scroll 2px;
-    background-size: 12px;
-    padding-left:17px;
-    padding-right: 10px;
-    /* border: 1px solid gray; */
-    border: none;
-    background-color: #fff;
-    height: 36px;
-    min-width: 250px !important;
-    padding: 0px 12px;
-    padding-left: 32px;
-    border: 1px solid #dddfe3;
-    outline: none;
+  background: url("../../images/search.png") no-repeat scroll 2px;
+  background-size: 12px;
+  padding-left: 17px;
+  padding-right: 10px;
+  /* border: 1px solid gray; */
+  border: none;
+  background-color: #fff;
+  height: 36px;
+  min-width: 250px !important;
+  padding: 0px 12px;
+  padding-left: 32px;
+  border: 1px solid #dddfe3;
+  outline: none;
 }
 
 .filter button {
-    width: 80px;
-    padding: 4px;
-    background-color: rgb(201, 200, 200);
-    color: black;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+  width: 80px;
+  padding: 4px;
+  background-color: rgb(201, 200, 200);
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .addCandidate button {
-    width: 110px;
-    background-color: black;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 0px 14px;
-    box-shadow: none !important;
-    cursor: pointer;
-    min-width: 120px;
-    height: 36px;
+  width: 110px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0px 14px;
+  box-shadow: none !important;
+  cursor: pointer;
+  min-width: 120px;
+  height: 36px;
 }
 
 .filterSec {
-    background-color: #fff;
-    padding: 15px;
-    display: flex;
-    gap: 20px;
+  background-color: #fff;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
 }
 
 .filterSec select {
-    width: 150px;
-    height: 30px;
-    background-color: #efefef;
-    border: 1px solid #dddfe4;
-    border-radius: 4px;
-    align-items: center;
-    padding: 0px 12px;
-    min-width: 270px;
-    /* width: 100%; */
+  width: 150px;
+  height: 30px;
+  background-color: #efefef;
+  border: 1px solid #dddfe4;
+  border-radius: 4px;
+  align-items: center;
+  padding: 0px 12px;
+  min-width: 270px;
+  /* width: 100%; */
 }
 
 .startAndEndDate input {
-    width: 150px;
-    height: 30px;
-    background-color: #efefef;
-    border: 1px solid #dddfe4;
-    border-radius: 4px;
-    min-width: 270px;
+  width: 150px;
+  height: 30px;
+  background-color: #efefef;
+  border: 1px solid #dddfe4;
+  border-radius: 4px;
+  min-width: 270px;
 }
 
 .candidateTable {
-    background-color: #fff;
-    padding: 20px;
-    margin-top: 15px;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 15px;
 }
 
 .candidateTable ul {
-    display: flex;
-    gap: 40px;
-    width: 62%;
-    /* padding-bottom: 15px; */
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgb(193, 192, 192);
+  display: flex;
+  gap: 40px;
+  width: 62%;
+  /* padding-bottom: 15px; */
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(193, 192, 192);
 }
 
 .candidateTable ul li {
-    list-style-type: none;
-    white-space: nowrap;
-    cursor: pointer;
-    padding-bottom: 10px;
+  list-style-type: none;
+  white-space: nowrap;
+  cursor: pointer;
+  padding-bottom: 10px;
 }
 .candidateTable ul li.selected {
-    border-bottom: 2px solid black;
-  }
+  border-bottom: 2px solid black;
+}
 
 .bntStyle {
-    
 }
 
 .candidateTable ul input[type="radio"] {
-    display: none;
-  }
+  display: none;
+}
 
 .candidateTable ul li :active {
-    border-bottom: 2px solid black;
-    font-weight: 800;
-  }
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
 
-  
-  .candidateTable ul li:target {
-      border-bottom: 2px solid black;
-      font-weight: 800;
-  }
-  
-  .candidateTable input[type="radio"]:checked + .optionType {
-      border-bottom: 2px solid black;
-      font-weight: 800;
-  }
+.candidateTable ul li:target {
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
 
-
+.candidateTable input[type="radio"]:checked + .optionType {
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .mainHead {
-    background-color: rgb(239, 237, 237);
-    height: 50px;
+  background-color: rgb(239, 237, 237);
+  height: 50px;
 }
 
 th {
-    font-size: 12px;
-    font-weight: 600;
-    color: gray;
-    text-align: left;
-    width: 13%;
-    /* padding-left: 10px; */
+  font-size: 12px;
+  font-weight: 600;
+  color: gray;
+  text-align: left;
+  width: 13%;
+  /* padding-left: 10px; */
 }
 
 .candidateName {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 5px;
-    color: skyblue;
-    font-weight: 600;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
+  color: skyblue;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .canNum {
-    color: gray;
-    font-weight: 200;
+  color: gray;
+  font-weight: 200;
 }
 
 td {
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .document {
-    text-align: right;
+  text-align: right;
 }
 
 .resumeDownload {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .document img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .list {
-    text-align: center;
+  text-align: center;
 }
 
 .date {
-    color: gray;
-    font-weight: 300;
+  color: gray;
+  font-weight: 300;
 }
 
 .addedBy {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
 }
 
 .rejected {
-    color: red;
-    font-weight: 600;
-    background-color: rgb(249, 178, 178);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
+  color: red;
+  font-weight: 600;
+  background-color: rgb(249, 178, 178);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .screening {
-    color: gray;
-    font-weight: 600;
-    background-color: rgb(217, 216, 216);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
+  color: gray;
+  font-weight: 600;
+  background-color: rgb(217, 216, 216);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
 }
 
-.DSRound{
-    color: gray;
-    font-weight: 600;
-    background-color: rgb(217, 216, 216);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
+.DSRound {
+  color: gray;
+  font-weight: 600;
+  background-color: rgb(217, 216, 216);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .details {
-    height: 50px;
-    border-bottom: 1px solid rgb(205, 204, 204);
+  height: 50px;
+  border-bottom: 1px solid rgb(205, 204, 204);
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 .sidenav {
-    position: fixed;
-    top: 0;
-    right: -700px;
-    height: 100%;
-    width: 700px;
-    z-index: 1;
-    background-color: #fff;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav-open {
-    right: 0;
-  }
+  position: fixed;
+  top: 0;
+  right: -700px;
+  height: 100%;
+  width: 700px;
+  z-index: 1;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
-  .sidenav button {
-    display: flex;
-    margin-right: 0;
-    margin-left: auto;
-    cursor: pointer;
-    background-color: red;
-    color: #fff;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-  }
+.sidenav-open {
+  right: 0;
+}
+
+.sidenav-content {
+    height: 100%;
+}
+
+.sidenav button {
+  display: flex;
+  margin-right: 0;
+  margin-left: auto;
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}

@@ -3,18 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-import { MatIconModule, MatButtonModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatButtonModule,
+  MatFormFieldModule,
+} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MaterialExampleModule } from '../material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AngularPaginatorModule } from 'angular-paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 // import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +33,10 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
 import { DetailsComponent } from './details/details.component';
-import { AdminPanelComponent, DialogContentExampleDialog } from './admin-panel/admin-panel.component';
+import {
+  AdminPanelComponent,
+  DialogContentExampleDialog,
+} from './admin-panel/admin-panel.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -55,7 +62,7 @@ const firebaseConfig = {
     CandidateDetailsComponent,
     DetailsComponent,
     AdminPanelComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
   ],
   imports: [
     BrowserModule,

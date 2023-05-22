@@ -15,7 +15,7 @@
           </select> -->
         </div>
         <div class="role">
-          <select id="skills">
+          <select (change)="dashFilter($event)" id="skills">
             <option value="volvo" disabled selected>Select Role</option>
             <option
               *ngFor="let skill of candidateSkillSetsArr"

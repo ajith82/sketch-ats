@@ -160,7 +160,7 @@ export class CandidatesComponent implements OnInit {
     this.sidenavOpen = true;
     this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.selectedCandidate?.resume
-    );
+    );    
     this.secureLink = `https://docs.google.com/gview?url=${this.resumeUrl}&embedded=true`;
   }
 

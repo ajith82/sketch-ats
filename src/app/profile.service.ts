@@ -56,7 +56,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-      "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM5YWZkYTM2ODJlYmYwOWViMzA1NWMxYzRiZDM5Yjc1MWZiZjgxOTUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODMyMDE5NjQsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODMyMDIyNjQsImV4cCI6MTY4MzIwNTg2NCwianRpIjoiZGYyMWY0MTgxNjE2YmY4N2NiYzdhYTYxOTdlYjJhMzMzN2IyYzY3MSJ9.tbP8jgzZmrbV_VscNa3TdaYi1hxPK_-nBhc9MGI4AE9JHQnInxyx4MBQ4Jr_h7KGZt7gjZva39-zRk1vgs8IBW4rJrrqWNGj1JYROzVbGYAyX6BZcxPdMz2b2obvhcm8IiB-U1BRAl3uet5G3MQN3rYaVPTZvfrM0FvckYVUCG7xQ6LpoDoheKTVkwlgS7mAMiq0y0PwhBlO2SW1HiMuxsC1pfzhOVDYEPeE6J4-AZeUMFDWiGbjh3sc_KlOEwHpkhJpBfcUHCWvwNzbnw0OoEecSluU59i1Jt1_Q00A_QoaRem8qz7xyhpMuNDyTt-InMy_VH1QIWOa7aKky1y4rg",
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ3MzA3MDUsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ3MzEwMDUsImV4cCI6MTY4NDczNDYwNSwianRpIjoiNzFjNDYyY2UzMzc0YTY5MGY4ZWFiOTBkNzY4YTExMjY5NzVhMzExMSJ9.F3JPcDSmWDc2o-29GkUGjIodmbQ3_HtRxO2w16j1deOWySOWBPCenfrhlTDndndA6srLkym8mE2bhZinLDy1QVIMJLPcxTbwCs15sRCaeqcUGzYFa9jl4Rd8MNAXKeJ5W2liju41_5qF4uUnWq3LR1EeTX8ImgplQaOixqVbI6MqlfZK1C9NaRc3UCcQXEg2g2XyfjswpIj-BB3ATyYYeoxTqT3uX6GddMPTBLod1eKdE2I6SwXYbf4ksNTPKt-cOuUtOwLIbwTF4NhnMHthcXyJtRzWTDJDYA0iuX9xgLHsNON8ayej8NPMp0KuP_O9GUVcr_yWGCkBR7WJsVB99w",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -160,13 +160,16 @@ export class ProfileService {
     });
   }
 
-  pipeLine(id:any): Observable<any> {
+  pipeLine(id: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    return this.http.get(`${this.BASE_URL}/hiring/get/candidate/status?_id=${id}`, {
-      headers: reqHeader,
-    });
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/status?_id=${id}`,
+      {
+        headers: reqHeader,
+      }
+    );
   }
 
   getCandDetails(): Observable<any> {
@@ -247,7 +250,7 @@ export class ProfileService {
     console.log(data);
     this.filterSource = data;
     let fd = new FormData();
-    const sourceValue = data.replace(' ','+');
+    const sourceValue = data.replace(' ', '+');
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&source=${sourceValue}&status=Candidates`,
       {
@@ -263,7 +266,7 @@ export class ProfileService {
     console.log(data);
     this.filterAddedBy = data;
     let fd = new FormData();
-    const addedByValue = data.replace(' ','+');
+    const addedByValue = data.replace(' ', '+');
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&interviewBy=${addedByValue}&status=Candidates`,
       {
@@ -284,7 +287,7 @@ export class ProfileService {
     );
   }
 
-  editAdmin(data:any): Observable<any> {
+  editAdmin(data: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
@@ -293,39 +296,58 @@ export class ProfileService {
     });
   }
 
-  addAdmin(data:any): Observable<any> {
+  addAdmin(data: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.post(`${this.BASE_URL}/create/user`, data, {
       headers: reqHeader,
-    }); 
+    });
   }
 
-  deleteRole(id:any): Observable<any> {
+  deleteRole(id: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
     return this.http.delete(`${this.BASE_URL}/delete/user?_id=${id}`, {
       headers: reqHeader,
-    }); 
+    });
   }
 
-  statusUpdate(data:any): Observable<any> {
+  statusUpdate(data: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    return this.http.put(`${this.BASE_URL}/hiring/candidate/updateStatus`,data, {
-      headers: reqHeader,
-    }); 
+    return this.http.put(
+      `${this.BASE_URL}/hiring/candidate/updateStatus`,
+      data,
+      {
+        headers: reqHeader,
+      }
+    );
   }
 
-  afterUpdate(id:any): Observable<any> {
+  afterUpdate(id: any): Observable<any> {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    return this.http.get(`${this.BASE_URL}/hiring/get/candidate/status?_id=${id}`, {
-      headers: reqHeader,
-    }); 
+    return this.http.get(
+      `${this.BASE_URL}/hiring/get/candidate/status?_id=${id}`,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
+
+  dashFilter(data: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });    
+    return this.http.get(
+      `${this.BASE_URL}/get/candidates/offerAccepted?currentJobTitle=${data}`,
+      {
+        headers: reqHeader,
+      }
+    );
   }
 }

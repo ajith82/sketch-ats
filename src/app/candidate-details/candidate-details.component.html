@@ -25,7 +25,9 @@
               View Resume
             </p>
             <!-- <p *ngIf="!data.resume">No Resume</p> -->
-            <span *ngIf="detailBtn == true" class="updatedStatus">{{ data.status }}</span>
+            <span *ngIf="detailBtn == true" class="updatedStatus">{{
+              data.status
+            }}</span>
             <div *ngIf="detailBtn == true" class="dropdown">
               <ul class="editOption">
                 <li></li>
@@ -102,7 +104,7 @@
                     <div class="detailTwo">
                       <label for="">Other Offer</label><br />
                       <select
-                      class="otherofferDrop"
+                        class="otherofferDrop"
                         [(ngModel)]="data.otherOffers"
                         name="otheroffer"
                         id=""
@@ -122,7 +124,7 @@
                     [(ngModel)]="data.firstName"
                   /> -->
                 </div>
-  
+
                 <div style="padding-top: 30px" class="docDetails">
                   <div class="editHeading">
                     <h3>Basic Details</h3>
@@ -156,7 +158,11 @@
                     </div>
                     <div class="detailTwo">
                       <label for="">Email</label><br />
-                      <input type="text" name="email" [(ngModel)]="data.email" />
+                      <input
+                        type="text"
+                        name="email"
+                        [(ngModel)]="data.email"
+                      />
                     </div>
                   </div>
                 </div>
@@ -258,7 +264,7 @@
                       </select>
                     </div>
                     <div class="detailTwo">
-                      <label for="">Skills</label><br />
+                      <!-- <label for="">Skills</label><br />
                       <select
                         *ngFor="let skill of data.skillSet"
                         name="skillSet"
@@ -267,7 +273,44 @@
                         <option value="{{ skill.value }}">
                           {{ skill.label }}
                         </option>
-                      </select>
+                      </select> -->
+                      <label for="">Skills</label>
+                      <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList>
+                          <mat-chip
+                            *ngFor="let fruit of fruits"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(fruit)"
+                          >
+                            {{ fruit }}
+                            <mat-icon matChipRemove *ngIf="removable"
+                              >cancel</mat-icon
+                            >
+                          </mat-chip>
+                          <input
+                            placeholder="New fruit..."
+                            #fruitInput
+                            [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)"
+                          />
+                        </mat-chip-list>
+                        <mat-autocomplete
+                          #auto="matAutocomplete"
+                          (optionSelected)="selected($event)"
+                        >
+                          <mat-option
+                            *ngFor="let fruit of filteredFruits | async"
+                            [value]="fruit"
+                          >
+                            {{ fruit }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="detailSect">
@@ -292,7 +335,10 @@
                     </div>
                   </div>
                   <div class="detailSect">
-                    <div class="detailTwo" style="padding: 10px;flex-basis: 23%;">
+                    <div
+                      class="detailTwo"
+                      style="padding: 10px; flex-basis: 23%"
+                    >
                       <label for="">Serving Notice Period</label><br />
                       <select name="" id="">
                         <option value="true">Yes</option>
@@ -305,7 +351,10 @@
                     >
                       <input
                         type="checkbox"
-                        style="width: 10px !important; min-width: 13px !important"
+                        style="
+                          width: 10px !important;
+                          min-width: 13px !important;
+                        "
                       />
                       <label for="">Is Negotiable</label><br />
                     </div>
@@ -314,7 +363,9 @@
                 <div class="addressDetails">
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Address Details</h3>
-                    <h5 (click)="showAddressTab()" *ngIf="!showAddress">Show</h5>
+                    <h5 (click)="showAddressTab()" *ngIf="!showAddress">
+                      Show
+                    </h5>
                     <h5 (click)="showAddressTab()" *ngIf="showAddress">Hide</h5>
                   </div>
                   <div *ngIf="showAddress" class="addressContent">
@@ -361,7 +412,9 @@
                     <div style="padding: 10px" class="detailTwo">
                       <label for="">Candidates Status</label><br />
                       <select disabled name="" id="">
-                        <option selected value="{{data.status}}">{{data.status}}</option>
+                        <option selected value="{{ data.status }}">
+                          {{ data.status }}
+                        </option>
                         <!-- <option value="2">2</option> -->
                       </select>
                     </div>
@@ -380,10 +433,15 @@
                   <div class="detailSect">
                     <div style="padding: 10px" class="detailTwo">
                       <label for="">Added By</label><br />
-                      <select disabled=""  [(ngModel)]="data.interviewBy" name="addedby" id="">
+                      <select
+                        disabled=""
+                        [(ngModel)]="data.interviewBy"
+                        name="addedby"
+                        id=""
+                      >
                         <!-- <option value="Bharathi B">Bharathi B</option> -->
-                        <option selected value="{{data.interviewBy}}">
-                          {{data.interviewBy}}
+                        <option selected value="{{ data.interviewBy }}">
+                          {{ data.interviewBy }}
                         </option>
                       </select>
                     </div>

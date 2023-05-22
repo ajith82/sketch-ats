@@ -437,6 +437,9 @@
   top: 0;
   background-color: #01010187;
 }
+.example-chip-list {
+  width: 100%;
+}
 .editCand {
   padding: 24px;
   border-radius: 18px;

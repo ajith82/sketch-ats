@@ -58,7 +58,7 @@
 }
 
 .candData {
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .dashboardDetails {

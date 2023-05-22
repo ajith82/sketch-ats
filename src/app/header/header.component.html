@@ -1,16 +1,16 @@
 <div *ngIf="!isHomePage" class="header">
   <header>
     <div class="logoAndOption">
-      <div class="logo">
+      <div routerLink="candiadte" class="logo">
         <img src="../../images/sb-logo.svg" alt="logo" />
       </div>
       <div *ngIf="!isAdminPage" class="option">
         <div class="dashboard">
-            <input id="dashboard" name="sort" value="date" type="radio" [checked]="true">
+            <input id="dashboard" name="sort" value="date" type="radio">
           <label routerLink="dashboard" for="dashboard" class="optionType">Dashboard</label>
         </div>
         <div class="candidates">
-            <input id="candidates" name="sort" value="date" type="radio">
+            <input [checked]="true" id="candidates" name="sort" value="date" type="radio">
           <label routerLink="/candiadte" for="candidates" class="optionType">Candidates</label>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { ProfileService } from './../profile.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -48,12 +48,17 @@ export class CandidateDetailsComponent implements OnInit {
     'Referral',
     'Others',
   ];
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl('');
-  filteredFruits!: Observable<string[]>;
+  fruitCtrl = new FormControl();
+  filteredFruits: Observable<string[]>;
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   constructor(
     private profileService: ProfileService,
     private route: Router,
@@ -61,10 +66,7 @@ export class CandidateDetailsComponent implements OnInit {
   ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allFruits.slice()
-      )
-    );
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
 
   ngOnInit(): void {
@@ -85,12 +87,42 @@ export class CandidateDetailsComponent implements OnInit {
     this.updateStatus();
   }
 
+  add(event: MatChipInputEvent): void {
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.fruits.push(value.trim());
+      }
+
+      if (input) {
+        input.value = '';
+      }
+
+      this.fruitCtrl.setValue(null);
+    }
+  }
+
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter((fruit) =>
-      fruit.toLowerCase().includes(filterValue)
-    );
+    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 
   details() {

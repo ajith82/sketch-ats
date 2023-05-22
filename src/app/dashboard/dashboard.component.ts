@@ -67,4 +67,16 @@ export class DashboardComponent implements OnInit {
       })
   }
 
+  dashFilter(event:any) {
+    console.log(event.target.value);
+    this.profileService.dashFilter(event.target.value).subscribe((res) => {
+      console.log("filllll",res.data);
+      this.offerAccepted = res.data.getCandidatesofferAccepted;
+        this.candidateReject = res.data.getCandidatesRejected;
+        this.candidateJoined = res.data.getCandidatesJoined;
+        this.candidateDeclined = res.data.getCandidatesOfferDeclined;
+        this.offered = res.data.getCandidatesoffered;
+    })
+  }
+
 }
