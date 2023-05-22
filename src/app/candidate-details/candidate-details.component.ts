@@ -48,6 +48,7 @@ export class CandidateDetailsComponent implements OnInit {
     'Referral',
     'Others',
   ];
+  month = [1,2,3,4,5,6,7,8,9,10,11]
   visible = true;
   selectable = true;
   removable = true;

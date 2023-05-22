@@ -3,21 +3,23 @@ import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { ProfileService } from '../profile.service';
 import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   isLoginAuth = true;
-  data:any;
-  offerAccepted:any;
-  candidateReject:any;
-  candidateJoined:any;
-  candidateDeclined:any;
-  offered:any;
-  @ViewChild(DaterangepickerDirective, {static: true}) picker!: DaterangepickerDirective;
-  selected!: {startDate: moment.Moment, endDate: moment.Moment};
+  data: any;
+  offerAccepted: any;
+  candidateReject: any;
+  candidateJoined: any;
+  candidateDeclined: any;
+  offered: any;
+  @ViewChild(DaterangepickerDirective, { static: true })
+  picker!: DaterangepickerDirective;
+  selected!: { startDate: moment.Moment; endDate: moment.Moment };
   candidateSkillSetsArr = [
     'UI UX Design',
     'Lead Generation',
@@ -36,47 +38,56 @@ export class DashboardComponent implements OnInit {
     'Devops',
   ];
 
-  constructor(private http: HttpClient, private profileService: ProfileService) { }
+  constructor(
+    private http: HttpClient,
+    private profileService: ProfileService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {    
-      this.profileService.sendAnalytics().subscribe(res => {
-        console.log("resssss",res);
-      })
+  ngOnInit(): void {
+    this.profileService.sendAnalytics().subscribe((res) => {
+      console.log('resssss', res);
+    });
 
-      this.profileService.candidateDashboard().subscribe((res: any) => {
-        console.log("vvvvvvvvvvvvv",res);
-        this.data = res.data;
-      })
+    this.profileService.candidateDashboard().subscribe((res: any) => {
+      console.log('vvvvvvvvvvvvv', res);
+      this.data = res.data;
+    });
 
-      this.profileService.offerAccepted().subscribe((res) => {
-        console.log("acccccc",res.data);
-        this.offerAccepted = res.data.getCandidatesofferAccepted;
-        this.candidateReject = res.data.getCandidatesRejected;
-        this.candidateJoined = res.data.getCandidatesJoined;
-        this.candidateDeclined = res.data.getCandidatesOfferDeclined;
-        this.offered = res.data.getCandidatesoffered;
-      })
+    this.profileService.offerAccepted().subscribe((res) => {
+      this.offerAccepted = res.data.getCandidatesofferAccepted;
+      this.candidateReject = res.data.getCandidatesRejected;
+      this.candidateJoined = res.data.getCandidatesJoined;
+      this.candidateDeclined = res.data.getCandidatesOfferDeclined;
+      this.offered = res.data.getCandidatesoffered;
+    });
 
-      this.profileService.getCandidates().subscribe(res => {
-        // this.offerAccepted = res.data.getCandidatesJoined;
-        // this.candidateReject = res.data.getCandidatesRejected;
-        // this.candidateJoined = res.data.getCandidatesJoined;
-        // this.candidateDeclined = res.data.getCandidatesOfferDeclined;
-        // this.offered = res.data.getCandidatesoffered;
-        console.log("candidatesssss",res);
-      })
+    this.profileService.getCandidates().subscribe((res) => {
+      // this.offerAccepted = res.data.getCandidatesJoined;
+      // this.candidateReject = res.data.getCandidatesRejected;
+      // this.candidateJoined = res.data.getCandidatesJoined;
+      // this.candidateDeclined = res.data.getCandidatesOfferDeclined;
+      // this.offered = res.data.getCandidatesoffered;
+      console.log('candidatesssss', res);
+    });
   }
 
-  dashFilter(event:any) {
+  dashFilter(event: any) {
     console.log(event.target.value);
     this.profileService.dashFilter(event.target.value).subscribe((res) => {
-      console.log("filllll",res.data);
+      console.log('filllll', res.data);
       this.offerAccepted = res.data.getCandidatesofferAccepted;
-        this.candidateReject = res.data.getCandidatesRejected;
-        this.candidateJoined = res.data.getCandidatesJoined;
-        this.candidateDeclined = res.data.getCandidatesOfferDeclined;
-        this.offered = res.data.getCandidatesoffered;
-    })
+      this.candidateReject = res.data.getCandidatesRejected;
+      this.candidateJoined = res.data.getCandidatesJoined;
+      this.candidateDeclined = res.data.getCandidatesOfferDeclined;
+      this.offered = res.data.getCandidatesoffered;
+    });
   }
 
+  dashCandDetails(id: any) {
+    this.profileService.dashCandDetails(id).subscribe((res) => {
+      console.log('cand details', res.data.getCandidates);
+      this.router.navigate(['details'])
+    });
+  }
 }

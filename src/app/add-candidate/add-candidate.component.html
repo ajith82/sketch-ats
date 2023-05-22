@@ -70,6 +70,7 @@
                   *ngIf="form.type == 'RADIO'"
                   required
                 >
+                <option selected disabled value="">Select</option>
                   <option
                     *ngFor="let exp of form.options"
                     value="{{ exp.value }}"
@@ -113,6 +114,7 @@
                   *ngIf="form.type == 'RADIO'"
                   required
                 >
+                <option selected disabled value="">Select</option>
                   <option
                     *ngFor="let option of form.options"
                     value="{{ option.value }}"
@@ -173,6 +175,7 @@
                   name="{{ form.fieldName }}"
                   *ngIf="form.type == 'RADIO'"
                 >
+                <option selected disabled value="">Select</option>
                   <option
                     *ngFor="let option of form.options"
                     value="{{ option.value }}"
@@ -330,6 +333,7 @@
                     [(ngModel)]="education.degree"
                     id=""
                   >
+                  <option selected disabled value="">Select</option>
                     <option value="Btech">Btech</option>
                     <option value="BCA">BCA</option>
                     <option value="Bsc">Bsc</option></select

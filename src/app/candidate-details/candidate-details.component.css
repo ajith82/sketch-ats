@@ -345,11 +345,13 @@
 .detailTwo select {
   /* width: 150px; */
   width: 100%;
-  background-color: rgb(233 233 233);
-  height: 25px;
-  border: 1px solid rgb(222 222 222);
-  border-radius: 3px;
+  background-color: #EFEFEF;
   border: 1px solid #dddfe4;
+  /* background-color: rgb(233 233 233); */
+  height: 25px;
+  /* border: 1px solid rgb(222 222 222); */
+  border-radius: 3px;
+  /* border: 1px solid #dddfe4; */
   height: 36px;
   padding: 0px 12px;
   border-radius: 4px !important;

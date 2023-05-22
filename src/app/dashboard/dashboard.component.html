@@ -108,9 +108,11 @@
           <div class="candidateDetails" *ngFor="let offered of offered">
             <div class="person">
               <div class="candName">
-                <p><strong>Name:</strong>{{ offered.firstName }}</p>
-                <strong>{{offered.modifiedDate | date}}</strong></div
-              >
+                <p>
+                  <strong>Name:</strong><span (click)="dashCandDetails(offered._id)" class="candidateFirstName">{{ offered.firstName }}</span>
+                </p>
+                <strong>{{ offered.modifiedDate | date }}</strong>
+              </div>
 
               <ng-container *ngFor="let skills of offered.skillSet">
                 <p><strong>Skills:</strong> {{ skills.label }}</p>
@@ -134,8 +136,8 @@
           >
             <div class="person">
               <div class="candName">
-                <p><strong>Name:</strong>{{ offerAccept.firstName }}</p>
-                <strong>{{offerAccept.modifiedDate | date}}</strong>
+                <p><strong>Name:</strong><span class="candidateFirstName">{{ offerAccept.firstName }}</span></p>
+                <strong>{{ offerAccept.modifiedDate | date }}</strong>
               </div>
               <ng-container *ngFor="let skills of offerAccept.skillSet">
                 <p><strong>Skills:</strong> {{ skills.label }}</p>
@@ -179,8 +181,8 @@
           >
             <div class="person">
               <div class="candName">
-                <p><strong>Name:</strong>{{ candDeclined.firstName }}</p>
-                <strong>{{candDeclined.modifiedDate | date}}</strong>
+                <p><strong>Name:</strong><span class="candidateFirstName">{{ candDeclined.firstName }}</span></p>
+                <strong>{{ candDeclined.modifiedDate | date }}</strong>
               </div>
               <ng-container *ngFor="let skills of candDeclined.skillSet">
                 <p><strong>Skills:</strong> {{ skills.label }}</p>
@@ -204,8 +206,8 @@
           >
             <div class="person">
               <div class="candName">
-                <p><strong>Name:</strong>{{ candJoined.firstName }}</p>
-                <strong>{{candJoined.modifiedDate | date}}</strong>
+                <p><strong>Name:</strong><span class="candidateFirstName">{{ candJoined.firstName }}</span></p>
+                <strong>{{ candJoined.modifiedDate | date }}</strong>
               </div>
               <ng-container *ngFor="let skills of candJoined.skillSet">
                 <p><strong>Skills:</strong> {{ skills.label }}</p>

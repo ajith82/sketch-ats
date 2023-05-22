@@ -92,10 +92,10 @@ export const professionalDetails = [
             display: '11',
             value: '11',
           },
-          {
-            display: '12',
-            value: '12',
-          }
+          // {
+          //   display: '12',
+          //   value: '12',
+          // }
         ],
         description: 'Marital status of individual',
         helpText: 'Marital status of individual',
@@ -198,10 +198,10 @@ export const professionalDetails = [
             display: '11',
             value: '11',
           },
-          {
-            display: '12',
-            value: '12',
-          }
+          // {
+          //   display: '12',
+          //   value: '12',
+          // }
         ],
         description: 'Marital status of individual',
         helpText: 'Marital status of individual',

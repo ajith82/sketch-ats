@@ -96,9 +96,9 @@ form label {
 
 .professionalDetail select {
   width: 200px;
-  background-color: rgb(217, 215, 215);
+  background-color: #EFEFEF;
+  border: 1px solid #dddfe4;
   height: 25px;
-  border: 1px solid rgb(187, 186, 186);
 }
 
 .professionalDetail input {

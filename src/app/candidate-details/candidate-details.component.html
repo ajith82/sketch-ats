@@ -191,8 +191,8 @@
                           name="totalMonthExp"
                           id=""
                         >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
+                        <option selected disabled value="">Select</option>
+                          <option *ngFor="let month of month" value="">{{month}}</option>
                         </select>
                       </div>
                     </div>
@@ -212,8 +212,8 @@
                           name="relMonths"
                           id=""
                         >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
+                        <option selected disabled value="">Select</option>
+                        <option *ngFor="let month of month" value="">{{month}}</option>
                         </select>
                       </div>
                     </div>
@@ -321,6 +321,7 @@
                         name="noticePeriod"
                         id=""
                       >
+                      <option selected disabled value="">Select</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                       </select>
@@ -421,6 +422,7 @@
                     <div class="detailTwo">
                       <label for="">Source</label><br />
                       <select [(ngModel)]="data.source" name="source" id="">
+                        <option selected disabled value="">Select</option>
                         <option
                           *ngFor="let source of SourceArr"
                           value="{{ source }}"

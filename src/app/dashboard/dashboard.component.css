@@ -173,6 +173,11 @@
     color: #191919;
 }
 
+.candidateFirstName {
+    color: blue;
+    cursor: pointer;
+}
+
 .person strong {
     font-weight: bold;
 }
