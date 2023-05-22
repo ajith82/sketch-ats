@@ -249,7 +249,7 @@
                     id=""
                     cols="98"
                     rows="8"
-                  ></textarea>
+                  ></textarea><br>
                 </div>
                 <div *ngFor="let address of address; let i = index">
                   <label
@@ -268,14 +268,14 @@
                   <div class="checkAddress">
                     <input
                       class="addressCheck"
-                      (change)="copyCurrentAddress(address)"
-                      *ngIf="address.fieldName == 'permanent_address'"
+                      (change)="copyCurrentAddress($event.target,address)"
+                      *ngIf="address.fieldName == 'permanentAddress'"
                       type="checkbox"
                       name=""
                       id=""
                     />
                     <label
-                      *ngIf="address.fieldName == 'permanent_address'"
+                      *ngIf="address.fieldName == 'permanentAddress'"
                       for=""
                       >Same as Current Address</label
                     >

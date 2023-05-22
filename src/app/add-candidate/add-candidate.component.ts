@@ -426,13 +426,18 @@ export class AddCandidateComponent implements OnInit {
     }
   }
 
-  copyCurrentAddress(permanentAddressField: any) {
+  copyCurrentAddress(checked: any,permanentAddressField: any) {    
     const currentAddressField = this.address.find(
-      (address) => address.fieldName === 'current_address'
+      (address) => address.fieldName === 'currentAddress'
     );
-    if (currentAddressField) {
-      permanentAddressField.value = currentAddressField.value;
+    if(checked.checked){
+      if (currentAddressField) {      
+        permanentAddressField.value = currentAddressField.value;
+      }
+    }else if(checked.checked == false){
+      permanentAddressField.value = '';
     }
+    
   }
 
   deleteEduObj() {}
