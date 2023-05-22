@@ -26,13 +26,14 @@ export class CandidatesComponent implements OnInit {
   sidenavOpen: boolean = false;
   resumeUrl: any;
   secureLink: any;
+  emptyMsg:any;
   candidateIndo: any[] = [];
   serachValue: any;
   selectedOptions: string[] = [];
   @ViewChild(DaterangepickerDirective, { static: true })
   picker!: DaterangepickerDirective;
   selected!: { startDate: moment.Moment; endDate: moment.Moment };
-  selectedIndex: any = null;
+  selectedIndex = 0;
 
   NoticePeriodArr = [
     '15 Days',
@@ -198,11 +199,11 @@ export class CandidatesComponent implements OnInit {
   jobOpenings(event: any) {
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
-    console.log(selectedValue);
     this.profileService.jobOpening(selectedValue).subscribe((res) => {
-      console.log(res);
       this.candidateIndo = res.data.searchResults;
+      this.emptyMsg = res.message;
     });
+    console.log("msggg",this.emptyMsg);
   }
 
   noticePeriod(event: any) {
@@ -212,7 +213,7 @@ export class CandidatesComponent implements OnInit {
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
       console.log("noticeeee",res);
       this.candidateIndo = res.data.searchResults;
-    });
+    });    
   }
 
   source(event: any) {

@@ -420,7 +420,7 @@ export class AddCandidateComponent implements OnInit {
         .subscribe((res) => {
           console.log('addeddddd', res);
         });
-      // this.route.navigate(['candiadte'])
+      this.route.navigate(['candiadte'])
     } else {
       console.log('errorrrrr');
     }
