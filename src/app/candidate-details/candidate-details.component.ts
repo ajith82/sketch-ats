@@ -172,6 +172,7 @@ export class CandidateDetailsComponent implements OnInit {
     });
     // this.route.navigate(['candiadte']);
     this.sidenavOpen = false;
+    this.bgDark = false;
   }
 
   closeSidenav() {

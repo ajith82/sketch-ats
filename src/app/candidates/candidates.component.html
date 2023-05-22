@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="filterSec">
+    <div *ngIf="hideChipsFilter" class="filterSec">
       <div class="jobOpening">
         <label for="">Job Opening</label><br />
         <!-- <mat-chip-list>
@@ -91,12 +91,12 @@
         />
       </div>
     </div>
-    <div class="candidateTable">
+    <div *ngIf="filterMsg == 'Candidate fetched successfully'" class="candidateTable">
       <mat-sidenav-container>
         <mat-sidenav #sidenav mode="side" [opened]="showSidenav">
           <app-sidenav [candidate]="selectedCandidate"></app-sidenav>
         </mat-sidenav>
-        <ul>
+        <ul *ngIf="hideChipsFilter">
           <li
             (click)="candStatus(i)"
             class="optionType"
@@ -217,10 +217,10 @@
         ></pagination-controls>
       </div>
     </div>
-    <!-- <div *ngIf="!candidateIndo" class="ifEmpty">
+    <div *ngIf="filterMsg == 'Search results not found'" class="ifEmpty">
       <div class="emptyImg">
         <img src="../../images/nodata.jpg" alt="nodata">
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

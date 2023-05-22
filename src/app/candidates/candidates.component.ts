@@ -26,7 +26,7 @@ export class CandidatesComponent implements OnInit {
   sidenavOpen: boolean = false;
   resumeUrl: any;
   secureLink: any;
-  emptyMsg:any;
+  filterMsg: any;
   candidateIndo: any[] = [];
   serachValue: any;
   selectedOptions: string[] = [];
@@ -34,6 +34,7 @@ export class CandidatesComponent implements OnInit {
   picker!: DaterangepickerDirective;
   selected!: { startDate: moment.Moment; endDate: moment.Moment };
   selectedIndex = 0;
+  hideChipsFilter = true;
 
   NoticePeriodArr = [
     '15 Days',
@@ -126,7 +127,7 @@ export class CandidatesComponent implements OnInit {
       let storage = localStorage.getItem('token');
       this.candidateIndo = res.data.searchResults;
       console.log('respond', this.candidateIndo);
-
+      this.filterMsg = res.message;
       this.candidateDetails = res.data.getCandidates;
       this.dataSourceWithPageSize = new MatTableDataSource(
         this.candidateDetails
@@ -161,7 +162,7 @@ export class CandidatesComponent implements OnInit {
     this.sidenavOpen = true;
     this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.selectedCandidate?.resume
-    );    
+    );
     this.secureLink = `https://docs.google.com/gview?url=${this.resumeUrl}&embedded=true`;
   }
 
@@ -182,11 +183,17 @@ export class CandidatesComponent implements OnInit {
   }
 
   search(value: any) {
-    console.log(value);
-    this.profileService.search(value).subscribe((res) => {
-      console.log(res);
-      this.candidateIndo = res.data.searchResults;
-    });
+    if (value == '') {
+      this.hideChipsFilter = true;
+      this.profileService.candidateDetails().subscribe((res) => {
+        this.candidateIndo = res.data.searchResults;
+      });
+    } else {
+      this.hideChipsFilter = false;
+      this.profileService.search(value).subscribe((res) => {
+        this.candidateIndo = res.data.searchResults;
+      });
+    }
   }
 
   candidatesDetails(id: any) {
@@ -200,10 +207,9 @@ export class CandidatesComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
     this.profileService.jobOpening(selectedValue).subscribe((res) => {
+      this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
-      this.emptyMsg = res.message;
     });
-    console.log("msggg",this.emptyMsg);
   }
 
   noticePeriod(event: any) {
@@ -211,9 +217,9 @@ export class CandidatesComponent implements OnInit {
     const selectedValue = selectElement.value;
     console.log(selectedValue);
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
-      console.log("noticeeee",res);
+      console.log('noticeeee', res);
       this.candidateIndo = res.data.searchResults;
-    });    
+    });
   }
 
   source(event: any) {
@@ -244,14 +250,13 @@ export class CandidatesComponent implements OnInit {
       this.selectedOptions.push(selectedOption);
     }
   }
-  
+
   removeOption(option: string): void {
     const index = this.selectedOptions.indexOf(option);
     if (index >= 0) {
       this.selectedOptions.splice(index, 1);
     }
   }
-  
 }
 
 //For TableHeading

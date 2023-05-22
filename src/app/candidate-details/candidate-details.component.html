@@ -81,7 +81,7 @@
         </div>
 
         <div *ngIf="bgDark" class="openNav">
-          <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
+          <div *ngIf="sidenavOpen == true" class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
             <div class="sidenav-content">
               <form (ngSubmit)="editCand()">
                 <div class="docDetails">

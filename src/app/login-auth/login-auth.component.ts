@@ -25,6 +25,8 @@ export class LoginAuthComponent implements OnInit {
   id:any;
   data:any;
   resToken:any;
+  firstLetterFirstName?:string;
+  firstLetterLastName?:string;
   googleLogoURL = 
 "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
   constructor(
@@ -74,10 +76,12 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
   googleLogin(){
     this.profileService.googleAuth().subscribe((res) => {
       this.resToken = res.data.token;
-      console.log("ressss",res.data.token);
+      const nameparts = res.data.name.split(" ");
+      this.firstLetterFirstName = nameparts[0].charAt(0);
+      this.firstLetterLastName = nameparts[nameparts.length - 1].charAt(0);      
       localStorage.setItem('token',this.resToken);
       this.router.navigate(['candiadte']).then(() => {
-        window.location.reload();
+        // window.location.reload();
       })
     })
   }
