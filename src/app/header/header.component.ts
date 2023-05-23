@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getString().subscribe((res) => {
       console.log("userrrrrr",res);
-      // localStorage.setItem('logo',res);
+      localStorage.setItem('logo',res);
       this.userLogo = res;
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];

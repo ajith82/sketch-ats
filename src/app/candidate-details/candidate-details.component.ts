@@ -30,6 +30,8 @@ export class CandidateDetailsComponent implements OnInit {
   expItems:any = [];
   educationBtn: boolean = false;
   experienceBtn: boolean = false;
+  closeResume: boolean = false;
+  candidateResume:any;
   id=1;
   addedBy: any;
   expectedJoiningDate: any;
@@ -205,7 +207,8 @@ export class CandidateDetailsComponent implements OnInit {
     const newData = {
       ...this.data,
       educationInfo: this.items,
-      experienceInfo: this.expItems
+      experienceInfo: this.expItems,
+      resume: this.candidateResume
     }
     this.fullName = `${this.data.firstName} ${this.data.lastName}`;
     this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
@@ -273,6 +276,16 @@ export class CandidateDetailsComponent implements OnInit {
         this.candidateStatus = res.data.hiringStatus;
       });
     });
+  }
+
+  deleteResume() {
+    this.closeResume = true;
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.candidateResume = file;
+    console.log(file);
   }
   
 }

@@ -23,6 +23,7 @@ export class ProfileService {
 
   setString(data: string) {
     this.stringSubject.next(data);
+    localStorage.setItem("logoStr",data)
   }
 
   getString() {
@@ -67,7 +68,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ4MjQ5NzQsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ4MjUyNzQsImV4cCI6MTY4NDgyODg3NCwianRpIjoiODkyNDkyOTcyMzE0OTM5NWRhZTlmYzE4M2U0MjYyNjg2NTg0MDY2NSJ9.CEXFCQhaMyhwQhzoOEfQkNA4Ubu5d-3KdI5dqWnXh6IgU2_z-I_HaU5rWHewStisxn6Vb0B9Iu3n2xH9-9vXQuz3r1k1HshgKrMK2zqG8j2Wt3EKT8TrlgqWvhTXgPcsytvgk630mbRx_Sk6cM93PI9ZLUa-fr5BtlyHFcY7mtVhjew0tr0o3GedNa0OHCXcHUr_YpNzxyAV9KTv3ii74RDcrIQKzdYBi5GW6k4tqeYLDFtrb49PxI6ISgJqWqczsAC67I66fR5A3mXm-ic4kkbg64lbqt6ZQAuJO9zMzwDEqmosF2dHq92dTrFe6vv0LOndjpJbI4HlB6elLgbK1w',
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ4NDA1MTgsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ4NDA4MTgsImV4cCI6MTY4NDg0NDQxOCwianRpIjoiZmRkOTUwNzY1MjAzNmQ1MDIwY2RjMTk4MjIwMDVkZDVhOWFlMDMxOCJ9.EYabAhjwA75YJ4tLTOOaz5wMwNg4_amh7ZueTtdgOn5FFjaIVEPoNHHLDBj_H1bT19Q_aUB4fywSKUIZxFDXYGjG_AhRLYRUG-Ki20jM5z7Bo-epO5uI-AzyP4rjqBxXIZOnKJ7JDLSK7J8T5gPBAG5-fvToD2R45-eSG6gY0-6AlpECr6b-MJJyERygG7USVSeB38iQngnjgs3X-eomolmsH8n_RW8wPciMG1BwdC-ldR1cYgR0HqqvKMHUlvDIBTn0DLKz3vAZLoCfLHHA6wGnin-bbJ7rrdO01k2k_ZTgm6OcCF344TOEIFH6j3MYT5y0ifvhCysqoFVseWPXXg",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -206,7 +207,7 @@ export class ProfileService {
         key !== 'modifiedDate' &&
         key !== '__v' &&
         key !== 'candidateStatus' &&
-        key !== 'resume' &&
+        // key !== 'resume' &&
         key !== 'expectedJoiningDate'
       ) {
         if (key === 'skillSet' || key === 'educationInfo' || key === 'experienceInfo') {

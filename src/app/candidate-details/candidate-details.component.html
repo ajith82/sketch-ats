@@ -101,26 +101,56 @@
                     </div>
                   </div>
                   <div class="detailSect">
-                    <div class="details resumeDetails">
+                    <div
+                      style="position: relative"
+                      class="details resumeDetails"
+                    >
                       <label for="">Resume Upload</label>
-                      <span (click)="resumeClick(data.resume)">View</span>
+                      <span
+                        *ngIf="closeResume == false"
+                        (click)="resumeClick(data.resume)"
+                        >View</span
+                      >
+                      <img
+                        *ngIf="closeResume == false"
+                        (click)="deleteResume()"
+                        style="
+                          position: absolute;
+                          right: 175px;
+                          height: 20px;
+                          cursor: pointer;
+                        "
+                        src="../../images/close.svg"
+                        alt=""
+                      />
+                      <input
+                        (change)="onFileSelected($event)"
+                        style="border: none"
+                        [(ngModel)]="candidateResume"
+                        *ngIf="closeResume == true"
+                        type="file"
+                        name="resume"
+                      />
                     </div>
                     <div class="detailTwo otherofferDetails">
                       <div class="otherOfferDrop">
                         <label for="">Other Offer</label><br />
-                      <select
-                        class="otherofferDrop"
-                        [(ngModel)]="data.otherOffers"
-                        name="otheroffer"
-                        id=""
-                      >
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                      </select>
+                        <select
+                          class="otherofferDrop"
+                          [(ngModel)]="data.otherOffers"
+                          name="otheroffer"
+                          id=""
+                        >
+                          <option value="true">Yes</option>
+                          <option value="false">No</option>
+                        </select>
                       </div>
-                      <div *ngIf="data.otherOffers == 'false'" class="otherOfferLpa">
+                      <div
+                        *ngIf="data.otherOffers == 'false'"
+                        class="otherOfferLpa"
+                      >
                         <label for="">Offer in LPA</label>
-                        <input type="text">
+                        <input type="text" />
                       </div>
                     </div>
                     <!-- <div>
@@ -473,57 +503,65 @@
                     <h5 (click)="addExp()">Add+</h5>
                   </div>
                   <div
-                      class="educationDet"
-                      *ngFor="let experience of expItems; let i = index"
-                    >
-                      <div class="instituteDetails">
-                        <div class="InstituteName">
-                          <label for="">Company name</label>
-                          <input
-                            name="institute_{{ i }}"
-                            [(ngModel)]="experience.company"
-                            type="text"
-                          />
-                        </div>
-                        <div class="degreeName">
-                          <label for="">Job role</label>
-                          <select
-                            name="opt_{{ i }}"
-                            [(ngModel)]="experience.jobTitle"
-                            id=""
-                          >
-                            <option selected disabled value="">Select</option>
-                            <option selected disabled value="">Select</option>
-                            <option value="Angular Developer">Angular Developer</option>
-                            <option value="React Developer">React Developer</option>
-                            <option value="NodeJs Developer">NodeJs Developer</option>
-                            <option value="Python Developer">Python Developer</option>
-                            <option value="UI UX Designer">UI UX Designer</option>
-                          </select>
-                        </div>
+                    class="educationDet"
+                    *ngFor="let experience of expItems; let i = index"
+                  >
+                    <div class="instituteDetails">
+                      <div class="InstituteName">
+                        <label for="">Company name</label>
+                        <input
+                          name="institute_{{ i }}"
+                          [(ngModel)]="experience.company"
+                          type="text"
+                        />
                       </div>
-                      <div class="date">
-                        <div class="startDate">
-                          <label for="">Start Date</label>
-                          <input
-                            name="start_{{ i }}"
-                            [(ngModel)]="experience.startTime"
-                            type="date"
-                            id=""
-                          />
-                        </div>
-                        <div class="endDate">
-                          <label for="">End date</label>
-                          <input
-                            name="end_{{ i }}"
-                            [(ngModel)]="experience.endTime"
-                            type="date"
-                            id=""
-                          />
-                        </div>
+                      <div class="degreeName">
+                        <label for="">Job role</label>
+                        <select
+                          name="opt_{{ i }}"
+                          [(ngModel)]="experience.jobTitle"
+                          id=""
+                        >
+                          <option selected disabled value="">Select</option>
+                          <option selected disabled value="">Select</option>
+                          <option value="Angular Developer">
+                            Angular Developer
+                          </option>
+                          <option value="React Developer">
+                            React Developer
+                          </option>
+                          <option value="NodeJs Developer">
+                            NodeJs Developer
+                          </option>
+                          <option value="Python Developer">
+                            Python Developer
+                          </option>
+                          <option value="UI UX Designer">UI UX Designer</option>
+                        </select>
                       </div>
-                      <button (click)="deleteExp(i)">Delete</button>
                     </div>
+                    <div class="date">
+                      <div class="startDate">
+                        <label for="">Start Date</label>
+                        <input
+                          name="start_{{ i }}"
+                          [(ngModel)]="experience.startTime"
+                          type="date"
+                          id=""
+                        />
+                      </div>
+                      <div class="endDate">
+                        <label for="">End date</label>
+                        <input
+                          name="end_{{ i }}"
+                          [(ngModel)]="experience.endTime"
+                          type="date"
+                          id=""
+                        />
+                      </div>
+                    </div>
+                    <button (click)="deleteExp(i)">Delete</button>
+                  </div>
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Other Details</h3>
                   </div>
@@ -722,7 +760,11 @@
         <div class="status" *ngFor="let candStatus of candidateStatus">
           <div class="statusHead">
             <h3>Status: {{ candStatus.status }}</h3>
-            <img (click)="deleteStatus(candStatus)" src="../../images/delete.svg" alt="delete">
+            <img
+              (click)="deleteStatus(candStatus)"
+              src="../../images/delete.svg"
+              alt="delete"
+            />
           </div>
           <p>Date: {{ candStatus.date | date }}</p>
           <p>Modified By : {{ candStatus.modifiedBY }}</p>
