@@ -5,9 +5,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import {
   MatIconModule,
-  MatButtonModule,
   MatFormFieldModule,
 } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MaterialExampleModule } from '../material.module';

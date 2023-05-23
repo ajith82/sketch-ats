@@ -105,8 +105,9 @@
                       <label for="">Resume Upload</label>
                       <span (click)="resumeClick(data.resume)">View</span>
                     </div>
-                    <div class="detailTwo">
-                      <label for="">Other Offer</label><br />
+                    <div class="detailTwo otherofferDetails">
+                      <div class="otherOfferDrop">
+                        <label for="">Other Offer</label><br />
                       <select
                         class="otherofferDrop"
                         [(ngModel)]="data.otherOffers"
@@ -116,6 +117,11 @@
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                       </select>
+                      </div>
+                      <div *ngIf="data.otherOffers == 'false'" class="otherOfferLpa">
+                        <label for="">Offer in LPA</label>
+                        <input type="text">
+                      </div>
                     </div>
                     <!-- <div>
                       <label>Offered Value In LPA *</label>

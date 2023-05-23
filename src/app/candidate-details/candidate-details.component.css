@@ -290,6 +290,23 @@
   gap: 2px;
 }
 
+.otherofferDetails {
+  display: flex !important;
+  gap: 10px;
+}
+
+.otherofferDetails select {
+  width: 100% !important;
+}
+
+.otherOfferLpa {
+  flex-basis: 50%;
+}
+
+.otherofferDrop {
+  flex-basis: 50%;
+}
+
 .detailSect .details span {
   color: #1675e0;
   padding-left: 30px;
