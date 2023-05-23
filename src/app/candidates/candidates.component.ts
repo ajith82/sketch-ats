@@ -22,10 +22,14 @@ export class CandidatesComponent implements OnInit {
   dataSourceWithPageSize: any;
   showFiller = false;
   showSidenav = false;
+  openPopup = false;
+  id:any;
   selectedCandidate: any;
   sidenavOpen: boolean = false;
   resumeUrl: any;
   secureLink: any;
+  updateCandidateStatus:any;
+  comment:any;
   filterMsg: any;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -82,6 +86,14 @@ export class CandidatesComponent implements OnInit {
     'Sahana Patil',
     'Shivakumar Swain',
   ];
+
+  adminRoles = [
+    "Admin",
+    "Manager",
+    "Recruiters",
+    "Interviewers",
+    "Users"
+  ]
 
   candidateStatusCustom = [
     { name: 'Candidates', api: 'Candidates', api_receiver: 'Candidates' },
@@ -256,6 +268,32 @@ export class CandidatesComponent implements OnInit {
     if (index >= 0) {
       this.selectedOptions.splice(index, 1);
     }
+  }
+
+  getCandDetails(data:any) {
+    console.log("aaaaa",data);
+    this.openPopup = true;
+    this.id = data._id;
+  }
+
+  closePopup() {
+    this.openPopup = false;
+  }
+
+  updateStatus(data:any) {
+    // this.candidateDetails = data;    
+    const statusUpdate = {
+      status: this.updateCandidateStatus,
+      remarks: this.comment,
+      modifiedBY: "Ajith",
+      _id: this.id,
+    };
+    // console.log(statusUpdate);
+    this.profileService.editStatus(statusUpdate).subscribe((res) => {
+      console.log(res);
+    })
+    this.openPopup = false;
+    window.location.reload();
   }
 }
 

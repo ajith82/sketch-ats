@@ -193,8 +193,8 @@
                   />
                 </div>
               </td>
-              <td class="list">
-                <img src="../../images/search.png" alt="doc" />
+              <td (click)="getCandDetails(candidate)" class="list">
+                <img src="../../images/editStatus.svg" alt="doc" />
               </td>
             </tr>
             <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
@@ -221,6 +221,50 @@
       <div class="emptyImg">
         <img src="../../images/nodata.jpg" alt="nodata">
       </div>
+    </div>
+  </div>
+
+  <div *ngIf="openPopup"  class="editAdminSection">
+    <div class="editAdmin">
+      <div class="editAdminHead">
+        <h3> User</h3>
+        <img
+          style="width: 20px"
+          src="../../images/close.svg"
+          alt="close"
+          (click)="closePopup()"
+        />
+      </div>
+      <form (ngSubmit)="updateStatus(candidatesDetails)">
+        <div class="adminRole">
+          <label for="">Change Status</label>
+          <select [(ngModel)]="updateCandidateStatus" name="status" id="">
+            <option value="" disabled="">Please Select</option>
+                  <option value="Candidates">Candidates</option>
+                  <option value="Screening">Screening</option>
+                  <option value="Round 1">Round 1</option>
+                  <option value="Task Verification">Validation</option>
+                  <option value="Round 2">Round 2</option>
+                  <option value="HR Round">HR Round</option>
+                  <option value="Offered">Offered</option>
+                  <option value="Offer Accepted">Accepted</option>
+                  <option value="Offer Declined">Declined</option>
+                  <option value="Joined">Joined</option>
+                  <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="adminName">
+          <label for="">Comments</label>
+          <input
+          [(ngModel)]="comment"
+            name="adminName"
+            type="text"
+          />
+        </div>
+        <div class="adminSubmit">
+          <button type="submit">Save</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

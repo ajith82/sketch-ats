@@ -26,6 +26,9 @@ export class CandidateDetailsComponent implements OnInit {
   showAddress: boolean = false;
   source: any;
   notes: any;
+  items: any = [];
+  educationBtn: boolean = false;
+  id=1;
   addedBy: any;
   expectedJoiningDate: any;
   candidateStatus: any;
@@ -112,6 +115,25 @@ export class CandidateDetailsComponent implements OnInit {
     if (index >= 0) {
       this.fruits.splice(index, 1);
     }
+  }
+
+  addEduu() {
+    if (!this.educationBtn) {
+      this.items.push({
+        institute: '',
+        degree: '',
+        startTime: '',
+        endTime: '',
+      });
+      this.id++;
+      console.log(this.items);
+    }
+  }
+
+
+  deleteEdu(id:any) {
+    this.items.splice(id, 1);
+    console.log(this.items);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {

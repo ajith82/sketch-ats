@@ -400,7 +400,59 @@
                 <div class="addressDetails">
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Education Details</h3>
-                    <h5>Add+</h5>
+                    <h5 (click)="addEduu()">Add+</h5>
+                  </div>
+                  <div class="eduDetails">
+                    <div class="deleteBtn"></div>
+                    <div
+                      class="educationDet"
+                      *ngFor="let education of items; let i = index"
+                    >
+                      <div class="instituteDetails">
+                        <div class="InstituteName">
+                          <label for="">Institute name</label>
+                          <input
+                            name="institute_{{ i }}"
+                            [(ngModel)]="education.institute"
+                            type="text"
+                          />
+                        </div>
+                        <div class="degreeName">
+                          <label for="">Degree</label>
+                          <select
+                            name="opt_{{ i }}"
+                            [(ngModel)]="education.degree"
+                            id=""
+                          >
+                          <option selected disabled value="">Select</option>
+                            <option value="Btech">Btech</option>
+                            <option value="BCA">BCA</option>
+                            <option value="Bsc">Bsc</option></select
+                          >
+                        </div>
+                      </div>
+                      <div class="date">
+                        <div class="startDate">
+                          <label for="">Start Date</label>
+                          <input
+                            name="start_{{ i }}"
+                            [(ngModel)]="education.startTime"
+                            type="date"
+                            id=""
+                          />
+                        </div>
+                        <div class="endDate">
+                          <label for="">End date</label>
+                          <input
+                            name="end_{{ i }}"
+                            [(ngModel)]="education.endTime"
+                            type="date"
+                            id=""
+                          />
+                        </div>
+                      </div>
+                      <button (click)="deleteEdu(i)">Delete</button>
+                    </div>
                   </div>
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Experience Details</h3>
