@@ -243,6 +243,20 @@
   color: #575757;
 }
 
+.educationDet {
+  display: flex;
+  justify-content: space-between;
+}
+
+.educationDet button {
+  height: 22px;
+}
+
+.degreeName {
+  display: flex;
+  flex-direction: column;
+}
+
 .closeBtn button {
   color: #fff;
   background-color: red;

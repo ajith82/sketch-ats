@@ -193,7 +193,7 @@ export class ProfileService {
     );
   }
 
-  editCandidate(data: any): Observable<any> {
+  editCandidate(data: any,eduArr:any): Observable<any> {
     console.log(data.skillSet);
 
     var reqHeader = new HttpHeaders({
@@ -209,7 +209,7 @@ export class ProfileService {
         key !== 'resume' &&
         key !== 'expectedJoiningDate'
       ) {
-        if (key === 'skillSet') {
+        if (key === 'skillSet' || key === 'educationInfo') {
           fd.append(key, JSON.stringify(data[key]));
         } else {
           fd.append(key, data[key]);

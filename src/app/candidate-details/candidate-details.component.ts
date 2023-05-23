@@ -182,7 +182,11 @@ export class CandidateDetailsComponent implements OnInit {
   }
 
   editCand() {
-    console.log(this.data);
+    
+    const newData = {
+      ...this.data,
+      educationInfo: this.items
+    }
     this.fullName = `${this.data.firstName} ${this.data.lastName}`;
     this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
     this.phoneNumber = `${this.data.phoneNumber}`;
@@ -190,10 +194,11 @@ export class CandidateDetailsComponent implements OnInit {
     this.source = `${this.data.source}`;
     this.notes = `${this.data.remarks}`;
     this.addedBy = `${this.data.interviewBy}`;
-    this.profileService.editCandidate(this.data).subscribe((res) => {
+    this.profileService.editCandidate(newData,this.items).subscribe((res) => {
       console.log('edit donm', res);
     });
     // this.route.navigate(['candiadte']);
+
     this.sidenavOpen = false;
     this.bgDark = false;
   }
