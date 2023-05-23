@@ -235,4 +235,17 @@ export class CandidateDetailsComponent implements OnInit {
   closeStatus() {
     this.isCandidate = false;
   }
+
+  deleteStatus(data: any) {
+    const candidateId = data.candidateId;
+    const statusId = data._id;
+  
+    this.profileService.deleteStatus(candidateId, statusId).subscribe(() => {
+      this.profileService.pipeLine(candidateId).subscribe((res) => {
+        console.log(res);
+        this.candidateStatus = res.data.hiringStatus;
+      });
+    });
+  }
+  
 }

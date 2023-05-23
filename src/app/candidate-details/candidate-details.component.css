@@ -429,6 +429,14 @@
   min-width: 120px;
 }
 
+.statusHead {
+  display: flex;
+  justify-content: space-between;
+}
+.statusHead img {
+  cursor: pointer;
+}
+
 /* dropdown */
 
 .editCandidateStatus {

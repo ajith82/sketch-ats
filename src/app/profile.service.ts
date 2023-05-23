@@ -67,7 +67,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ4MjE0MzcsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ4MjE3MzcsImV4cCI6MTY4NDgyNTMzNywianRpIjoiMzg0MzExMWI4NWVkNmQxNmYyNDQxNDEwODI1ZjkwZjZhM2E3ODM0NSJ9.KOmNlI4sJ1B2BpMPR3r8wtUqRZj5Bk-mfHgOINFGrF0NXMwAai7auOQebus8SlH4Tmj6UEZB-2O5y_GMFLTRJzchQ6t17MYKr9jVHYz2hMeXdp2N4LdLMObXUj2zs88tIW8OwlETiCPydt9rL_eMUltA8fCXN8VAXDfeVKpd4XiGT-8-DIKRw6dRDCoCxjUoHUw-67rXT9-TIK0CfXugcQvvZgle9Sk74bxcMbyCnu7qMSpp4kYuPwLBxUgBpcj8Jvo9NbPPKtlHDwrW0BnurlygQVrWYjIHtq2H1Iqt0lIHwFmU38U4ZXVXiZee5t2ZPba-jNy2JF8m514tonlgNw',
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ4MjQ5NzQsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eGFWTkduUVQ1elh5cHFnYVRNUmRfakZLcTIxc3oyVUlvRl92SERFPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ4MjUyNzQsImV4cCI6MTY4NDgyODg3NCwianRpIjoiODkyNDkyOTcyMzE0OTM5NWRhZTlmYzE4M2U0MjYyNjg2NTg0MDY2NSJ9.CEXFCQhaMyhwQhzoOEfQkNA4Ubu5d-3KdI5dqWnXh6IgU2_z-I_HaU5rWHewStisxn6Vb0B9Iu3n2xH9-9vXQuz3r1k1HshgKrMK2zqG8j2Wt3EKT8TrlgqWvhTXgPcsytvgk630mbRx_Sk6cM93PI9ZLUa-fr5BtlyHFcY7mtVhjew0tr0o3GedNa0OHCXcHUr_YpNzxyAV9KTv3ii74RDcrIQKzdYBi5GW6k4tqeYLDFtrb49PxI6ISgJqWqczsAC67I66fR5A3mXm-ic4kkbg64lbqt6ZQAuJO9zMzwDEqmosF2dHq92dTrFe6vv0LOndjpJbI4HlB6elLgbK1w',
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -379,6 +379,18 @@ export class ProfileService {
     return this.http.put(
       `${this.BASE_URL}/hiring/candidate/updateStatus`,
       data,
+      {
+        headers: reqHeader,
+      }
+    );
+  }
+
+  deleteStatus(candId: any, statusId: any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    return this.http.delete(
+      `${this.BASE_URL}/hiring/candidate/deletestatus?_id=${statusId}&candidateId=${candId}`,
       {
         headers: reqHeader,
       }

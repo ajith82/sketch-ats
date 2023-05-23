@@ -293,7 +293,7 @@ export class CandidatesComponent implements OnInit {
       console.log(res);
     })
     this.openPopup = false;
-    window.location.reload();
+    // window.location.reload();
   }
 }
 

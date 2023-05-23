@@ -81,7 +81,11 @@
         </div>
 
         <div *ngIf="bgDark" class="openNav">
-          <div *ngIf="sidenavOpen == true" class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
+          <div
+            *ngIf="sidenavOpen == true"
+            class="sidenav"
+            [ngClass]="{ 'sidenav-open': sidenavOpen }"
+          >
             <div class="sidenav-content">
               <form (ngSubmit)="editCand()">
                 <div class="docDetails">
@@ -191,8 +195,10 @@
                           name="totalMonthExp"
                           id=""
                         >
-                        <option selected disabled value="">Select</option>
-                          <option *ngFor="let month of month" value="">{{month}}</option>
+                          <option selected disabled value="">Select</option>
+                          <option *ngFor="let month of month" value="">
+                            {{ month }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -212,8 +218,10 @@
                           name="relMonths"
                           id=""
                         >
-                        <option selected disabled value="">Select</option>
-                        <option *ngFor="let month of month" value="">{{month}}</option>
+                          <option selected disabled value="">Select</option>
+                          <option *ngFor="let month of month" value="">
+                            {{ month }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -321,7 +329,7 @@
                         name="noticePeriod"
                         id=""
                       >
-                      <option selected disabled value="">Select</option>
+                        <option selected disabled value="">Select</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                       </select>
@@ -424,11 +432,11 @@
                             [(ngModel)]="education.degree"
                             id=""
                           >
-                          <option selected disabled value="">Select</option>
+                            <option selected disabled value="">Select</option>
                             <option value="Btech">Btech</option>
                             <option value="BCA">BCA</option>
-                            <option value="Bsc">Bsc</option></select
-                          >
+                            <option value="Bsc">Bsc</option>
+                          </select>
                         </div>
                       </div>
                       <div class="date">
@@ -654,7 +662,10 @@
       </div>
       <div *ngIf="pipeLineBtn == true" class="pipeLine">
         <div class="status" *ngFor="let candStatus of candidateStatus">
-          <h3>Status: {{ candStatus.status }}</h3>
+          <div class="statusHead">
+            <h3>Status: {{ candStatus.status }}</h3>
+            <img (click)="deleteStatus(candStatus)" src="../../images/delete.svg" alt="delete">
+          </div>
           <p>Date: {{ candStatus.date | date }}</p>
           <p>Modified By : {{ candStatus.modifiedBY }}</p>
           <p>Remarks : {{ candStatus.remarks }}</p>
