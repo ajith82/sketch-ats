@@ -27,7 +27,9 @@ export class CandidateDetailsComponent implements OnInit {
   source: any;
   notes: any;
   items: any = [];
+  expItems:any = [];
   educationBtn: boolean = false;
+  experienceBtn: boolean = false;
   id=1;
   addedBy: any;
   expectedJoiningDate: any;
@@ -130,10 +132,27 @@ export class CandidateDetailsComponent implements OnInit {
     }
   }
 
+  addExp() {
+    if(!this.experienceBtn) {
+      this.expItems.push({
+        company: '',
+        jobTitle: '',
+        startTime: '',
+        endTime: '',
+      });
+      this.id++;
+    }
+  }
+
 
   deleteEdu(id:any) {
     this.items.splice(id, 1);
     console.log(this.items);
+  }
+
+  deleteExp(id: any) {
+    this.expItems.splice(id, 1);
+    console.log(this.expItems);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -185,7 +204,8 @@ export class CandidateDetailsComponent implements OnInit {
     
     const newData = {
       ...this.data,
-      educationInfo: this.items
+      educationInfo: this.items,
+      experienceInfo: this.expItems
     }
     this.fullName = `${this.data.firstName} ${this.data.lastName}`;
     this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
@@ -198,6 +218,8 @@ export class CandidateDetailsComponent implements OnInit {
       console.log('edit donm', res);
     });
     // this.route.navigate(['candiadte']);
+    console.log(newData);
+    
 
     this.sidenavOpen = false;
     this.bgDark = false;

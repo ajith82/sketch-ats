@@ -209,7 +209,7 @@ export class ProfileService {
         key !== 'resume' &&
         key !== 'expectedJoiningDate'
       ) {
-        if (key === 'skillSet' || key === 'educationInfo') {
+        if (key === 'skillSet' || key === 'educationInfo' || key === 'experienceInfo') {
           fd.append(key, JSON.stringify(data[key]));
         } else {
           fd.append(key, data[key]);

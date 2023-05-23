@@ -464,8 +464,60 @@
                   </div>
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Experience Details</h3>
-                    <h5>Add+</h5>
+                    <h5 (click)="addExp()">Add+</h5>
                   </div>
+                  <div
+                      class="educationDet"
+                      *ngFor="let experience of expItems; let i = index"
+                    >
+                      <div class="instituteDetails">
+                        <div class="InstituteName">
+                          <label for="">Company name</label>
+                          <input
+                            name="institute_{{ i }}"
+                            [(ngModel)]="experience.company"
+                            type="text"
+                          />
+                        </div>
+                        <div class="degreeName">
+                          <label for="">Job role</label>
+                          <select
+                            name="opt_{{ i }}"
+                            [(ngModel)]="experience.jobTitle"
+                            id=""
+                          >
+                            <option selected disabled value="">Select</option>
+                            <option selected disabled value="">Select</option>
+                            <option value="Angular Developer">Angular Developer</option>
+                            <option value="React Developer">React Developer</option>
+                            <option value="NodeJs Developer">NodeJs Developer</option>
+                            <option value="Python Developer">Python Developer</option>
+                            <option value="UI UX Designer">UI UX Designer</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="date">
+                        <div class="startDate">
+                          <label for="">Start Date</label>
+                          <input
+                            name="start_{{ i }}"
+                            [(ngModel)]="experience.startTime"
+                            type="date"
+                            id=""
+                          />
+                        </div>
+                        <div class="endDate">
+                          <label for="">End date</label>
+                          <input
+                            name="end_{{ i }}"
+                            [(ngModel)]="experience.endTime"
+                            type="date"
+                            id=""
+                          />
+                        </div>
+                      </div>
+                      <button (click)="deleteExp(i)">Delete</button>
+                    </div>
                   <div style="padding-top: 10px" class="editHeading">
                     <h3>Other Details</h3>
                   </div>
