@@ -55,6 +55,26 @@
   border-radius: 5px;
 }
 
+.filterChips {
+  background-color: #fff;
+}
+
+.filterChips .filter {
+  background-color: black;
+  color: #fff;
+  padding: 8px;
+  display: inline-block;
+}
+
+.filterClose {
+  cursor: pointer;
+  background-color: #fff;
+  color: black;
+  padding: 2px;
+  border: none;
+  border-radius: 3px;
+}
+
 .addCandidate button {
   width: 110px;
   background-color: black;

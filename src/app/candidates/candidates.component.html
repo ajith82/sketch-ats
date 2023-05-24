@@ -79,12 +79,15 @@
         />
       </div>
     </div>
+    <div *ngIf="filterChips == true" class="filterChips">
+      <span class="filter">{{selectedFilter}} <span (click)="closeFilter()" class="filterClose">X</span></span>
+    </div>
     <div *ngIf="filterMsg == 'Candidate fetched successfully'" class="candidateTable">
       <mat-sidenav-container>
         <mat-sidenav #sidenav mode="side" [opened]="showSidenav">
           <app-sidenav [candidate]="selectedCandidate"></app-sidenav>
         </mat-sidenav>
-        <ul *ngIf="hideChipsFilter">
+        <ul *ngIf="hideChipsFilter && filterTabs">
           <li
             (click)="candStatus(i)"
             class="optionType"

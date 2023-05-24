@@ -33,6 +33,8 @@ export class CandidatesComponent implements OnInit {
   comment: any;
   constValue: any;
   filterMsg: any;
+  filterChips:boolean = false;
+  filterTabs: boolean = true;
   candidateIndo: any[] = [];
   serachValue: any;
   selectedOptions: string[] = [];
@@ -256,6 +258,8 @@ export class CandidatesComponent implements OnInit {
   }
 
   jobOpenings(event: any) {
+    this.filterChips = true;
+    this.filterTabs = false;
     const selectElement = event.target as HTMLSelectElement;
     this.selectedFilter = selectElement.value;
     sessionStorage.setItem('selectedFilter', this.selectedFilter);
@@ -267,6 +271,20 @@ export class CandidatesComponent implements OnInit {
         JSON.stringify(this.candidateIndo)
       );
     });
+    if(this.selectedFilter == ''){
+      this.filterChips = false;
+    }
+  }
+
+  closeFilter() {
+    this.selectedFilter = ''
+    this.filterChips = false;
+    this.filterTabs = true;
+    sessionStorage.removeItem('selectedFilter');
+    sessionStorage.removeItem('candidateInfo');
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   noticePeriod(event: any) {
