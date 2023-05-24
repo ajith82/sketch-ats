@@ -151,21 +151,30 @@ export class CandidatesComponent implements OnInit {
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
     if (!this.selectedFilter) {
-      this.selectedFilter = ''; // Set the default value as an empty string
+      this.selectedFilter = ''; 
     }
 
     this.constValue = sessionStorage.getItem('candidateInfo') || '';
     if (this.constValue) {
+      const toasterMessage = sessionStorage.getItem('toasterMessage');
+      if (toasterMessage) {
+        const toasterContainer = document.getElementById('toasterContainer');
+        toasterContainer!.innerText = toasterMessage;
+        toasterContainer!.classList.add('show');
+    
+        setTimeout(() => {
+          toasterContainer!.classList.remove('show');
+          sessionStorage.removeItem('toasterMessage');
+        }, 3000);
+        // sessionStorage.removeItem('toasterMessage');
+      }
       this.candidateIndo = JSON.parse(this.constValue);
     } else {
-      // Fetch default data (candidate)
       this.profileService
         .getCandidate(this.candidateStatusCustom[0].api)
         .subscribe((res) => {
           this.config.totalItems = res.data.totalCount;
           this.candidateIndo = res.data.searchResults;
-
-          // Store the candidateIndo data in session storage
           sessionStorage.setItem(
             'candidateInfo',
             JSON.stringify(this.candidateIndo)

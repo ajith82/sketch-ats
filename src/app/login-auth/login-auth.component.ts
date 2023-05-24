@@ -20,15 +20,15 @@ export class LoginAuthComponent implements OnInit {
   useLogoutUrl = true;
   provider: any;
   credential: any;
-  succeed:any;
-  details:any;
-  id:any;
-  data:any;
-  resToken:any;
-  firstLetterFirstName?:string;
-  firstLetterLastName?:string;
-  googleLogoURL = 
-"https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
+  succeed: any;
+  details: any;
+  id: any;
+  data: any;
+  resToken: any;
+  firstLetterFirstName?: string;
+  firstLetterLastName?: string;
+  googleLogoURL =
+    'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
@@ -37,9 +37,10 @@ export class LoginAuthComponent implements OnInit {
     private profileService: ProfileService
   ) {
     this.matIconRegistry.addSvgIcon(
-"logo",
-this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
-}
+      'logo',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL)
+    );
+  }
   ngOnInit(): void {}
 
   async loginWithGoogle() {
@@ -57,7 +58,6 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
     //     console.log("credential",credential.operationType);
     //     if (credential.additionalUserInfo?.profile) {
     //       this.profileService.details(this.details).subscribe((data) =>{
-            
     //       })
     //   localStorage.setItem('id',this.id);
     //       this.router.navigate(['dashboard']).then(() => {
@@ -73,20 +73,34 @@ this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL));
     //   });
   }
 
-  googleLogin(){
+  googleLogin() {
     this.profileService.googleAuth().subscribe((res) => {
       this.resToken = res.data.token;
-      const nameparts = res.data.name.split(" ");
+      const nameparts = res.data.name.split(' ');
       this.firstLetterFirstName = nameparts[0].charAt(0);
-      this.firstLetterLastName = nameparts[1].charAt(0);    
-      const dynamicLogo = `${this.firstLetterFirstName}${this.firstLetterLastName}`;  
-      this.profileService.setString(`${this.firstLetterFirstName}${this.firstLetterLastName}`)  
-      localStorage.setItem('logo',`${this.firstLetterFirstName}${this.firstLetterLastName}`)    
-      localStorage.setItem('token',this.resToken);
+      this.firstLetterLastName = nameparts[1].charAt(0);
+      const toasterMessage = 'Login successful!';
+      sessionStorage.setItem('toasterMessage', toasterMessage);
+      const dynamicLogo = `${this.firstLetterFirstName}${this.firstLetterLastName}`;
+      this.profileService.setString(
+        `${this.firstLetterFirstName}${this.firstLetterLastName}`
+      );
+      localStorage.setItem(
+        'logo',
+        `${this.firstLetterFirstName}${this.firstLetterLastName}`
+      );
+      localStorage.setItem('token', this.resToken);
       this.router.navigate(['candiadte']).then(() => {
-        // window.location.reload();
-      })
-    })
-    
+        window.location.reload();
+      });
+    });
+
+    // const toasterContainer = document.getElementById('toasterContainer');
+    // toasterContainer!.innerText = 'Google login successful!';
+    // toasterContainer!.classList.add('show');
+
+    // setTimeout(() => {
+    //   toasterContainer!.classList.remove('show');
+    // }, 3000);
   }
 }
