@@ -207,7 +207,7 @@ export class ProfileService {
         key !== 'modifiedDate' &&
         key !== '__v' &&
         key !== 'candidateStatus' &&
-        // key !== 'resume' &&
+        key !== 'resume' &&
         key !== 'expectedJoiningDate'
       ) {
         if (key === 'skillSet' || key === 'educationInfo' || key === 'experienceInfo') {

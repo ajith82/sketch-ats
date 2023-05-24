@@ -67,6 +67,10 @@ export class CandidateDetailsComponent implements OnInit {
   allFruits: string[] = ['React JS', 'Angular', 'NodeJs', 'Go Lang', 'UI UX Design'];
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
+  dropdownList:any = [];
+  selectedItems:any = [];
+  dropdownSettings:any = {};
+  selectedSkills: any[] = [];
   constructor(
     private profileService: ProfileService,
     private route: Router,
@@ -78,6 +82,28 @@ export class CandidateDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'ReactJS' },
+      { item_id: 2, item_text: 'Angular' },
+      { item_id: 3, item_text: 'NodeJS' },
+      { item_id: 4, item_text: 'UI UX Design' },
+      // { item_id: 5, item_text: 'New Delhi' }
+    ];
+    // this.selectedItems = [
+    //   { item_id: 3, item_text: 'Pune' },
+    //   { item_id: 4, item_text: 'Navsari' }
+    // ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
     this.profileService.getCandDetails().subscribe((res) => {
       console.log('gottttttt', res);
       this.data = res.data.getCandidates;
@@ -93,6 +119,22 @@ export class CandidateDetailsComponent implements OnInit {
         .substr(0, 10);
     });
     this.updateStatus();
+  }
+
+  
+
+onItemSelect(item: any) {
+  const selectedSkill = item.item_text;
+  this.selectedSkills.push({
+    label: selectedSkill,
+    value: selectedSkill
+  });
+  console.log(this.selectedSkills);
+}
+
+
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   add(event: MatChipInputEvent): void {
@@ -208,7 +250,8 @@ export class CandidateDetailsComponent implements OnInit {
       ...this.data,
       educationInfo: this.items,
       experienceInfo: this.expItems,
-      resume: this.candidateResume
+      resume: this.candidateResume,
+      skillSet: this.selectedSkills
     }
     this.fullName = `${this.data.firstName} ${this.data.lastName}`;
     this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;

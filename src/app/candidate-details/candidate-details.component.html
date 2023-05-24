@@ -319,7 +319,7 @@
                         </option>
                       </select> -->
                       <label for="">Skills</label>
-                      <mat-form-field class="example-chip-list">
+                      <!-- <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList>
                           <mat-chip
                             *ngFor="let fruit of fruits"
@@ -353,7 +353,16 @@
                             {{ fruit }}
                           </mat-option>
                         </mat-autocomplete>
-                      </mat-form-field>
+                      </mat-form-field> -->
+                      <ng-multiselect-dropdown
+                      [placeholder]="'Select Your Skill'"
+                      [settings]="dropdownSettings"
+                      [data]="dropdownList"
+                      [(ngModel)]="selectedItems"
+                      (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)"
+                    >
+                    </ng-multiselect-dropdown>
                     </div>
                   </div>
                   <div class="detailSect">

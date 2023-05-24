@@ -19,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 // import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -86,6 +87,7 @@ const firebaseConfig = {
     MatSidenavModule,
     MatChipsModule,
     MatDialogModule,
+    NgMultiSelectDropDownModule.forRoot()
     // QuillModule.forRoot()
   ],
   providers: [],
