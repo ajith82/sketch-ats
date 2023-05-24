@@ -24,22 +24,10 @@
     </div>
     <div *ngIf="hideChipsFilter" class="filterSec">
       <div class="jobOpening">
-        <label for="">Job Opening</label><br />
-        <!-- <mat-chip-list>
-  <mat-chip *ngFor="let selectedOption of selectedOptions" removable (removed)="removeOption(selectedOption)">
-    {{ selectedOption }}
-    <mat-icon matChipRemove>cancel</mat-icon>
-  </mat-chip>
-</mat-chip-list> -->
-
-        <select (change)="jobOpenings($event)">
+        <label for="jobOpeningSelect">Job Opening</label><br />
+        <select id="jobOpeningSelect" (change)="jobOpenings($event)" [(ngModel)]="selectedFilter">
           <option value="">Please Select</option>
-          <option
-            *ngFor="let jobOpening of candidateSkillSetsArr"
-            value="{{ jobOpening }}"
-          >
-            {{ jobOpening }}
-          </option>
+          <option *ngFor="let jobOpening of candidateSkillSetsArr" [value]="jobOpening">{{ jobOpening }}</option>
         </select>
       </div>
       <div class="noticePeriod">

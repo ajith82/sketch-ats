@@ -23,13 +23,15 @@ export class CandidatesComponent implements OnInit {
   showFiller = false;
   showSidenav = false;
   openPopup = false;
-  id:any;
+  id: any;
   selectedCandidate: any;
   sidenavOpen: boolean = false;
   resumeUrl: any;
   secureLink: any;
-  updateCandidateStatus:any;
-  comment:any;
+  updateCandidateStatus: any;
+  selectedFilter?: string;
+  comment: any;
+  constValue: any;
   filterMsg: any;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -87,13 +89,7 @@ export class CandidatesComponent implements OnInit {
     'Shivakumar Swain',
   ];
 
-  adminRoles = [
-    "Admin",
-    "Manager",
-    "Recruiters",
-    "Interviewers",
-    "Users"
-  ]
+  adminRoles = ['Admin', 'Manager', 'Recruiters', 'Interviewers', 'Users'];
 
   candidateStatusCustom = [
     { name: 'Candidates', api: 'Candidates', api_receiver: 'Candidates' },
@@ -135,10 +131,14 @@ export class CandidatesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectedIndex = Number(sessionStorage.getItem('selectedIndex')) || 0;
+
     this.profileService.candidateDetails().subscribe((res) => {
       let storage = localStorage.getItem('token');
-      this.candidateIndo = res.data.searchResults;
-      console.log('respond', this.candidateIndo);
+      if (!storage) {
+        this.candidateIndo = res.data.searchResults;
+        console.log('respond', this.candidateIndo);
+      }
       this.filterMsg = res.message;
       this.candidateDetails = res.data.getCandidates;
       this.dataSourceWithPageSize = new MatTableDataSource(
@@ -148,6 +148,30 @@ export class CandidatesComponent implements OnInit {
       this.length = res.data.totalCount;
       console.log('detailsssssss', this.candidateDetails);
     });
+
+    this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
+    if (!this.selectedFilter) {
+      this.selectedFilter = ''; // Set the default value as an empty string
+    }
+
+    this.constValue = sessionStorage.getItem('candidateInfo') || '';
+    if (this.constValue) {
+      this.candidateIndo = JSON.parse(this.constValue);
+    } else {
+      // Fetch default data (candidate)
+      this.profileService
+        .getCandidate(this.candidateStatusCustom[0].api)
+        .subscribe((res) => {
+          this.config.totalItems = res.data.totalCount;
+          this.candidateIndo = res.data.searchResults;
+
+          // Store the candidateIndo data in session storage
+          sessionStorage.setItem(
+            'candidateInfo',
+            JSON.stringify(this.candidateIndo)
+          );
+        });
+    }
   }
 
   ngAfterViewInit() {
@@ -184,13 +208,20 @@ export class CandidatesComponent implements OnInit {
 
   candStatus(id: any) {
     this.selectedIndex = id;
-    console.log('aaaaaaaaaaaaaa', this.candidateStatusCustom[id].api);
+    console.log('aaaaaa', this.candidateStatusCustom[id].api);
     this.profileService
       .getCandidate(this.candidateStatusCustom[id].api)
       .subscribe((res) => {
         this.config.totalItems = res.data.totalCount;
         this.candidateIndo = res.data.searchResults;
-    // localStorage.setItem('statusCustom',res.data.searchResults)
+
+        // Store the selected index in session storage
+        window.sessionStorage.setItem('selectedIndex', id.toString());
+        // Store the candidateIndo data in session storage
+        window.sessionStorage.setItem(
+          'candidateInfo',
+          JSON.stringify(this.candidateIndo)
+        );
       });
   }
 
@@ -217,10 +248,18 @@ export class CandidatesComponent implements OnInit {
 
   jobOpenings(event: any) {
     const selectElement = event.target as HTMLSelectElement;
-    const selectedValue = selectElement.value;
-    this.profileService.jobOpening(selectedValue).subscribe((res) => {
+    this.selectedFilter = selectElement.value;
+
+    sessionStorage.setItem('selectedFilter', this.selectedFilter);
+
+    this.profileService.jobOpening(this.selectedFilter).subscribe((res) => {
       this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
+
+      sessionStorage.setItem(
+        'candidateInfo',
+        JSON.stringify(this.candidateIndo)
+      );
     });
   }
 
@@ -270,8 +309,8 @@ export class CandidatesComponent implements OnInit {
     }
   }
 
-  getCandDetails(data:any) {
-    console.log("aaaaa",data);
+  getCandDetails(data: any) {
+    console.log('aaaaa', data);
     this.openPopup = true;
     this.id = data._id;
   }
@@ -280,18 +319,18 @@ export class CandidatesComponent implements OnInit {
     this.openPopup = false;
   }
 
-  updateStatus(data:any) {
-    // this.candidateDetails = data;    
+  updateStatus(data: any) {
+    // this.candidateDetails = data;
     const statusUpdate = {
       status: this.updateCandidateStatus,
       remarks: this.comment,
-      modifiedBY: "Ajith",
+      modifiedBY: 'Ajith',
       _id: this.id,
     };
     // console.log(statusUpdate);
     this.profileService.editStatus(statusUpdate).subscribe((res) => {
       console.log(res);
-    })
+    });
     this.openPopup = false;
     // window.location.reload();
   }
