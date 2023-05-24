@@ -63,9 +63,9 @@ export class CandidateDetailsComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  fruits: string[] = ['React JS'];
+  allFruits: string[] = ['React JS', 'Angular', 'NodeJs', 'Go Lang', 'UI UX Design'];
+  @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   constructor(
     private profileService: ProfileService,
@@ -159,7 +159,7 @@ export class CandidateDetailsComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
+    this.skillInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
   }
 
