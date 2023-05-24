@@ -94,13 +94,5 @@ export class LoginAuthComponent implements OnInit {
         window.location.reload();
       });
     });
-
-    // const toasterContainer = document.getElementById('toasterContainer');
-    // toasterContainer!.innerText = 'Google login successful!';
-    // toasterContainer!.classList.add('show');
-
-    // setTimeout(() => {
-    //   toasterContainer!.classList.remove('show');
-    // }, 3000);
   }
 }

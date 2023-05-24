@@ -31,12 +31,6 @@ export class HeaderComponent implements OnInit {
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];
       this.photoUrl = this.selectedOne.user.photoURL;
-      
-
-      // const nameparts = res.data.name.split(" ");
-      // this.firstLetterFirstName = nameparts[0].charAt(0);
-      // this.firstLetterLastName = nameparts[1].charAt(0); 
-      
     });
     this.isAdminPage = window.location.pathname === '/admin';    
     this.isHomePage = window.location.pathname === '/';

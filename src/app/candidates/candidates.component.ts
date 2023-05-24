@@ -258,13 +258,10 @@ export class CandidatesComponent implements OnInit {
   jobOpenings(event: any) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedFilter = selectElement.value;
-
     sessionStorage.setItem('selectedFilter', this.selectedFilter);
-
     this.profileService.jobOpening(this.selectedFilter).subscribe((res) => {
       this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
-
       sessionStorage.setItem(
         'candidateInfo',
         JSON.stringify(this.candidateIndo)
