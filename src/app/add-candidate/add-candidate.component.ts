@@ -511,4 +511,27 @@ export class AddCandidateComponent implements OnInit {
     this.candidateResume = file;
     console.log(file);
   }
+
+  handleExpectedSalaryInput(form: any) {
+  if (form.fieldName === 'expectedSalaryPerYear' && !isNaN(form.value)) {
+    const monthlySalary = parseFloat(form.value) / 12;
+    const expectedSalaryPerMonthField = this.professionalDetails.find(
+      (field: any) => field.fieldName === 'expectedSalaryPerMonth'
+    );
+    if (expectedSalaryPerMonthField) {
+      expectedSalaryPerMonthField.value = monthlySalary.toString();
+    }
+  }
+
+  if(form.fieldName === 'currentSalaryPerYear' && !isNaN(form.value)) {
+    const currentMonthSalary = parseFloat(form.value) / 12;
+    const currentSalaryPerMonthField = this.professionalDetails.find(
+      (field:any) => field.fieldName === 'currentSalaryPerMonth'
+    );
+    if(currentSalaryPerMonthField) {
+      currentSalaryPerMonthField.value = currentMonthSalary.toString();
+    }
+  }
+}
+
 }

@@ -55,14 +55,14 @@
           <div class="professionalDetail">
             <div class="proDetailsSection" *ngFor="let form of professionalDetails; let i = index">
               <ng-container *ngIf="form.modelType == 'exp'">
-                <label>{{ form.fieldDisplayName }}</label
-                >
+                <label>{{ form.fieldDisplayName }}</label>
                 <input
                   [(ngModel)]="form.value"
                   name="{{ form.fieldName }}"
                   *ngIf="form.type !== 'RADIO'"
                   type="{{ form.type }}"
                   required
+                  (input)="handleExpectedSalaryInput(form)"
                 />
                 <select
                   [(ngModel)]="form.value"
@@ -70,22 +70,21 @@
                   *ngIf="form.type == 'RADIO'"
                   required
                 >
-                <option selected disabled value="">Select</option>
-                  <option
-                    *ngFor="let exp of form.options"
-                    value="{{ exp.value }}"
-                  >
+                  <option selected disabled value="">Select</option>
+                  <option *ngFor="let exp of form.options" value="{{ exp.value }}">
                     {{ exp.display }}
                   </option>
                 </select>
-                
+            
                 <span
                   *ngIf="userForm.submitted && !form.value"
                   style="color: red"
-                  >{{ form.fieldDisplayName }} Required</span
                 >
+                  {{ form.fieldDisplayName }} Required
+                </span>
               </ng-container>
             </div>
+            
           </div>
           <div class="pDetails">
             <div
