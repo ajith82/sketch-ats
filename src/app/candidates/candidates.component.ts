@@ -33,7 +33,7 @@ export class CandidatesComponent implements OnInit {
   comment: any;
   constValue: any;
   filterMsg: any;
-  filterChips:boolean = false;
+  filterChips:boolean = true;
   filterTabs: boolean = true;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -154,6 +154,7 @@ export class CandidatesComponent implements OnInit {
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
     if (!this.selectedFilter) {
       this.selectedFilter = ''; 
+      this.filterChips = false;
     }
 
     this.constValue = sessionStorage.getItem('candidateInfo') || '';
