@@ -21,6 +21,8 @@ export class ProfileService {
   filterAddedBy: any;
   private stringSubject = new BehaviorSubject<string>('');
 
+  candJobOpening:any;
+
   setString(data: string) {
     this.stringSubject.next(data);
     // localStorage.setItem("logoStr",data)
@@ -231,6 +233,7 @@ export class ProfileService {
     const encodedJobTitle = encodeURIComponent(data.currentJobTitle);
     let fd = new FormData();
     const currentJobValue = data.replace(' ', '+');
+    this.candJobOpening = currentJobValue;
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&currentJobTitle=${currentJobValue}&status=Candidates`,
       {
@@ -248,7 +251,7 @@ export class ProfileService {
     let fd = new FormData();
     const noticePeriodValue = data.replace(' ', '+');
     return this.http.get(
-      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&noticePeriod=${noticePeriodValue}&status=Candidates`,
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&noticePeriod=${noticePeriodValue}&status=Candidates&currentJobTitle=${this.candJobOpening}`,
       {
         headers: reqHeader,
       }
