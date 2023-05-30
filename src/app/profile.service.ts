@@ -70,7 +70,7 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODQ5ODg5NzIsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBY0hUdGRSM1JLQXlMNDU5Q1RDMzQ5TjduT1JZZEFSMGZCcl84TFhQekpRPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODQ5ODkyNzIsImV4cCI6MTY4NDk5Mjg3MiwianRpIjoiZWE1NTQ0ZjRiNzNlZThhMzY2NjNiOWUzZWEzMWZhMzE3MjM3YTY3MyJ9.uh3wCuuLvXKjBj3I41KPjdi-q5JpbLAFKQC2E1COIL7ElWli8tgu_vMCR9wNMqO52YVQZF_M8BS_M1fsm2sm7JfCWtCkimHo3MsdNSNTcy7Elna510dnWI2w2Ek37ifazw0pIGeXLzt_5QJ2U8kX2URnjcLP_ibUKdAIXCPdUqErTPMbYrq3F7wwst-U1kU2U_ldw8hM4XJBJzRdCqsst8y8mcWm1YoHm64G_KYgeEE0ejPqMQXivJ79sW4D7dSJKWLawcl1yFizUdPxqY5xK75Df-LxwxXlQj-Lfk1VJPYMQY8LSI8sMLkt3whjsmcmlnrG1NvJcQSWJMnC9dLIKQ",
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkOWE1ZWY1YjEyNjIzYzkxNjcxYTcwOTNjYjMyMzMzM2NkMDdkMDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODU0MjI4MDgsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBY0hUdGRSM1JLQXlMNDU5Q1RDMzQ5TjduT1JZZEFSMGZCcl84TFhQekpRPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODU0MjMxMDgsImV4cCI6MTY4NTQyNjcwOCwianRpIjoiOThiMjU3NGI0YjQ4MzgyZTc4OWFkOGI3Y2ZmNGVkMTEwYjIwYjc3OSJ9.stIlB5DtTWhqC7Txsxjj6KiGhOq_Nm8oFPiHrUF5PxUBh1dEAHsb7660lc8Cw_chJb-4ImMry4I_Trx7w4X4HMPlyz3KoPqHzhAiea2TJJpzOZJmdehk__mtevkVI8AdiXgkywbm5UDeSzKgwnyc-dVihhsYJdMsPSp6zdq3iNbFf8i7wKbyrgodC2jtSsI6l-AArWj3dYu6GqyltDzayKW8svsYUyKLzmf1LFj963A2YXiHJKHVGKwfcwHRIgbdL6SoutV10mx6Zhx-BAZ3M7P8AAORrc4obVivp89pIOkBcFEaW_TOC1Fv2JUv1zz0SAnKOBEt2duhq_PupTfsUQ",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
@@ -246,12 +246,11 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log('serrrrrrrrrrr', data);
     this.filterNoticePeriod = data;
     let fd = new FormData();
     const noticePeriodValue = data.replace(' ', '+');
     return this.http.get(
-      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&noticePeriod=${noticePeriodValue}&status=Candidates&currentJobTitle=${this.candJobOpening}`,
+      `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&noticePeriod=${noticePeriodValue}&status=Candidates`,
       {
         headers: reqHeader,
       }

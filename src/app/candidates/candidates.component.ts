@@ -23,6 +23,7 @@ export class CandidatesComponent implements OnInit {
   showFiller = false;
   showSidenav = false;
   openPopup = false;
+  noticePeriodFilter:any;
   id: any;
   selectedCandidate: any;
   sidenavOpen: boolean = false;
@@ -34,6 +35,7 @@ export class CandidatesComponent implements OnInit {
   constValue: any;
   filterMsg: any;
   filterChips:boolean = true;
+  noticeFilterChips:boolean = true;
   filterTabs: boolean = true;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -152,9 +154,15 @@ export class CandidatesComponent implements OnInit {
     });
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
+    // sessionStorage.getItem('noticePeriod');
+    this.noticePeriodFilter = sessionStorage.getItem('noticeFilter')
     if (!this.selectedFilter) {
       this.selectedFilter = ''; 
       this.filterChips = false;
+    }
+    if(!this.noticePeriodFilter) {
+      this.noticePeriodFilter = '';
+      this.noticeFilterChips = false
     }
 
     this.constValue = sessionStorage.getItem('candidateInfo') || '';
@@ -289,13 +297,34 @@ export class CandidatesComponent implements OnInit {
   }
 
   noticePeriod(event: any) {
+    this.noticeFilterChips = true;
+    this.filterChips = false;
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('selectedFilter');
+    sessionStorage.setItem('noticeFilter',selectedValue)
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 100);
     console.log(selectedValue);
+    this.noticePeriodFilter = selectedValue;
+    // sessionStorage.setItem('noticePeriod',this.noticePeriodFilter);
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
-      console.log('noticeeee', res);
       this.candidateIndo = res.data.searchResults;
+      sessionStorage.setItem('candidateInfo',JSON.stringify(this.candidateIndo))
     });
+    // const notice = this.candidateIndo;
+  }
+
+  closeNoticeFilter() {
+    this.noticeFilterChips = false;
+    this.noticePeriodFilter = '';
+    sessionStorage.removeItem("candidateInfo");
+    sessionStorage.removeItem("noticeFilter");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   source(event: any) {
