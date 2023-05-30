@@ -24,6 +24,7 @@ export class CandidatesComponent implements OnInit {
   showSidenav = false;
   openPopup = false;
   noticePeriodFilter:any;
+  sourceFilter:any;
   id: any;
   selectedCandidate: any;
   sidenavOpen: boolean = false;
@@ -36,6 +37,7 @@ export class CandidatesComponent implements OnInit {
   filterMsg: any;
   filterChips:boolean = true;
   noticeFilterChips:boolean = true;
+  sourceFilterChips:boolean = true;
   filterTabs: boolean = true;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -155,7 +157,8 @@ export class CandidatesComponent implements OnInit {
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
     // sessionStorage.getItem('noticePeriod');
-    this.noticePeriodFilter = sessionStorage.getItem('noticeFilter')
+    this.noticePeriodFilter = sessionStorage.getItem('noticeFilter') || '';
+    this.sourceFilter = sessionStorage.getItem('sourceFilter') || '';
     if (!this.selectedFilter) {
       this.selectedFilter = ''; 
       this.filterChips = false;
@@ -163,6 +166,10 @@ export class CandidatesComponent implements OnInit {
     if(!this.noticePeriodFilter) {
       this.noticePeriodFilter = '';
       this.noticeFilterChips = false
+    }
+    if(!this.sourceFilter) {
+      this.sourceFilter = '';
+      this.sourceFilterChips = false;
     }
 
     this.constValue = sessionStorage.getItem('candidateInfo') || '';
@@ -269,8 +276,13 @@ export class CandidatesComponent implements OnInit {
   jobOpenings(event: any) {
     this.filterChips = true;
     this.filterTabs = false;
+    this.noticeFilterChips = false;
+    this.sourceFilterChips = false;
     const selectElement = event.target as HTMLSelectElement;
     this.selectedFilter = selectElement.value;
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('noticeFilter');
+    sessionStorage.removeItem('sourceFilter');
     sessionStorage.setItem('selectedFilter', this.selectedFilter);
     this.profileService.jobOpening(this.selectedFilter).subscribe((res) => {
       this.filterMsg = res.message;
@@ -299,10 +311,12 @@ export class CandidatesComponent implements OnInit {
   noticePeriod(event: any) {
     this.noticeFilterChips = true;
     this.filterChips = false;
+    this.sourceFilterChips = false;
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
     sessionStorage.removeItem('candidateInfo');
     sessionStorage.removeItem('selectedFilter');
+    sessionStorage.removeItem('sourceFilter');
     sessionStorage.setItem('noticeFilter',selectedValue)
     // setTimeout(() => {
     //   window.location.reload();
@@ -328,11 +342,30 @@ export class CandidatesComponent implements OnInit {
   }
 
   source(event: any) {
+    this.noticeFilterChips = false;
+    this.filterChips = false;
+    this.sourceFilterChips = true;
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('selectedFilter');
+    sessionStorage.removeItem('noticeFilter');
+    sessionStorage.setItem('sourceFilter',selectedValue);
+    this.sourceFilter = selectedValue;
     this.profileService.source(selectedValue).subscribe((res) => {
       this.candidateIndo = res.data.searchResults;
+      sessionStorage.setItem('candidateInfo',JSON.stringify(this.candidateIndo))
     });
+  }
+
+  closeSourceFilter() {
+    this.sourceFilter = ''
+    this.sourceFilterChips = false;
+    sessionStorage.removeItem("candidateInfo");
+    sessionStorage.removeItem("sourceFilter");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   addedBy(event: any) {

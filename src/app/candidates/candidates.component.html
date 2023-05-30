@@ -41,7 +41,7 @@
       </div>
       <div class="noticePeriod">
         <label for="">Notice Period</label><br />
-        <select (change)="noticePeriod($event)">
+        <select (change)="noticePeriod($event)" [(ngModel)]="noticePeriodFilter">
           <option value="">Please Select</option>
           <option
             *ngFor="let NoticePeriod of NoticePeriodArr"
@@ -53,7 +53,7 @@
       </div>
       <div class="source">
         <label for="">Source</label><br />
-        <select (change)="source($event)">
+        <select (change)="source($event)" [(ngModel)]="sourceFilter">
           <option value="">Please Select</option>
           <option *ngFor="let source of SourceArr" value="{{ source }}">
             {{ source }}
@@ -98,6 +98,11 @@
       <div class="filterChips" *ngIf="noticeFilterChips == true">
         <span class="filter"
           >{{ noticePeriodFilter }} <span (click)="closeNoticeFilter()" class="filterClose">X</span></span
+        >
+      </div>
+      <div class="filterChips" *ngIf="sourceFilterChips == true">
+        <span class="filter"
+          >{{ sourceFilter }} <span (click)="closeSourceFilter()" class="filterClose">X</span></span
         >
       </div>
     </div>
