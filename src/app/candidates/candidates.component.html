@@ -62,7 +62,7 @@
       </div>
       <div class="AddedBy">
         <label for="">Added by</label><br />
-        <select (change)="addedBy($event)">
+        <select (change)="addedBy($event)" [(ngModel)]="addedByFilter">
           <option value="">Please Select</option>
           <option
             *ngFor="let interviewedBy of interviewedByArr"
@@ -103,6 +103,11 @@
       <div class="filterChips" *ngIf="sourceFilterChips == true">
         <span class="filter"
           >{{ sourceFilter }} <span (click)="closeSourceFilter()" class="filterClose">X</span></span
+        >
+      </div>
+      <div class="filterChips" *ngIf="addedByFilterChips == true">
+        <span class="filter"
+          >{{ addedByFilter }} <span (click)="closeaddedByFilter()" class="filterClose">X</span></span
         >
       </div>
     </div>
