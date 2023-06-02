@@ -80,7 +80,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log('serverr page', this.page);
     this.section = candidate;
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${this.page}&pageSize=10&status=${candidate}`,

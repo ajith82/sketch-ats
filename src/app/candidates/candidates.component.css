@@ -127,7 +127,7 @@
 .candidateTable ul {
   display: flex;
   gap: 40px;
-  width: 62%;
+  width: 70%;
   /* padding-bottom: 15px; */
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(193, 192, 192);

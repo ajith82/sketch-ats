@@ -23,9 +23,10 @@ export class CandidatesComponent implements OnInit {
   showFiller = false;
   showSidenav = false;
   openPopup = false;
-  noticePeriodFilter:any;
-  sourceFilter:any;
-  addedByFilter:any;
+  totalCandidate?: number;
+  noticePeriodFilter: any;
+  sourceFilter: any;
+  addedByFilter: any;
   id: any;
   selectedCandidate: any;
   sidenavOpen: boolean = false;
@@ -36,10 +37,10 @@ export class CandidatesComponent implements OnInit {
   comment: any;
   constValue: any;
   filterMsg: any;
-  filterChips:boolean = true;
-  noticeFilterChips:boolean = true;
-  sourceFilterChips:boolean = true;
-  addedByFilterChips:boolean = true;
+  filterChips: boolean = true;
+  noticeFilterChips: boolean = true;
+  sourceFilterChips: boolean = true;
+  addedByFilterChips: boolean = true;
   filterTabs: boolean = true;
   candidateIndo: any[] = [];
   serachValue: any;
@@ -148,6 +149,7 @@ export class CandidatesComponent implements OnInit {
         console.log('respond', this.candidateIndo);
       }
       this.filterMsg = res.message;
+      this.totalCandidate = res.data.totalCount;
       this.candidateDetails = res.data.getCandidates;
       this.dataSourceWithPageSize = new MatTableDataSource(
         this.candidateDetails
@@ -163,18 +165,18 @@ export class CandidatesComponent implements OnInit {
     this.sourceFilter = sessionStorage.getItem('sourceFilter') || '';
     this.addedByFilter = sessionStorage.getItem('addedByFilter') || '';
     if (!this.selectedFilter) {
-      this.selectedFilter = ''; 
+      this.selectedFilter = '';
       this.filterChips = false;
     }
-    if(!this.noticePeriodFilter) {
+    if (!this.noticePeriodFilter) {
       this.noticePeriodFilter = '';
-      this.noticeFilterChips = false
+      this.noticeFilterChips = false;
     }
-    if(!this.sourceFilter) {
+    if (!this.sourceFilter) {
       this.sourceFilter = '';
       this.sourceFilterChips = false;
     }
-    if(!this.addedByFilter) {
+    if (!this.addedByFilter) {
       this.addedByFilter = '';
       this.addedByFilterChips = false;
     }
@@ -186,7 +188,7 @@ export class CandidatesComponent implements OnInit {
         const toasterContainer = document.getElementById('toasterContainer');
         toasterContainer!.innerText = toasterMessage;
         toasterContainer!.classList.add('show');
-    
+
         setTimeout(() => {
           toasterContainer!.classList.remove('show');
           sessionStorage.removeItem('toasterMessage');
@@ -194,12 +196,12 @@ export class CandidatesComponent implements OnInit {
         // sessionStorage.removeItem('toasterMessage');
       }
       this.candidateIndo = JSON.parse(this.constValue);
-    } else {
+    } else {      
       this.profileService
         .getCandidate(this.candidateStatusCustom[0].api)
         .subscribe((res) => {
           this.config.totalItems = res.data.totalCount;
-          this.candidateIndo = res.data.searchResults;
+          this.candidateIndo = res.data.searchResults;          
           sessionStorage.setItem(
             'candidateInfo',
             JSON.stringify(this.candidateIndo)
@@ -249,14 +251,14 @@ export class CandidatesComponent implements OnInit {
         this.config.totalItems = res.data.totalCount;
         this.candidateIndo = res.data.searchResults;
 
-        // Store the selected index in session storage
         window.sessionStorage.setItem('selectedIndex', id.toString());
-        // Store the candidateIndo data in session storage
         window.sessionStorage.setItem(
           'candidateInfo',
           JSON.stringify(this.candidateIndo)
         );
       });
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      
   }
 
   search(value: any) {
@@ -301,13 +303,13 @@ export class CandidatesComponent implements OnInit {
         JSON.stringify(this.candidateIndo)
       );
     });
-    if(this.selectedFilter == ''){
+    if (this.selectedFilter == '') {
       this.filterChips = false;
     }
   }
 
   closeFilter() {
-    this.selectedFilter = ''
+    this.selectedFilter = '';
     this.filterChips = false;
     this.filterTabs = true;
     sessionStorage.removeItem('selectedFilter');
@@ -328,7 +330,7 @@ export class CandidatesComponent implements OnInit {
     sessionStorage.removeItem('selectedFilter');
     sessionStorage.removeItem('sourceFilter');
     sessionStorage.removeItem('addedByFilter');
-    sessionStorage.setItem('noticeFilter',selectedValue)
+    sessionStorage.setItem('noticeFilter', selectedValue);
     // setTimeout(() => {
     //   window.location.reload();
     // }, 100);
@@ -338,7 +340,10 @@ export class CandidatesComponent implements OnInit {
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
       this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
-      sessionStorage.setItem('candidateInfo',JSON.stringify(this.candidateIndo))
+      sessionStorage.setItem(
+        'candidateInfo',
+        JSON.stringify(this.candidateIndo)
+      );
     });
     // const notice = this.candidateIndo;
   }
@@ -346,8 +351,8 @@ export class CandidatesComponent implements OnInit {
   closeNoticeFilter() {
     this.noticeFilterChips = false;
     this.noticePeriodFilter = '';
-    sessionStorage.removeItem("candidateInfo");
-    sessionStorage.removeItem("noticeFilter");
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('noticeFilter');
     setTimeout(() => {
       window.location.reload();
     }, 500);
@@ -364,20 +369,23 @@ export class CandidatesComponent implements OnInit {
     sessionStorage.removeItem('selectedFilter');
     sessionStorage.removeItem('noticeFilter');
     sessionStorage.removeItem('addedByFilter');
-    sessionStorage.setItem('sourceFilter',selectedValue);
+    sessionStorage.setItem('sourceFilter', selectedValue);
     this.sourceFilter = selectedValue;
     this.profileService.source(selectedValue).subscribe((res) => {
       this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
-      sessionStorage.setItem('candidateInfo',JSON.stringify(this.candidateIndo))
+      sessionStorage.setItem(
+        'candidateInfo',
+        JSON.stringify(this.candidateIndo)
+      );
     });
   }
 
   closeSourceFilter() {
-    this.sourceFilter = ''
+    this.sourceFilter = '';
     this.sourceFilterChips = false;
-    sessionStorage.removeItem("candidateInfo");
-    sessionStorage.removeItem("sourceFilter");
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('sourceFilter');
     setTimeout(() => {
       window.location.reload();
     }, 500);
@@ -394,20 +402,23 @@ export class CandidatesComponent implements OnInit {
     sessionStorage.removeItem('selectedFilter');
     sessionStorage.removeItem('noticeFilter');
     sessionStorage.removeItem('sourceFilter');
-    sessionStorage.setItem('addedByFilter',selectedValue);
+    sessionStorage.setItem('addedByFilter', selectedValue);
     this.addedByFilter = selectedValue;
     this.profileService.addedBy(selectedValue).subscribe((res) => {
       this.filterMsg = res.message;
       this.candidateIndo = res.data.searchResults;
-      sessionStorage.setItem('candidateInfo',JSON.stringify(this.candidateIndo))
+      sessionStorage.setItem(
+        'candidateInfo',
+        JSON.stringify(this.candidateIndo)
+      );
     });
   }
 
   closeaddedByFilter() {
     this.addedByFilter = '';
     this.addedByFilterChips = false;
-    sessionStorage.removeItem("candidateInfo");
-    sessionStorage.removeItem("addedByFilter");
+    sessionStorage.removeItem('candidateInfo');
+    sessionStorage.removeItem('addedByFilter');
     setTimeout(() => {
       window.location.reload();
     }, 500);
