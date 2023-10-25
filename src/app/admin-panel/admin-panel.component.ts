@@ -35,13 +35,10 @@ export class AdminPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getAdmins().subscribe((res) => {
-      console.log('resssssssssssssssssz', res);
       this.adminDetails = res;
-      console.log("rrrrrrrrrr",res.data.user);
     });
   }
   openDialog(data:any) {
-    // console.log("aaaaaaaaaa",data);
     
     // const dialogRef = this.dialog.open(DialogContentExampleDialog, {
     //   height: '480px',
@@ -51,7 +48,6 @@ export class AdminPanelComponent implements OnInit {
     //   },
     // });
     // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log('The dialog was closed', result);
     // });
   }
 
@@ -73,7 +69,6 @@ export class AdminPanelComponent implements OnInit {
     } else {
       this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
         this.editPopup = false;
-        console.log("created",res);
       });
       // window.location.reload();
     }
@@ -105,7 +100,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   addAdmin() {
-    console.log(this.editAdminDetails );
     this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
       this.editPopup = false;
     });
@@ -114,7 +108,6 @@ export class AdminPanelComponent implements OnInit {
 
   deleteRole(id:any) {
     this.profileService.deleteRole(id).subscribe((res) => {
-      console.log("deleted",id);
     })
     window.location.reload();
   }
@@ -127,6 +120,5 @@ export class AdminPanelComponent implements OnInit {
 export class DialogContentExampleDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
   public dialogRef: MatDialogRef<DialogContentExampleDialog>) {
-    console.log("hhhhhhhhhhhhhhhhhhhh");
   }
 }

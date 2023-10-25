@@ -105,7 +105,6 @@ export class CandidateDetailsComponent implements OnInit {
     };
 
     this.profileService.getCandDetails().subscribe((res) => {
-      console.log('gottttttt', res);
       this.data = res.data.getCandidates;
       this.fullName = `${this.data.firstName} ${this.data.lastName}`;
       this.phoneNumber = `${this.data.phoneNumber}`;
@@ -129,12 +128,10 @@ onItemSelect(item: any) {
     label: selectedSkill,
     value: selectedSkill
   });
-  console.log(this.selectedSkills);
 }
 
 
   onSelectAll(items: any) {
-    console.log(items);
   }
 
   add(event: MatChipInputEvent): void {
@@ -172,7 +169,6 @@ onItemSelect(item: any) {
         endTime: '',
       });
       this.id++;
-      console.log(this.items);
     }
   }
 
@@ -191,12 +187,10 @@ onItemSelect(item: any) {
 
   deleteEdu(id:any) {
     this.items.splice(id, 1);
-    console.log(this.items);
   }
 
   deleteExp(id: any) {
     this.expItems.splice(id, 1);
-    console.log(this.expItems);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -231,7 +225,6 @@ onItemSelect(item: any) {
     this.detailBtn = false;
     this.pipeLineBtn = true;
     this.profileService.pipeLine(id).subscribe((res) => {
-      console.log('pipeeeeee', res.data.hiringStatus);
       this.candidateStatus = res.data.hiringStatus;
     });
 
@@ -261,10 +254,8 @@ onItemSelect(item: any) {
     this.notes = `${this.data.remarks}`;
     this.addedBy = `${this.data.interviewBy}`;
     this.profileService.editCandidate(newData,this.items).subscribe((res) => {
-      console.log('edit donm', res);
     });
     // this.route.navigate(['candiadte']);
-    console.log(newData);
     
 
     this.sidenavOpen = false;
@@ -291,15 +282,11 @@ onItemSelect(item: any) {
       modifiedBY: this.data.modifiedBY,
       _id: this.data._id,
     };
-    console.log(statusUpdate);
     this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
-      console.log('updateddddddd', res.data.hiringStatus);
 
-      // this.candidateStatus = res.data.hiringStatus;
       this.candidateStatus.push(res.data.hiringStatus);
     });
     this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
-      console.log('dataaa', res.data.hiringStatus);
       // this.candidateStatus = res.data.hiringStatus;
     });
     this.isCandidate = false;
@@ -315,7 +302,6 @@ onItemSelect(item: any) {
   
     this.profileService.deleteStatus(candidateId, statusId).subscribe(() => {
       this.profileService.pipeLine(candidateId).subscribe((res) => {
-        console.log(res);
         this.candidateStatus = res.data.hiringStatus;
       });
     });
@@ -328,7 +314,6 @@ onItemSelect(item: any) {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.candidateResume = file;
-    console.log(file);
   }
   
 }

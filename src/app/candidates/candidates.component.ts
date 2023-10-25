@@ -135,18 +135,17 @@ export class CandidatesComponent implements OnInit {
       .pipe(map((params: any) => params.get('page')))
       .subscribe((page: any) => {
         this.config.currentPage = page;
-        console.log('pageeeee', page);
       });
   }
 
   ngOnInit(): void {
     this.selectedIndex = Number(sessionStorage.getItem('selectedIndex')) || 0;
+    
 
     this.profileService.candidateDetails().subscribe((res) => {
       let storage = localStorage.getItem('token');
       if (!storage) {
         this.candidateIndo = res.data.searchResults;
-        console.log('respond', this.candidateIndo);
       }
       this.filterMsg = res.message;
       this.totalCandidate = res.data.totalCount;
@@ -156,7 +155,6 @@ export class CandidatesComponent implements OnInit {
       );
       this.dataSource = new MatTableDataSource(this.candidateDetails);
       this.length = res.data.totalCount;
-      console.log('detailsssssss', this.candidateDetails);
     });
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
@@ -216,20 +214,16 @@ export class CandidatesComponent implements OnInit {
   }
 
   gty(newPage: number) {
-    console.log(newPage);
     this.page = newPage;
     this.profileService.paginate(newPage).subscribe((res) => {
-      console.log('paginatee', res);
       this.candidateIndo = res.data.searchResults;
     });
     this.router.navigate(['candiadte'], { queryParams: { page: newPage } });
   }
 
   resumeClick(candidate: any) {
-    // console.log("sssssssssssssssssssssss",candidate.resume);
     // this.showSidenav = true;
     // this.selectedCandidate = candidate;
-    // console.log("resumeee", this.selectedCandidate);
     this.selectedCandidate = candidate;
     this.sidenavOpen = true;
     this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -244,7 +238,6 @@ export class CandidatesComponent implements OnInit {
 
   candStatus(id: any) {
     this.selectedIndex = id;
-    console.log('aaaaaa', this.candidateStatusCustom[id].api);
     this.profileService
       .getCandidate(this.candidateStatusCustom[id].api)
       .subscribe((res) => {
@@ -257,7 +250,6 @@ export class CandidatesComponent implements OnInit {
           JSON.stringify(this.candidateIndo)
         );
       });
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       
   }
 
@@ -277,7 +269,6 @@ export class CandidatesComponent implements OnInit {
 
   candidatesDetails(id: any) {
     this.profileService.getCandidateDetails(id).subscribe((res) => {
-      console.log(res);
     });
     this.router.navigate(['details']);
   }
@@ -334,7 +325,6 @@ export class CandidatesComponent implements OnInit {
     // setTimeout(() => {
     //   window.location.reload();
     // }, 100);
-    console.log(selectedValue);
     this.noticePeriodFilter = selectedValue;
     // sessionStorage.setItem('noticePeriod',this.noticePeriodFilter);
     this.profileService.noticePeriod(selectedValue).subscribe((res) => {
@@ -427,7 +417,6 @@ export class CandidatesComponent implements OnInit {
   date() {
     const endDate = this.selected.endDate;
     const endDateValue = endDate.get('date');
-    console.log(endDateValue);
   }
 
   addOption(event: any): void {
@@ -445,7 +434,6 @@ export class CandidatesComponent implements OnInit {
   }
 
   getCandDetails(data: any) {
-    console.log('aaaaa', data);
     this.openPopup = true;
     this.id = data._id;
   }
@@ -462,9 +450,7 @@ export class CandidatesComponent implements OnInit {
       modifiedBY: 'Ajith',
       _id: this.id,
     };
-    // console.log(statusUpdate);
     this.profileService.editStatus(statusUpdate).subscribe((res) => {
-      console.log(res);
     });
     this.openPopup = false;
     // window.location.reload();

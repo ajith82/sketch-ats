@@ -14,9 +14,6 @@
             placeholder="Search Candidate ID/Name"
           />
         </div>
-        <!-- <div class="filter">
-          <button>Filters</button>
-        </div> -->
         <div class="addCandidate">
           <button routerLink="/addcandidate">Add Candidate</button>
         </div>
@@ -41,7 +38,10 @@
       </div>
       <div class="noticePeriod">
         <label for="">Notice Period</label><br />
-        <select (change)="noticePeriod($event)" [(ngModel)]="noticePeriodFilter">
+        <select
+          (change)="noticePeriod($event)"
+          [(ngModel)]="noticePeriodFilter"
+        >
           <option value="">Please Select</option>
           <option
             *ngFor="let NoticePeriod of NoticePeriodArr"
@@ -88,7 +88,7 @@
         />
       </div>
     </div>
-    <div style="display: flex;gap: 10px;">
+    <div style="display: flex; gap: 10px">
       <div *ngIf="filterChips == true" class="filterChips">
         <span class="filter"
           >{{ selectedFilter }}
@@ -97,17 +97,22 @@
       </div>
       <div class="filterChips" *ngIf="noticeFilterChips == true">
         <span class="filter"
-          >{{ noticePeriodFilter }} <span (click)="closeNoticeFilter()" class="filterClose">X</span></span
+          >{{ noticePeriodFilter }}
+          <span (click)="closeNoticeFilter()" class="filterClose">X</span></span
         >
       </div>
       <div class="filterChips" *ngIf="sourceFilterChips == true">
         <span class="filter"
-          >{{ sourceFilter }} <span (click)="closeSourceFilter()" class="filterClose">X</span></span
+          >{{ sourceFilter }}
+          <span (click)="closeSourceFilter()" class="filterClose">X</span></span
         >
       </div>
       <div class="filterChips" *ngIf="addedByFilterChips == true">
         <span class="filter"
-          >{{ addedByFilter }} <span (click)="closeaddedByFilter()" class="filterClose">X</span></span
+          >{{ addedByFilter }}
+          <span (click)="closeaddedByFilter()" class="filterClose"
+            >X</span
+          ></span
         >
       </div>
     </div>
@@ -131,7 +136,7 @@
           >
             <input type="radio" name="" id="" />
             <ng-container>
-              {{ candidateStatusCustom.name }} - {{totalCandidate}}
+              {{ candidateStatusCustom.name }} - {{ totalCandidate }}
             </ng-container>
           </li>
         </ul>
@@ -171,41 +176,14 @@
                   candidate.modifiedDate | date
                 }}</span>
               </td>
-              <td *ngIf="candidate.status == 'Rejected'">
-                <span class="rejected">Rejected</span>
-              </td>
-              <td *ngIf="candidate.status == 'Screening'">
-                <span class="screening">Screening</span>
-              </td>
-              <td *ngIf="candidate.status == 'Round 1'">
-                <span class="screening">Round 1</span>
-              </td>
-              <td *ngIf="candidate.status == 'Round 2'">
-                <span class="screening">Round 2</span>
-              </td>
-              <td *ngIf="candidate.status == 'Task Verification'">
-                <span class="screening">Task Verification</span>
-              </td>
-              <td *ngIf="candidate.status == 'Candidates'">
-                <span class="screening">Candidates</span>
-              </td>
-              <td *ngIf="candidate.status == 'HR Round'">
-                <span class="screening">HR Round</span>
-              </td>
-              <td *ngIf="candidate.status == 'Offered'">
-                <span class="screening">Offered</span>
-              </td>
-              <td *ngIf="candidate.status == 'Offer Accepted'">
-                <span class="screening">Offer Accepted</span>
-              </td>
-              <td *ngIf="candidate.status == 'Offer Declined'">
-                <span class="screening">Offer Declined</span>
-              </td>
-              <td *ngIf="candidate.status == 'Joined'">
-                <span class="screening">Joined</span>
-              </td>
-              <td *ngIf="candidate.status == 'DsRound'">
-                <span class="DSRound">DS Round & API</span>
+              <td>
+                <span
+                  [ngClass]="{
+                    rejected: candidate.status === 'Rejected',
+                    screening: candidate.status !== 'Rejected'
+                  }"
+                  >{{ candidate.status }}</span
+                >
               </td>
               <td class="document">
                 <div class="resumeDownload">

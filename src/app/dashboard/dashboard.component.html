@@ -7,12 +7,6 @@
       <div class="sort">
         <div class="interviewer">
           <label for="cars">Filter By:</label>
-          <!-- <select id="cars">
-            <option value="volvo" selected>Select interviewer</option>
-            <option value="saab">Saab</option>
-            <option value="vw">VW</option>
-            <option value="audi">Audi</option>
-          </select> -->
         </div>
         <div class="role">
           <select (change)="dashFilter($event)" id="skills">
@@ -40,61 +34,14 @@
         </div>
       </div>
     </div>
-    <!-- <div class="dashboardDetails">
-      <div class="interviewDetails">
-        <h5 class="detailReview">Yet to contact</h5>
-        <h5 class="result">{{ data.yetToContact }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Screening</h5>
-        <h5 class="result">{{ data.screening }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Design Task Given</h5>
-        <h5 class="result">{{ data.designTaskGiven }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Design Technical Call</h5>
-        <h5 class="result">{{ data.designTechCall }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Task Verification</h5>
-        <h5 class="result">{{ data.taskVerification }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Round 1</h5>
-        <h5 class="result">{{ data.Round_1 }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">ROund 2</h5>
-        <h5 class="result">{{ data.Round_2 }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">HR Round</h5>
-        <h5 class="result">{{ data.hrRound }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Offered</h5>
-        <h5 class="result">{{ data.offered }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Offer Accepted</h5>
-        <h5 class="result">{{ data.offerAccepted }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Offer Declined</h5>
-        <h5 class="result">{{ data.rejected }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Joined</h5>
-        <h5 class="result">{{ data.joined }}</h5>
-      </div>
-      <div class="interviewDetails">
-        <h5 class="detailReview">Rejected</h5>
-        <h5 class="result">{{ data.rejected }}</h5>
-      </div>
-    </div> -->
-    <!-- <h4>Recent Updates</h4> -->
+
+<!-- <div>
+  <div class="FILTER">
+
+  </div>
+</div> -->
+
+
     <div class="updates">
       <div class="offered data-card">
         <div class="updatesHead">
@@ -146,26 +93,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="rejected data-card">
-        <div class="updatesHead">
-          <h6>Candidates Rejected</h6>
-        </div>
-        <div class="updateDetails" *ngIf="candidateReject == ''">
-          <img src="../../images/nodata.jpg" alt="nodata" />
-          <p>No data found</p>
-        </div>
-        <div class="candData">
-          <div
-          class="candidateDetails"
-          *ngFor="let candReject of candidateReject"
-        >
-          <div class="person">
-            <p>Name:{{ candReject.firstName }}</p>
-            <p>Joining Date: {{ candReject.expectedJoiningDate }}</p>
-          </div>
-        </div>
-        </div>
-      </div> -->
       <div class="rejected data-card">
         <div class="updatesHead">
           <h6>Offer Declined ({{ candidateDeclined.length }})</h6>
@@ -219,3 +146,6 @@
     </div>
   </div>
 </div>
+
+
+

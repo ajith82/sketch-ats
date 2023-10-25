@@ -22,10 +22,9 @@ export class HomeComponent implements OnInit {
     this.profileService.getDetails().subscribe((res) => {
       this.details = res;
       this.details.length
-      console.log("aaaaaaaaaaaaaaaa",this.details[this.details.length - 1]);
 
-      console.log(location.href);
       this.location = location.href;
+      
 
 
       // this.router.events.subscribe(event => {

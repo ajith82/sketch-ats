@@ -46,11 +46,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.sendAnalytics().subscribe((res) => {
-      console.log('resssss', res);
     });
 
     this.profileService.candidateDashboard().subscribe((res: any) => {
-      console.log('vvvvvvvvvvvvv', res);
       this.data = res.data;
     });
 
@@ -68,14 +66,11 @@ export class DashboardComponent implements OnInit {
       // this.candidateJoined = res.data.getCandidatesJoined;
       // this.candidateDeclined = res.data.getCandidatesOfferDeclined;
       // this.offered = res.data.getCandidatesoffered;
-      console.log('candidatesssss', res);
     });
   }
 
   dashFilter(event: any) {
-    console.log(event.target.value);
     this.profileService.dashFilter(event.target.value).subscribe((res) => {
-      console.log('filllll', res.data);
       this.offerAccepted = res.data.getCandidatesofferAccepted;
       this.candidateReject = res.data.getCandidatesRejected;
       this.candidateJoined = res.data.getCandidatesJoined;
@@ -86,7 +81,6 @@ export class DashboardComponent implements OnInit {
 
   dashCandDetails(id: any) {
     this.profileService.dashCandDetails(id).subscribe((res) => {
-      console.log('cand details', res.data.getCandidates);
       this.router.navigate(['details'])
     });
   }

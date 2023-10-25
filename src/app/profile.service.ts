@@ -70,13 +70,12 @@ export class ProfileService {
   googleAuth(): Observable<any> {
     const token = {
       tokenId:
-      "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYwODNkZDU5ODE2NzNmNjYxZmRlOWRhZTY0NmI2ZjAzODBhMDE0NWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODU2ODI3MTEsImF1ZCI6IjkzNDI1NDc4NDQ5MS0ybmVzYWNmOHI0MDN0cjloZGJmcHVsbjlnMzAzbnExMS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTQwMDM3Mzc3MTI1ODc0ODg4MCIsImhkIjoic2tldGNoYnJhaG1hLmNvbSIsImVtYWlsIjoiYWppdGhAc2tldGNoYnJhaG1hLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBY0hUdGRSM1JLQXlMNDU5Q1RDMzQ5TjduT1JZZEFSMGZCcl84TFhQekpRPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFqaXRoIiwiZmFtaWx5X25hbWUiOiJWIEMiLCJpYXQiOjE2ODU2ODMwMTEsImV4cCI6MTY4NTY4NjYxMSwianRpIjoiMzRiNTk1MzIzMDVlMDcwOTE0YjNmMzA1OGJjNWJlNTBmNzI0ZGIxZiJ9.gVUkeoRttCGWQhQFD8WS3ODG8WxUMzkPY9zfOwcMUdOKU1pW0kBGGNMDt9nbfdPa3xnb7Xs8JwUdfF-VjVBJkunSSLuNFLxHGTWOGAMIeifUUkiKCe8l55tnDaiXkjeOADWC3qVfvf8ZHoJvOeM20vi6soAQOxd2HzK1RKhHWE6VDVQVwBV9YplIwE2Ck1Hj6eBwvY31316dU4vIjhcHf26-sIeQSyJnxfY6xUQmYT8f_nwRCAzjut6lXMyzrGlyoSkQxFfZBy75oQRI_lwGFPDc6IfyFsy0CjKCX3YP3T65MYw25-E4WybL_0Fjpvmzhs9kNnqhqWYxTAOTcVNgIA",
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEwNmFmMGI2OGEyMTE5ZDY5MmNhYzRhYmY0MTVmZjM3ODgxMzZmNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MzQyNTQ3ODQ0OTEtMm5lc2FjZjhyNDAzdHI5aGRiZnB1bG45ZzMwM25xMTEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTE0MDAzNzM3NzEyNTg3NDg4ODAiLCJoZCI6InNrZXRjaGJyYWhtYS5jb20iLCJlbWFpbCI6ImFqaXRoQHNrZXRjaGJyYWhtYS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmJmIjoxNjk4MjA5OTM5LCJuYW1lIjoiQWppdGggViBDIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tEc0s1LXYtQXZMWjZMdVlzNk10b0VPd1d0ZzZkNGJKUm9JNVliTldUMT1zOTYtYyIsImdpdmVuX25hbWUiOiJBaml0aCIsImZhbWlseV9uYW1lIjoiViBDIiwibG9jYWxlIjoiZW4iLCJpYXQiOjE2OTgyMTAyMzksImV4cCI6MTY5ODIxMzgzOSwianRpIjoiOGYwMTcyZjNmNWM3ZDA5ZDc2MTllZDg5MjkwZDk0N2MzMzI4NTVhZCJ9.PyHtoZZ1UyQKN0NUGF9KvkEEVzW1-w5aSfMe8L0TJ-AJtvmNq_YbJr5YT77UmXa50r3ogbJCcmZkPFtIkk4FPJA8pruwfX0p2_vbsoPIElgyIY-H8ga7xS1nJzzeXP4icuN1GbockRgro2_VXTyHuesH11rWrvX3U5H37ycGrfNCl-JGR_RLpWtJ5IZBBkF-UVGWV2xzIXrkDPw4uqqTuX6OBUkC3zj2X-ho7TRXB8TOuTiprhkRvWCrLK2Z0a2h95PqSV2Cr3VfPJkcDAocpa43JTdpOKHVfA-_t2DgrIGYDQzYVh51LycImZjK-As3ppHSzBTk7ldIP0p7q9DAkA",
     };
     return this.http.post('http://localhost:8000/google/login', token);
   }
 
   getCandidate(candidate: any): Observable<any> {
-    console.log('serverrrr', candidate);
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
@@ -91,7 +90,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log('serverrrrrrrrr page', page, this.section);
     this.page = page;
     return this.http.get(
       `${this.BASE_URL}/hiring/get/candidate/filter?pageNumber=${page}&pageSize=10&status=${this.section}`,
@@ -134,7 +132,6 @@ export class ProfileService {
     edu: any,
     exp: any
   ): Observable<any> {
-    console.log('diffff', skill);
     let resume = res;
     let skillSet = skill;
     let eduArr = edu;
@@ -142,7 +139,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log('data in server', data);
     // let sendDate = JSON.stringify(data);
     // let params = new HttpParams().set('sendDate', JSON.stringify(data));
     let fd = new FormData();
@@ -163,7 +159,6 @@ export class ProfileService {
   }
 
   getCandidateDetails(id: any): Observable<any> {
-    console.log('candidateId:', id);
     this.candId = id;
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -196,7 +191,6 @@ export class ProfileService {
   }
 
   editCandidate(data: any,eduArr:any): Observable<any> {
-    console.log(data.skillSet);
 
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -260,7 +254,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log(data);
     this.filterSource = data;
     let fd = new FormData();
     const sourceValue = data.replace(' ', '+');
@@ -276,7 +269,6 @@ export class ProfileService {
     var reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    console.log(data);
     this.filterAddedBy = data;
     let fd = new FormData();
     const addedByValue = data.replace(' ', '+');

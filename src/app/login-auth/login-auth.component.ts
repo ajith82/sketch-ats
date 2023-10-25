@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { OAuthLoginI18n } from 'ngx-oauth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
@@ -55,7 +55,6 @@ export class LoginAuthComponent implements OnInit {
     //   .then((credential) => {
     //     this.details = credential;
     //   this.id=credential.operationType;
-    //     console.log("credential",credential.operationType);
     //     if (credential.additionalUserInfo?.profile) {
     //       this.profileService.details(this.details).subscribe((data) =>{
     //       })
@@ -64,7 +63,6 @@ export class LoginAuthComponent implements OnInit {
     //         window.location.reload();
     //       });
     //     } else {
-    //       console.log('oops');
     //       this.router.navigate(['']);
     //     }
     //   })
@@ -91,7 +89,7 @@ export class LoginAuthComponent implements OnInit {
       );
       localStorage.setItem('token', this.resToken);
       this.router.navigate(['candiadte']).then(() => {
-        window.location.reload();
+        // window.location.reload();
       });
     });
   }

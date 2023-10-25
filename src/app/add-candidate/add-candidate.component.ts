@@ -262,7 +262,6 @@ export class AddCandidateComponent implements OnInit {
     this.eduDetails = [];
     // eduDetails.splice(0, eduDetails.length, combinedDetails);
     this.detailsObject.eduDetails = detailValue;
-    console.log(this.detailsObject, 'this.educationCount', detailValue);
   }
 
   addExp() {
@@ -362,7 +361,6 @@ export class AddCandidateComponent implements OnInit {
         }
       );
     }
-    console.log(sectionNumber);
 
     this.experience.forEach((detail) => {
       expDetails.push({
@@ -418,11 +416,9 @@ export class AddCandidateComponent implements OnInit {
           this.expArr
         )
         .subscribe((res) => {
-          console.log('addeddddd', res);
         });
       this.route.navigate(['candiadte'])
     } else {
-      console.log('errorrrrr');
     }
   }
 
@@ -451,7 +447,6 @@ export class AddCandidateComponent implements OnInit {
         endTime: '',
       });
       this.id++;
-      console.log(this.items);
     }
   }
 
@@ -464,28 +459,23 @@ export class AddCandidateComponent implements OnInit {
         endTime: '',
       });
       this.id++;
-      console.log(this.exp);
     }
   }
 
   deleteEdu(id: any) {
     this.items.splice(id, 1);
-    console.log(this.items);
   }
 
   deleteExp(id: any) {
     this.exp.splice(id, 1);
-    console.log(this.exp);
   }
 
   onCheckboxChange(event: any) {
     this.value = event.target.checked;
-    console.log(this.value);
   }
 
   onDropdownChange(event: any) {
     this.evalue = event.target.value === 'true';
-    console.log(this.evalue);
   }
 
   onSkillSelect(event: any) {
@@ -494,22 +484,17 @@ export class AddCandidateComponent implements OnInit {
     const selectedIndex = selectElement.selectedIndex;
     const selectedSkill = this.skillSet[selectedIndex];
     this.selectedSkill.push(selectedSkill);
-    console.log(this.selectedSkill);
   }
 
   onFileSelected(event: any) {
     // var reader = new FileReader();
     // reader.readAsDataURL(event.target.files[0]);
     // reader.onload = (event) => {
-    //   console.log(event);
     // const url = event.target?.result;
     // this.candidateResume = url;
-    // console.log(url);
     // };
-    // console.log(this.candidateResume);
     const file = event.target.files[0];
     this.candidateResume = file;
-    console.log(file);
   }
 
   handleExpectedSalaryInput(form: any) {

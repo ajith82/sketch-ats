@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   showDropdown: boolean = false;
   isAdminPage: boolean = false;
   isHomePage: boolean = false;
-  userLogo?:string;
+  userLogo?: string;
   constructor(
     private profileService: ProfileService,
     private route: Router,
@@ -25,14 +25,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getString().subscribe((res) => {
-      console.log("userrrrrr",res);
       localStorage.setItem('logo',res);
       this.userLogo = res;
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];
       this.photoUrl = this.selectedOne.user.photoURL;
     });
-    this.isAdminPage = window.location.pathname === '/admin';    
+    this.isAdminPage = window.location.pathname === '/admin';
     this.isHomePage = window.location.pathname === '/';
   }
 
@@ -40,20 +39,20 @@ export class HeaderComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
   logout() {
-    localStorage.removeItem('id');
+    localStorage.removeItem('token');
     this.route.navigate(['']).then(() => {
       window.location.reload();
     });
     // location.reload();
   }
   adminRoute() {
-    this.route.navigate(['admin']).then(() =>{
+    this.route.navigate(['admin']).then(() => {
       window.location.reload();
-    })
+    });
   }
   candRoute() {
     this.route.navigate(['candiadte']).then(() => {
       window.location.reload();
-    })
+    });
   }
 }

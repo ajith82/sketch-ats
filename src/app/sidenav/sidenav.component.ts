@@ -22,11 +22,9 @@ export class SidenavComponent implements OnInit {
       if (resumeUrl) {
         this.controllerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(resumeUrl);
       }
-      console.log("resumeUrl",this.controllerSrc);
       
       this.tempData = data.data.getCandidates[0].resume;
       this.controllerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.tempData);
-      console.log("cccccccccccccccc",this.controllerSrc);
       
     })
   }
