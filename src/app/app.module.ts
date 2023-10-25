@@ -38,6 +38,7 @@ import {
   AdminPanelComponent,
   DialogContentExampleDialog,
 } from './admin-panel/admin-panel.component';
+import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -64,6 +65,7 @@ const firebaseConfig = {
     DetailsComponent,
     AdminPanelComponent,
     DialogContentExampleDialog,
+    DashboardCardComponent,
   ],
   imports: [
     BrowserModule,

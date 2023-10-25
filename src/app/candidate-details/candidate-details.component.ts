@@ -3,7 +3,10 @@ import { ProfileService } from './../profile.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -27,12 +30,12 @@ export class CandidateDetailsComponent implements OnInit {
   source: any;
   notes: any;
   items: any = [];
-  expItems:any = [];
+  expItems: any = [];
   educationBtn: boolean = false;
   experienceBtn: boolean = false;
   closeResume: boolean = false;
-  candidateResume:any;
-  id=1;
+  candidateResume: any;
+  id = 1;
   addedBy: any;
   expectedJoiningDate: any;
   candidateStatus: any;
@@ -55,7 +58,7 @@ export class CandidateDetailsComponent implements OnInit {
     'Referral',
     'Others',
   ];
-  month = [1,2,3,4,5,6,7,8,9,10,11]
+  month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   visible = true;
   selectable = true;
   removable = true;
@@ -64,12 +67,18 @@ export class CandidateDetailsComponent implements OnInit {
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
   fruits: string[] = ['React JS'];
-  allFruits: string[] = ['React JS', 'Angular', 'NodeJs', 'Go Lang', 'UI UX Design'];
+  allFruits: string[] = [
+    'React JS',
+    'Angular',
+    'NodeJs',
+    'Go Lang',
+    'UI UX Design',
+  ];
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
-  dropdownList:any = [];
-  selectedItems:any = [];
-  dropdownSettings:any = {};
+  dropdownList: any = [];
+  selectedItems: any = [];
+  dropdownSettings: any = {};
   selectedSkills: any[] = [];
   constructor(
     private profileService: ProfileService,
@@ -78,11 +87,14 @@ export class CandidateDetailsComponent implements OnInit {
   ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      map((fruit: string | null) =>
+        fruit ? this._filter(fruit) : this.allFruits.slice()
+      )
+    );
   }
+  currentItem = 'Television';
 
   ngOnInit(): void {
-
     this.dropdownList = [
       { item_id: 1, item_text: 'ReactJS' },
       { item_id: 2, item_text: 'Angular' },
@@ -101,7 +113,7 @@ export class CandidateDetailsComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
 
     this.profileService.getCandDetails().subscribe((res) => {
@@ -120,19 +132,15 @@ export class CandidateDetailsComponent implements OnInit {
     this.updateStatus();
   }
 
-  
-
-onItemSelect(item: any) {
-  const selectedSkill = item.item_text;
-  this.selectedSkills.push({
-    label: selectedSkill,
-    value: selectedSkill
-  });
-}
-
-
-  onSelectAll(items: any) {
+  onItemSelect(item: any) {
+    const selectedSkill = item.item_text;
+    this.selectedSkills.push({
+      label: selectedSkill,
+      value: selectedSkill,
+    });
   }
+
+  onSelectAll(items: any) {}
 
   add(event: MatChipInputEvent): void {
     if (!this.matAutocomplete.isOpen) {
@@ -173,7 +181,7 @@ onItemSelect(item: any) {
   }
 
   addExp() {
-    if(!this.experienceBtn) {
+    if (!this.experienceBtn) {
       this.expItems.push({
         company: '',
         jobTitle: '',
@@ -184,8 +192,7 @@ onItemSelect(item: any) {
     }
   }
 
-
-  deleteEdu(id:any) {
+  deleteEdu(id: any) {
     this.items.splice(id, 1);
   }
 
@@ -202,7 +209,9 @@ onItemSelect(item: any) {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.allFruits.filter(
+      (fruit) => fruit.toLowerCase().indexOf(filterValue) === 0
+    );
   }
 
   details() {
@@ -238,14 +247,13 @@ onItemSelect(item: any) {
   }
 
   editCand() {
-    
     const newData = {
       ...this.data,
       educationInfo: this.items,
       experienceInfo: this.expItems,
       resume: this.candidateResume,
-      skillSet: this.selectedSkills
-    }
+      skillSet: this.selectedSkills,
+    };
     this.fullName = `${this.data.firstName} ${this.data.lastName}`;
     this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
     this.phoneNumber = `${this.data.phoneNumber}`;
@@ -253,10 +261,10 @@ onItemSelect(item: any) {
     this.source = `${this.data.source}`;
     this.notes = `${this.data.remarks}`;
     this.addedBy = `${this.data.interviewBy}`;
-    this.profileService.editCandidate(newData,this.items).subscribe((res) => {
-    });
+    this.profileService
+      .editCandidate(newData, this.items)
+      .subscribe((res) => {});
     // this.route.navigate(['candiadte']);
-    
 
     this.sidenavOpen = false;
     this.bgDark = false;
@@ -283,7 +291,6 @@ onItemSelect(item: any) {
       _id: this.data._id,
     };
     this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
-
       this.candidateStatus.push(res.data.hiringStatus);
     });
     this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
@@ -299,7 +306,7 @@ onItemSelect(item: any) {
   deleteStatus(data: any) {
     const candidateId = data.candidateId;
     const statusId = data._id;
-  
+
     this.profileService.deleteStatus(candidateId, statusId).subscribe(() => {
       this.profileService.pipeLine(candidateId).subscribe((res) => {
         this.candidateStatus = res.data.hiringStatus;
@@ -315,5 +322,4 @@ onItemSelect(item: any) {
     const file = event.target.files[0];
     this.candidateResume = file;
   }
-  
 }

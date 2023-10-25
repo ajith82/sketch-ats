@@ -103,7 +103,7 @@ export class AdminPanelComponent implements OnInit {
     this.profileService.addAdmin(this.editAdminDetails).subscribe((res) => {
       this.editPopup = false;
     });
-    window.location.reload()
+    // window.location.reload()
   }
 
   deleteRole(id:any) {

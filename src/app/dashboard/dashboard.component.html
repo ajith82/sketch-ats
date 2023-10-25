@@ -35,117 +35,27 @@
       </div>
     </div>
 
-<!-- <div>
-  <div class="FILTER">
-
-  </div>
-</div> -->
-
-
     <div class="updates">
-      <div class="offered data-card">
-        <div class="updatesHead">
-          <h6>Offered ({{ offered.length }})</h6>
-        </div>
-        <div class="updateDetails" *ngIf="offered == ''">
-          <img src="../../images/nodata.jpg" alt="nodata" />
-          <p>No data found</p>
-        </div>
-        <div class="candData">
-          <div class="candidateDetails" *ngFor="let offered of offered">
-            <div class="person">
-              <div class="candName">
-                <p>
-                  <strong>Name:</strong><span (click)="dashCandDetails(offered._id)" class="candidateFirstName">{{ offered.firstName }}</span>
-                </p>
-                <strong>{{ offered.modifiedDate | date }}</strong>
-              </div>
-
-              <ng-container *ngFor="let skills of offered.skillSet">
-                <p><strong>Skills:</strong> {{ skills.label }}</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="accepted data-card">
-        <div class="updatesHead">
-          <h6>Offer Accepted ({{ offerAccepted.length }})</h6>
-        </div>
-        <div class="updateDetails" *ngIf="offerAccepted == ''">
-          <img src="../../images/nodata.jpg" alt="nodata" />
-          <p>No data found</p>
-        </div>
-        <div class="candData">
-          <div
-            class="candidateDetails"
-            *ngFor="let offerAccept of offerAccepted"
-          >
-            <div class="person">
-              <div class="candName">
-                <p><strong>Name:</strong><span class="candidateFirstName">{{ offerAccept.firstName }}</span></p>
-                <strong>{{ offerAccept.modifiedDate | date }}</strong>
-              </div>
-              <ng-container *ngFor="let skills of offerAccept.skillSet">
-                <p><strong>Skills:</strong> {{ skills.label }}</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rejected data-card">
-        <div class="updatesHead">
-          <h6>Offer Declined ({{ candidateDeclined.length }})</h6>
-        </div>
-        <div class="updateDetails" *ngIf="candidateDeclined == ''">
-          <img src="../../images/nodata.jpg" alt="nodata" />
-          <p>No data found</p>
-        </div>
-        <div class="candData">
-          <div
-            class="candidateDetails"
-            *ngFor="let candDeclined of candidateDeclined"
-          >
-            <div class="person">
-              <div class="candName">
-                <p><strong>Name:</strong><span class="candidateFirstName">{{ candDeclined.firstName }}</span></p>
-                <strong>{{ candDeclined.modifiedDate | date }}</strong>
-              </div>
-              <ng-container *ngFor="let skills of candDeclined.skillSet">
-                <p><strong>Skills:</strong> {{ skills.label }}</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rejected data-card">
-        <div class="updatesHead">
-          <h6>Candidates Joined ({{ candidateJoined.length }})</h6>
-        </div>
-        <div class="updateDetails" *ngIf="candidateJoined == ''">
-          <img src="../../images/nodata.jpg" alt="nodata" />
-          <p>No data found</p>
-        </div>
-        <div class="candData">
-          <div
-            class="candidateDetails"
-            *ngFor="let candJoined of candidateJoined"
-          >
-            <div class="person">
-              <div class="candName">
-                <p><strong>Name:</strong><span class="candidateFirstName">{{ candJoined.firstName }}</span></p>
-                <strong>{{ candJoined.modifiedDate | date }}</strong>
-              </div>
-              <ng-container *ngFor="let skills of candJoined.skillSet">
-                <p><strong>Skills:</strong> {{ skills.label }}</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-dashboard-card
+        [item]="offered"
+        [title]="offeredTitle"
+      ></app-dashboard-card>
+      <app-dashboard-card
+        [item]="offerAccepted"
+        [title]="offerAcceptedTitle"
+      ></app-dashboard-card>
+      <app-dashboard-card
+        [item]="candidateReject"
+        [title]="offerRejectedTitle"
+      ></app-dashboard-card>
+      <app-dashboard-card
+        [item]="candidateDeclined"
+        [title]="offerDeclinedTitle"
+      ></app-dashboard-card>
+      <app-dashboard-card
+        [item]="candidateJoined"
+        [title]="joinedTitle"
+      ></app-dashboard-card>
     </div>
   </div>
 </div>
-
-
-

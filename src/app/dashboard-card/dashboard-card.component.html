@@ -1,0 +1,30 @@
+<div class="offered data-card">
+  <div class="updatesHead">
+    <h6>{{title}} ({{ item.length }})</h6>
+  </div>
+  <div class="updateDetails" *ngIf="item == ''">
+    <img src="../../images/nodata.jpg" alt="nodata" />
+    <p>No data found</p>
+  </div>
+  <div class="candData">
+    <div class="candidateDetails" *ngFor="let item of item">
+      <div class="person">
+        <div class="candName">
+          <p>
+            <strong>Name:</strong
+            ><span
+              class="candidateFirstName"
+              (click)="dashCandDetails(item._id)"
+              >{{ item.firstName }}</span
+            >
+          </p>
+          <strong>{{ item.modifiedDate | date }}</strong>
+        </div>
+
+        <ng-container *ngFor="let skills of item.skillSet">
+          <p><strong>Skills:</strong> {{ skills.label }}</p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

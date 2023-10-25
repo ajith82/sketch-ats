@@ -17,6 +17,11 @@ export class DashboardComponent implements OnInit {
   candidateJoined: any;
   candidateDeclined: any;
   offered: any;
+  offeredTitle: string = 'Offered';
+  offerAcceptedTitle:string="Offer Accepted";
+  offerDeclinedTitle:string="Offer Declined";
+  offerRejectedTitle:string="Offer rejected";
+  joinedTitle:string="Candidates Joined";
   @ViewChild(DaterangepickerDirective, { static: true })
   picker!: DaterangepickerDirective;
   selected!: { startDate: moment.Moment; endDate: moment.Moment };
@@ -45,8 +50,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.profileService.sendAnalytics().subscribe((res) => {
-    });
+    this.profileService.sendAnalytics().subscribe((res) => {});
 
     this.profileService.candidateDashboard().subscribe((res: any) => {
       this.data = res.data;
@@ -81,7 +85,7 @@ export class DashboardComponent implements OnInit {
 
   dashCandDetails(id: any) {
     this.profileService.dashCandDetails(id).subscribe((res) => {
-      this.router.navigate(['details'])
+      this.router.navigate(['details']);
     });
   }
 }
