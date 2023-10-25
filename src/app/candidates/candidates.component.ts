@@ -15,7 +15,6 @@ import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
 export class CandidatesComponent implements OnInit {
   candidateDetails: any;
   status: any;
-  length: any;
   page: number = 1;
   dataSource: any;
   config: any;
@@ -154,7 +153,8 @@ export class CandidatesComponent implements OnInit {
         this.candidateDetails
       );
       this.dataSource = new MatTableDataSource(this.candidateDetails);
-      this.length = res.data.totalCount;
+      console.log(this.totalCandidate);
+      
     });
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
@@ -222,8 +222,6 @@ export class CandidatesComponent implements OnInit {
   }
 
   resumeClick(candidate: any) {
-    // this.showSidenav = true;
-    // this.selectedCandidate = candidate;
     this.selectedCandidate = candidate;
     this.sidenavOpen = true;
     this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(

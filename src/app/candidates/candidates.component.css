@@ -34,7 +34,6 @@
   background-size: 12px;
   padding-left: 17px;
   padding-right: 10px;
-  /* border: 1px solid gray; */
   border: none;
   background-color: #fff;
   height: 36px;
@@ -105,17 +104,15 @@
   border-radius: 4px;
   align-items: center;
   padding: 0px 12px;
-  min-width: 270px;
-  /* width: 100%; */
+  min-width: 250px;
 }
 
 .startAndEndDate input {
-  width: 150px;
   height: 30px;
   background-color: #efefef;
   border: 1px solid #dddfe4;
   border-radius: 4px;
-  min-width: 270px;
+  min-width: 250px;
 }
 
 .candidateTable {
@@ -126,8 +123,7 @@
 
 .candidateTable ul {
   display: flex;
-  gap: 40px;
-  /* padding-bottom: 15px; */
+  gap: 35px;
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(193, 192, 192);
 }
@@ -140,9 +136,6 @@
 }
 .candidateTable ul li.selected {
   border-bottom: 2px solid black;
-}
-
-.bntStyle {
 }
 
 .candidateTable ul input[type="radio"] {
@@ -180,7 +173,6 @@ th {
   color: gray;
   text-align: left;
   width: 13%;
-  /* padding-left: 10px; */
 }
 
 .candidateName {
@@ -339,7 +331,6 @@ td {
   padding: 24px;
   border-radius: 18px;
   min-width: 500px;
-  /* height: 400px; */
   background-color: #ffffff;
   position: absolute;
   top: 30%;
