@@ -63,14 +63,6 @@ export class DashboardComponent implements OnInit {
       this.candidateDeclined = res.data.getCandidatesOfferDeclined;
       this.offered = res.data.getCandidatesoffered;
     });
-
-    this.profileService.getCandidates().subscribe((res) => {
-      // this.offerAccepted = res.data.getCandidatesJoined;
-      // this.candidateReject = res.data.getCandidatesRejected;
-      // this.candidateJoined = res.data.getCandidatesJoined;
-      // this.candidateDeclined = res.data.getCandidatesOfferDeclined;
-      // this.offered = res.data.getCandidatesoffered;
-    });
   }
 
   dashFilter(event: any) {
@@ -80,12 +72,6 @@ export class DashboardComponent implements OnInit {
       this.candidateJoined = res.data.getCandidatesJoined;
       this.candidateDeclined = res.data.getCandidatesOfferDeclined;
       this.offered = res.data.getCandidatesoffered;
-    });
-  }
-
-  dashCandDetails(id: any) {
-    this.profileService.dashCandDetails(id).subscribe((res) => {
-      this.router.navigate(['details']);
     });
   }
 }
