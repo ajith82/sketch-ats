@@ -21,9 +21,13 @@
           <strong>{{ item.modifiedDate | date }}</strong>
         </div>
 
-        <ng-container *ngFor="let skills of item.skillSet">
-          <p><strong>Skills:</strong> {{ skills.label }}</p>
-        </ng-container>
+        <p>
+          <strong>Skills:</strong>
+          <span *ngFor="let skills of item.skillSet; let i = index"
+            >{{ skills.label }}
+            {{ i !== item.skillSet.length - 1 ? "," : "" }}</span
+          >
+        </p>
       </div>
     </div>
   </div>
