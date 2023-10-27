@@ -14,7 +14,7 @@ export class CandidateTableComponent implements OnInit {
   @Input() hideChipsFilter = true;
   config: any;
   sidenavOpen: boolean = false;
-  sidenavOpenStatus:boolean = false;
+  sidenavOpenStatus: boolean = false;
   page: number = 1;
   resumeUrl: any;
   selectedCandidate: any;
@@ -24,6 +24,7 @@ export class CandidateTableComponent implements OnInit {
   updateCandidateStatus: any;
   comment: any;
   id: any;
+  tabMsg!: string;
 
   candidateStatusCustom = [
     { name: 'Candidates', api: 'Candidates', api_receiver: 'Candidates' },
@@ -66,8 +67,7 @@ export class CandidateTableComponent implements OnInit {
   }
 
   candidatesDetails(id: any) {
-    this.profileService.getCandidateDetails(id).subscribe((res) => {
-    });
+    this.profileService.getCandidateDetails(id).subscribe((res) => {});
     this.router.navigate(['details']);
   }
 
@@ -86,6 +86,7 @@ export class CandidateTableComponent implements OnInit {
     this.profileService
       .getCandidate(this.candidateStatusCustom[id].api)
       .subscribe((res) => {
+        this.tabMsg = res.message;
         this.config.totalItems = res.data.totalCount;
         this.candidateData = res.data.searchResults;
         window.sessionStorage.setItem('selectedIndex', id.toString());
@@ -117,8 +118,7 @@ export class CandidateTableComponent implements OnInit {
       modifiedBY: 'Ajith',
       _id: this.id,
     };
-    this.profileService.editStatus(statusUpdate).subscribe((res) => {
-    });
+    this.profileService.editStatus(statusUpdate).subscribe((res) => {});
     this.openPopup = false;
   }
 
