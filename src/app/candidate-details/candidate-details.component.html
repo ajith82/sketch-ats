@@ -50,7 +50,11 @@
           </div>
         </div>
       </div>
-      <app-details *ngIf="detailBtn == true" [sidenavOpen]="sidenavOpen" [bgDark]="bgDark"></app-details>
+      <app-details
+        *ngIf="detailBtn == true"
+        [sidenavOpen]="sidenavOpen"
+        [bgDark]="bgDark"
+      ></app-details>
       <app-candidate-pipeline
         *ngIf="pipeLineBtn == true"
         [candidateStatus]="candidateStatus"

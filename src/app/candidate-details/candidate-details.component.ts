@@ -1,15 +1,5 @@
-import { Router } from '@angular/router';
 import { ProfileService } from './../profile.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import {
-  MatAutocomplete,
-  MatAutocompleteSelectedEvent,
-} from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { map, startWith } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -26,96 +16,21 @@ export class CandidateDetailsComponent implements OnInit {
   expectedSalaryPerMonth: any;
   expectedSalaryPerYear: any;
   sidenavOpen: boolean = false;
-  showAddress: boolean = false;
   source: any;
   notes: any;
-  items: any = [];
-  expItems: any = [];
-  educationBtn: boolean = false;
-  experienceBtn: boolean = false;
-  closeResume: boolean = false;
-  candidateResume: any;
-  id = 1;
   addedBy: any;
   expectedJoiningDate: any;
   candidateStatus: any;
-  candidateStatus$!: Observable<any[]>;
-  updateCandidateStatus: any;
-  comment: any;
   isCandidate: boolean = false;
-  updatedData: any;
   detailsClicked = true;
   pipelineClicked = false;
   bgDark: boolean = false;
-  SourceArr = [
-    'Naukri',
-    'Linkedin',
-    'Monster',
-    'Indeed',
-    'Hirect',
-    'Angelist',
-    'PyjamaHr',
-    'Referral',
-    'Others',
-  ];
-  month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['React JS'];
-  allFruits: string[] = [
-    'React JS',
-    'Angular',
-    'NodeJs',
-    'Go Lang',
-    'UI UX Design',
-  ];
-  @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete!: MatAutocomplete;
-  dropdownList: any = [];
-  selectedItems: any = [];
-  dropdownSettings: any = {};
-  selectedSkills: any[] = [];
   constructor(
     private profileService: ProfileService,
-    private route: Router,
     private _location: Location
-  ) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allFruits.slice()
-      )
-    );
-  }
-  currentItem = 'Television';
+  ) {}
 
   ngOnInit(): void {
-    this.dropdownList = [
-      { item_id: 1, item_text: 'ReactJS' },
-      { item_id: 2, item_text: 'Angular' },
-      { item_id: 3, item_text: 'NodeJS' },
-      { item_id: 4, item_text: 'UI UX Design' },
-      // { item_id: 5, item_text: 'New Delhi' }
-    ];
-    // this.selectedItems = [
-    //   { item_id: 3, item_text: 'Pune' },
-    //   { item_id: 4, item_text: 'Navsari' }
-    // ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true,
-    };
-
     this.profileService.getCandDetails().subscribe((res) => {
       this.data = res.data.getCandidates;
       this.fullName = `${this.data.firstName} ${this.data.lastName}`;
@@ -129,89 +44,6 @@ export class CandidateDetailsComponent implements OnInit {
         .toISOString()
         .substr(0, 10);
     });
-    this.updateStatus();
-  }
-
-  onItemSelect(item: any) {
-    const selectedSkill = item.item_text;
-    this.selectedSkills.push({
-      label: selectedSkill,
-      value: selectedSkill,
-    });
-  }
-
-  onSelectAll(items: any) {}
-
-  add(event: MatChipInputEvent): void {
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits.push(value.trim());
-      }
-
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl.setValue(null);
-    }
-  }
-
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
-  }
-
-  addEduu() {
-    if (!this.educationBtn) {
-      this.items.push({
-        institute: '',
-        degree: '',
-        startTime: '',
-        endTime: '',
-      });
-      this.id++;
-    }
-  }
-
-  addExp() {
-    if (!this.experienceBtn) {
-      this.expItems.push({
-        company: '',
-        jobTitle: '',
-        startTime: '',
-        endTime: '',
-      });
-      this.id++;
-    }
-  }
-
-  deleteEdu(id: any) {
-    this.items.splice(id, 1);
-  }
-
-  deleteExp(id: any) {
-    this.expItems.splice(id, 1);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.skillInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(
-      (fruit) => fruit.toLowerCase().indexOf(filterValue) === 0
-    );
   }
 
   details() {
@@ -246,80 +78,7 @@ export class CandidateDetailsComponent implements OnInit {
     this.bgDark = true;
   }
 
-  editCand() {
-    const newData = {
-      ...this.data,
-      educationInfo: this.items,
-      experienceInfo: this.expItems,
-      resume: this.candidateResume,
-      skillSet: this.selectedSkills,
-    };
-    this.fullName = `${this.data.firstName} ${this.data.lastName}`;
-    this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
-    this.phoneNumber = `${this.data.phoneNumber}`;
-    this.expectedSalaryPerMonth = `${this.data.expectedSalaryPerMonth}`;
-    this.source = `${this.data.source}`;
-    this.notes = `${this.data.remarks}`;
-    this.addedBy = `${this.data.interviewBy}`;
-    this.profileService
-      .editCandidate(newData, this.items)
-      .subscribe((res) => {});
-    // this.route.navigate(['candiadte']);
-
-    this.sidenavOpen = false;
-    this.bgDark = false;
-  }
-
-  closeSidenav() {
-    this.sidenavOpen = false;
-    this.bgDark = false;
-  }
-
-  showAddressTab() {
-    this.showAddress = !this.showAddress;
-  }
-
-  changeStatus() {    
+  changeStatus() {
     this.isCandidate = true;
-  }
-
-  updateStatus() {
-    const statusUpdate = {
-      status: this.updateCandidateStatus,
-      remarks: this.comment,
-      modifiedBY: this.data.modifiedBY,
-      _id: this.data._id,
-    };
-    this.profileService.statusUpdate(statusUpdate).subscribe((res) => {
-      this.candidateStatus.push(res.data.hiringStatus);
-    });
-    this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {
-      // this.candidateStatus = res.data.hiringStatus;
-    });
-    this.isCandidate = false;
-  }
-
-  closeStatus() {
-    this.isCandidate = false;
-  }
-
-  deleteStatus(data: any) {
-    const candidateId = data.candidateId;
-    const statusId = data._id;
-
-    this.profileService.deleteStatus(candidateId, statusId).subscribe(() => {
-      this.profileService.pipeLine(candidateId).subscribe((res) => {
-        this.candidateStatus = res.data.hiringStatus;
-      });
-    });
-  }
-
-  deleteResume() {
-    this.closeResume = true;
-  }
-
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.candidateResume = file;
   }
 }
