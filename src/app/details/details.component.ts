@@ -9,7 +9,6 @@ import { ProfileService } from '../profile.service';
 export class DetailsComponent implements OnInit {
   @Input() sidenavOpen: boolean = false;
   @Input() bgDark: boolean = false;
-  detailBtn = true;
   data: any;
   month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   phoneNumber: any;
@@ -26,8 +25,8 @@ export class DetailsComponent implements OnInit {
   expItems: any = [];
   selectedSkills: any[] = [];
   dropdownSettings: any = {};
+  selectedItems:any;
   dropdownList: any = [];
-  selectedItems: any = [];
   showAddress: boolean = false;
   educationBtn: boolean = false;
   id = 1;
@@ -77,10 +76,6 @@ export class DetailsComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true,
     };
-  }
-
-  details() {
-    this.detailBtn = true;
   }
 
   closeSidenav() {
@@ -137,7 +132,6 @@ export class DetailsComponent implements OnInit {
     this.showAddress = !this.showAddress;
   }
 
-  onSelectAll(items: any) {}
 
   addEduu() {
     if (!this.educationBtn) {
