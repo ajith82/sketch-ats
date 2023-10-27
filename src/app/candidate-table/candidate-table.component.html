@@ -16,7 +16,7 @@
         </ng-container>
       </li>
     </ul>
-    <table>
+    <table *ngIf="tabMsg === 'Candidate fetched successfully'">
       <tbody>
         <tr class="mainHead">
           <th>CANDIDATE NAME</th>
@@ -84,8 +84,13 @@
         </div>
       </tbody>
     </table>
+    <div *ngIf="tabMsg == 'Search results not found'" class="ifEmpty">
+      <div class="emptyImg">
+        <img src="../../images/nodata.jpg" alt="nodata" />
+      </div>
+    </div>
   </mat-sidenav-container>
-  <div class="pagination">
+  <div class="pagination" *ngIf="tabMsg === 'Candidate fetched successfully'">
     <pagination-controls
       (pageChange)="gty((page = $event))"
     ></pagination-controls>
@@ -93,10 +98,9 @@
 </div>
 
 <div *ngIf="openPopup" class="editAdminSection">
-
-    <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpenStatus }">
-        <div class="sidenav-content">
-          <!-- <div class="editAdmin">
+  <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpenStatus }">
+    <div class="sidenav-content">
+      <!-- <div class="editAdmin">
             <div class="editAdminHead">
               <h3>User</h3>
               <img
@@ -128,8 +132,8 @@
               </div>
             </form>
           </div> -->
-        </div>
-      </div>
+    </div>
+  </div>
   <!-- <div class="editAdmin">
     <div class="editAdminHead">
       <h3>User</h3>
