@@ -25,6 +25,7 @@ export class DetailsComponent implements OnInit {
   expItems: any = [];
   selectedSkills: any[] = [];
   dropdownSettings: any = {};
+  selectedItems:any;
   dropdownList: any = [];
   showAddress: boolean = false;
   educationBtn: boolean = false;
