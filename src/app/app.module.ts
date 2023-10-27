@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireModule } from '@angular/fire/compat';
 import {
   MatIconModule,
   MatFormFieldModule,
@@ -42,15 +40,6 @@ import { DashboardCardComponent } from './dashboard-card/dashboard-card.componen
 import { CandidateTableComponent } from './candidate-table/candidate-table.component';
 import { CandidatePipelineComponent } from './candidate-pipeline/candidate-pipeline.component';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
-  authDomain: 'numeric-elixir-377706.firebaseapp.com',
-  projectId: 'numeric-elixir-377706',
-  storageBucket: 'numeric-elixir-377706.appspot.com',
-  messagingSenderId: '1088393497169',
-  appId: '1:1088393497169:web:aa34f614eba68c06098670',
-  measurementId: 'G-Q0211F5RSY',
-};
 
 @NgModule({
   declarations: [
@@ -74,8 +63,6 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
     MatIconModule,
     MatButtonModule,
     HttpClientModule,

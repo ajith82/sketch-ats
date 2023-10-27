@@ -1,21 +1,18 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { OAuthLoginI18n } from 'ngx-oauth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import * as auth from 'firebase/auth';
 import { Router, NavigationExtras } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { ProfileService } from '../profile.service';
-
+import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 @Component({
   selector: 'app-login-auth',
   templateUrl: './login-auth.component.html',
   styleUrls: ['./login-auth.component.css'],
 })
 export class LoginAuthComponent implements OnInit {
-  i18n: OAuthLoginI18n = {
-    username: 'Username',
-  };
+  // i18n: OAuthLoginI18n = {
+  //   username: 'Username',
+  // };
   state = 'some_salt_hash_or_whatever';
   useLogoutUrl = true;
   provider: any;
@@ -30,7 +27,6 @@ export class LoginAuthComponent implements OnInit {
   googleLogoURL =
     'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
   constructor(
-    private afAuth: AngularFireAuth,
     private router: Router,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
@@ -41,12 +37,38 @@ export class LoginAuthComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl(this.googleLogoURL)
     );
   }
-  ngOnInit(): void {}
+  ngOnInit(){
+    // @ts-ignore
+    window.onGoogleLibraryLoad = () => {
+      console.log('google inn');
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id: '934254784491-2nesacf8r403tr9hdbfpuln9g303nq11.apps.googleusercontent.com',
+        callback: this.handleCredentialResponse.bind(this),
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      // @ts-ignore
+      google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", width: "100%" } 
+      );
+      // @ts-ignore
+      google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+    };
+  }
+
+  async handleCredentialResponse(response:CredentialResponse ) {
+    console.log(response);
+    this.googleLogin(response.credential);
+  }
+
 
   async loginWithGoogle() {
-    this.provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(this.provider);
-    return credential;
+    // this.provider = new auth.GoogleAuthProvider();
+    // const credential = await this.afAuth.signInWithPopup(this.provider);
+    // return credential;
   }
 
   signInWithGoogle() {
@@ -71,8 +93,8 @@ export class LoginAuthComponent implements OnInit {
     //   });
   }
 
-  googleLogin() {
-    this.profileService.googleAuth().subscribe((res) => {
+  googleLogin(response:string) {
+    this.profileService.googleAuth(response).subscribe((res) => {
       this.resToken = res.data.token;
       const nameparts = res.data.name.split(' ');
       this.firstLetterFirstName = nameparts[0].charAt(0);
@@ -89,7 +111,7 @@ export class LoginAuthComponent implements OnInit {
       );
       localStorage.setItem('token', this.resToken);
       this.router.navigate(['candiadte']).then(() => {
-        // window.location.reload();
+        window.location.reload();
       });
     });
   }
