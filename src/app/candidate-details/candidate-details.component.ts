@@ -279,7 +279,7 @@ export class CandidateDetailsComponent implements OnInit {
     this.showAddress = !this.showAddress;
   }
 
-  changeStatus() {
+  changeStatus() {    
     this.isCandidate = true;
   }
 

@@ -1,0 +1,165 @@
+<div class="candidateTable">
+  <mat-sidenav-container>
+    <ul *ngIf="hideChipsFilter">
+      <li
+        (click)="candStatus(i)"
+        class="optionType"
+        [class.selected]="selectedIndex === i"
+        *ngFor="
+          let candidateStatusCustom of candidateStatusCustom;
+          let i = index
+        "
+      >
+        <input type="radio" name="" id="" />
+        <ng-container>
+          {{ candidateStatusCustom.name }}
+        </ng-container>
+      </li>
+    </ul>
+    <table>
+      <tbody>
+        <tr class="mainHead">
+          <th>CANDIDATE NAME</th>
+          <th>APPLIED ROLE</th>
+          <th>REL EXP</th>
+          <th>N PERIOD</th>
+          <th>ADDED BY</th>
+          <th>STATUS</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr
+          class="details"
+          *ngFor="
+            let candidate of candidateData | paginate : config;
+            let i = index
+          "
+        >
+          <td class="candidateName" (click)="candidatesDetails(candidate._id)">
+            {{ candidate.firstName }} {{ candidate.lastName }} <br /><span
+              class="canNum"
+              >SBC0987/Others</span
+            >
+          </td>
+          <td>{{ candidate.currentJobTitle }}</td>
+          <td>{{ candidate.relevantExperience }}</td>
+          <td>{{ candidate.noticePeriod }}</td>
+          <td class="addedBy">
+            {{ candidate.interviewBy }} <br /><span class="date">{{
+              candidate.modifiedDate | date
+            }}</span>
+          </td>
+          <td>
+            <span
+              [ngClass]="{
+                rejected: candidate.status === 'Rejected',
+                screening: candidate.status !== 'Rejected'
+              }"
+              >{{ candidate.status }}</span
+            >
+          </td>
+          <td class="document">
+            <div class="resumeDownload">
+              <img
+                (click)="resumeClick(candidate)"
+                src="../../images/resume.png"
+                alt="doc"
+              />
+            </div>
+          </td>
+          <td (click)="getCandDetails(candidate)" class="list">
+            <img src="../../images/editStatus.svg" alt="doc" />
+          </td>
+        </tr>
+        <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpen }">
+          <div class="sidenav-content">
+            <button (click)="closeSidenav()">Close</button>
+
+            <iframe
+              [src]="resumeUrl"
+              style="width: 718px; height: 100%"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+      </tbody>
+    </table>
+  </mat-sidenav-container>
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="gty((page = $event))"
+    ></pagination-controls>
+  </div>
+</div>
+
+<div *ngIf="openPopup" class="editAdminSection">
+
+    <div class="sidenav" [ngClass]="{ 'sidenav-open': sidenavOpenStatus }">
+        <div class="sidenav-content">
+          <!-- <div class="editAdmin">
+            <div class="editAdminHead">
+              <h3>User</h3>
+              <img
+                style="width: 20px"
+                src="../../images/close.svg"
+                alt="close"
+                (click)="closePopup()"
+              />
+            </div>
+            <form (ngSubmit)="updateStatus(candidatesDetails)">
+              <div class="adminRole">
+                <label for="">Change Status</label>
+                <select [(ngModel)]="updateCandidateStatus" name="status" id="">
+                  <option value="" disabled="">Please Select</option>
+                  <option
+                    value="{{ candidateStatusCustom.name }}"
+                    *ngFor="let candidateStatusCustom of candidateStatusCustom"
+                  >
+                    {{ candidateStatusCustom.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="adminName">
+                <label for="">Comments</label>
+                <input [(ngModel)]="comment" name="adminName" type="text" />
+              </div>
+              <div class="adminSubmit">
+                <button type="submit">Save</button>
+              </div>
+            </form>
+          </div> -->
+        </div>
+      </div>
+  <!-- <div class="editAdmin">
+    <div class="editAdminHead">
+      <h3>User</h3>
+      <img
+        style="width: 20px"
+        src="../../images/close.svg"
+        alt="close"
+        (click)="closePopup()"
+      />
+    </div>
+    <form (ngSubmit)="updateStatus(candidatesDetails)">
+      <div class="adminRole">
+        <label for="">Change Status</label>
+        <select [(ngModel)]="updateCandidateStatus" name="status" id="">
+          <option value="" disabled="">Please Select</option>
+          <option
+            value="{{ candidateStatusCustom.name }}"
+            *ngFor="let candidateStatusCustom of candidateStatusCustom"
+          >
+            {{ candidateStatusCustom.name }}
+          </option>
+        </select>
+      </div>
+      <div class="adminName">
+        <label for="">Comments</label>
+        <input [(ngModel)]="comment" name="adminName" type="text" />
+      </div>
+      <div class="adminSubmit">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div> -->
+</div>

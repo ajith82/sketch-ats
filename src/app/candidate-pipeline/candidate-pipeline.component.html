@@ -1,0 +1,62 @@
+<div class="pipeLine">
+    <div class="status" *ngFor="let candStatus of candidateStatus">
+      <div class="statusHead">
+        <h3>Status: {{ candStatus.status }}</h3>
+        <img
+          (click)="deleteStatus(candStatus)"
+          src="../../images/delete.svg"
+          alt="delete"
+        />
+      </div>
+      <p>Date: {{ candStatus.date | date }}</p>
+      <p>Modified By : {{ candStatus.modifiedBY }}</p>
+      <p>Remarks : {{ candStatus.remarks }}</p>
+    </div>
+
+    <!-- dropdown -->
+
+    <div *ngIf="isCandidate" class="editCandidateStatus">
+      <div class="editCand">
+        <div class="editCandHead">
+          <h3>Change Status</h3>
+          <img
+            (click)="closeStatus()"
+            style="width: 20px"
+            src="../../images/close.svg"
+            alt="close"
+          />
+        </div>
+        <form (ngSubmit)="updateStatus()">
+          <div class="changeCandStatus">
+            <label for="">Change Status</label>
+            <select
+              [(ngModel)]="updateCandidateStatus"
+              class=""
+              name="status"
+            >
+              <option value="" disabled="">Please Select</option>
+              <option value="Candidates">Candidates</option>
+              <option value="Screening">Screening</option>
+              <option value="Round 1">Round 1</option>
+              <option value="Task Verification">Validation</option>
+              <option value="Round 2">Round 2</option>
+              <option value="HR Round">HR Round</option>
+              <option value="Offered">Offered</option>
+              <option value="Offer Accepted">Accepted</option>
+              <option value="Offer Declined">Declined</option>
+              <option value="Joined">Joined</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="candidatesComments">
+            <label for="">Comments</label>
+            <input [(ngModel)]="comment" name="adminName" type="text" />
+            <span>Please add review, reference and links here </span>
+          </div>
+          <div class="statusSubmit">
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

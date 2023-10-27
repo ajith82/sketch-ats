@@ -39,6 +39,8 @@ import {
   DialogContentExampleDialog,
 } from './admin-panel/admin-panel.component';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
+import { CandidateTableComponent } from './candidate-table/candidate-table.component';
+import { CandidatePipelineComponent } from './candidate-pipeline/candidate-pipeline.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCKl_liexseAYPKW_9tr3FgN2ztobjQLzs',
@@ -66,6 +68,8 @@ const firebaseConfig = {
     AdminPanelComponent,
     DialogContentExampleDialog,
     DashboardCardComponent,
+    CandidateTableComponent,
+    CandidatePipelineComponent,
   ],
   imports: [
     BrowserModule,

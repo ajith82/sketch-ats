@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div *ngIf="detailBtn == true" class="details">
+      <!-- <div *ngIf="detailBtn == true" class="details">
         <div class="basicDetails">
           <div class="head">
             <h4>Basic Details</h4>
@@ -153,16 +153,7 @@
                         <input type="text" />
                       </div>
                     </div>
-                    <!-- <div>
-                      <label>Offered Value In LPA *</label>
-                      <input type="text">
-                    </div> -->
                   </div>
-                  <!-- <input
-                    type="text"
-                    name="firstName"
-                    [(ngModel)]="data.firstName"
-                  /> -->
                 </div>
 
                 <div style="padding-top: 30px" class="docDetails">
@@ -308,52 +299,7 @@
                       </select>
                     </div>
                     <div class="detailTwo">
-                      <!-- <label for="">Skills</label><br />
-                      <select
-                        *ngFor="let skill of data.skillSet"
-                        name="skillSet"
-                        id=""
-                      >
-                        <option value="{{ skill.value }}">
-                          {{ skill.label }}
-                        </option>
-                      </select> -->
                       <label for="">Skills</label>
-                      <!-- <mat-form-field class="example-chip-list">
-                        <mat-chip-list #chipList>
-                          <mat-chip
-                            *ngFor="let fruit of fruits"
-                            [selectable]="selectable"
-                            [removable]="removable"
-                            (removed)="remove(fruit)"
-                          >
-                            {{ fruit }}
-                            <mat-icon matChipRemove *ngIf="removable"
-                              >cancel</mat-icon
-                            >
-                          </mat-chip>
-                          <input
-                            #fruitInput
-                            [formControl]="fruitCtrl"
-                            [matAutocomplete]="auto"
-                            [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            [matChipInputAddOnBlur]="addOnBlur"
-                            (matChipInputTokenEnd)="add($event)"
-                          />
-                        </mat-chip-list>
-                        <mat-autocomplete
-                          #auto="matAutocomplete"
-                          (optionSelected)="selected($event)"
-                        >
-                          <mat-option
-                            *ngFor="let fruit of filteredFruits | async"
-                            [value]="fruit"
-                          >
-                            {{ fruit }}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field> -->
                       <ng-multiselect-dropdown
                       [placeholder]="'Select Your Skill'"
                       [settings]="dropdownSettings"
@@ -442,10 +388,6 @@
                         cols="40"
                         rows="10"
                       ></textarea>
-                      <!-- <div>
-                        <input type="checkbox" name="" id="" />
-                        <p>Same as Current Address</p>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -580,7 +522,6 @@
                         <option selected value="{{ data.status }}">
                           {{ data.status }}
                         </option>
-                        <!-- <option value="2">2</option> -->
                       </select>
                     </div>
                     <div class="detailTwo">
@@ -605,7 +546,6 @@
                         name="addedby"
                         id=""
                       >
-                        <!-- <option value="Bharathi B">Bharathi B</option> -->
                         <option selected value="{{ data.interviewBy }}">
                           {{ data.interviewBy }}
                         </option>
@@ -722,7 +662,6 @@
             </div>
             <div class="detailSec">
               <div class="candidateId" style="flex-basis: 100%">
-                <!-- <h6>No Address Info Added</h6> -->
                 <div class="addressDet">
                   <div class="currentAddress">
                     <h5>Current Address</h5>
@@ -743,8 +682,6 @@
             </div>
             <div class="detailSec">
               <div class="candidateId">
-                <!-- <h5>Candidate ID</h5>
-                <h6>{{ data.candidateID }}</h6> -->
                 <h6>No Education Info Added</h6>
               </div>
             </div>
@@ -756,15 +693,19 @@
             </div>
             <div class="detailSec">
               <div class="candidateId">
-                <!-- <h5>Candidate ID</h5>
-                <h6>{{ data.candidateID }}</h6> -->
                 <h6>No Experience Info Added</h6>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="pipeLineBtn == true" class="pipeLine">
+      </div> -->
+      <app-details *ngIf="detailBtn == true" [sidenavOpen]="sidenavOpen" [bgDark]="bgDark"></app-details>
+      <app-candidate-pipeline
+        *ngIf="pipeLineBtn == true"
+        [candidateStatus]="candidateStatus"
+        [isCandidate]="isCandidate"
+      ></app-candidate-pipeline>
+      <!-- <div *ngIf="pipeLineBtn == true" class="pipeLine">
         <div class="status" *ngFor="let candStatus of candidateStatus">
           <div class="statusHead">
             <h3>Status: {{ candStatus.status }}</h3>
@@ -779,7 +720,6 @@
           <p>Remarks : {{ candStatus.remarks }}</p>
         </div>
 
-        <!-- dropdown -->
 
         <div *ngIf="isCandidate" class="editCandidateStatus">
           <div class="editCand">
@@ -818,7 +758,6 @@
                 <label for="">Comments</label>
                 <input [(ngModel)]="comment" name="adminName" type="text" />
                 <span>Please add review, reference and links here </span>
-                <!-- <quill-editor></quill-editor> -->
               </div>
               <div class="statusSubmit">
                 <button type="submit">Save</button>
@@ -826,7 +765,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

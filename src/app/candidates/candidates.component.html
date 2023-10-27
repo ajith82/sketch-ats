@@ -116,7 +116,11 @@
         >
       </div>
     </div>
-    <div
+    <app-candidate-table
+      [candidateData]="candidateIndo"
+      [hideChipsFilter]="hideChipsFilter"
+    ></app-candidate-table>
+    <!-- <div
       *ngIf="filterMsg == 'Candidate fetched successfully'"
       class="candidateTable"
     >
@@ -137,7 +141,6 @@
             <input type="radio" name="" id="" />
             <ng-container>
               {{ candidateStatusCustom.name }}
-               <!-- - {{ totalCandidate }} -->
             </ng-container>
           </li>
         </ul>
@@ -218,7 +221,7 @@
           (pageChange)="gty((page = $event))"
         ></pagination-controls>
       </div>
-    </div>
+    </div> -->
     <div *ngIf="filterMsg == 'Search results not found'" class="ifEmpty">
       <div class="emptyImg">
         <img src="../../images/nodata.jpg" alt="nodata" />
@@ -226,7 +229,7 @@
     </div>
   </div>
 
-  <div *ngIf="openPopup" class="editAdminSection">
+  <!-- <div *ngIf="openPopup" class="editAdminSection">
     <div class="editAdmin">
       <div class="editAdminHead">
         <h3>User</h3>
@@ -259,7 +262,7 @@
         </div>
       </form>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <div id="toasterContainer"></div>
