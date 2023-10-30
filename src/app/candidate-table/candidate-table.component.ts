@@ -25,6 +25,7 @@ export class CandidateTableComponent implements OnInit {
   comment: any;
   id: any;
   tabMsg!: string;
+  candidateStatus: any;
 
   candidateStatusCustom = [
     { name: 'Candidates', api: 'Candidates', api_receiver: 'Candidates' },
@@ -105,6 +106,9 @@ export class CandidateTableComponent implements OnInit {
     this.sidenavOpenStatus = true;
     this.openPopup = true;
     this.id = data._id;
+    this.profileService.pipeLine(this.id).subscribe((res) => {
+      this.candidateStatus = res.data.hiringStatus;
+    });
   }
 
   closePopup() {

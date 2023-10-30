@@ -1,399 +1,417 @@
 .main {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(239, 237, 237);
-  }
-  
-  .container {
-    padding: 30px;
-  }
-  
-  .overviewHead h4 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 20px;
-    color: #000;
-    font-weight: 500;
-    line-height: 34px;
-  }
-  
-  .overviewAndFilter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .searchAndFilter {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-  }
-  
-  .search input {
-    background: url("../../images/search.png") no-repeat scroll 2px;
-    background-size: 12px;
-    padding-left: 17px;
-    padding-right: 10px;
-    border: none;
-    background-color: #fff;
-    height: 36px;
-    min-width: 250px !important;
-    padding: 0px 12px;
-    padding-left: 32px;
-    border: 1px solid #dddfe3;
-    outline: none;
-  }
-  
-  .filter button {
-    width: 80px;
-    padding: 4px;
-    background-color: rgb(201, 200, 200);
-    color: black;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .filterChips {
-    background-color: #fff;
-  }
-  
-  .filterChips .filter {
-    background-color: black;
-    color: #fff;
-    padding: 8px;
-    display: inline-block;
-    border-radius: 15px;
-  }
-  
-  .filterClose {
-    cursor: pointer;
-    background-color: #fff;
-    color: black;
-    padding: 2px;
-    border: none;
-    border-radius: 3px;
-  }
-  
-  .addCandidate button {
-    width: 110px;
-    background-color: black;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 0px 14px;
-    box-shadow: none !important;
-    cursor: pointer;
-    min-width: 120px;
-    height: 36px;
-  }
-  
-  .filterSec {
-    background-color: #fff;
-    padding: 15px;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .filterSec select {
-    width: 150px;
-    height: 30px;
-    background-color: #efefef;
-    border: 1px solid #dddfe4;
-    border-radius: 4px;
-    align-items: center;
-    padding: 0px 12px;
-    min-width: 250px;
-  }
-  
-  .startAndEndDate input {
-    height: 30px;
-    background-color: #efefef;
-    border: 1px solid #dddfe4;
-    border-radius: 4px;
-    min-width: 250px;
-  }
-  
-  .candidateTable {
-    background-color: #fff;
-    padding: 20px;
-    margin-top: 15px;
-  }
-  
-  .candidateTable ul {
-    display: flex;
-    gap: 35px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgb(193, 192, 192);
-  }
-  
-  .candidateTable ul li {
-    list-style-type: none;
-    white-space: nowrap;
-    cursor: pointer;
-    padding-bottom: 10px;
-  }
-  .candidateTable ul li.selected {
-    border-bottom: 2px solid black;
-  }
-  
-  .candidateTable ul input[type="radio"] {
-    display: none;
-  }
-  
-  .candidateTable ul li :active {
-    border-bottom: 2px solid black;
-    font-weight: 800;
-  }
-  
-  .candidateTable ul li:target {
-    border-bottom: 2px solid black;
-    font-weight: 800;
-  }
-  
-  .candidateTable input[type="radio"]:checked + .optionType {
-    border-bottom: 2px solid black;
-    font-weight: 800;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .mainHead {
-    background-color: rgb(239, 237, 237);
-    height: 50px;
-  }
-  
-  th {
-    font-size: 12px;
-    font-weight: 600;
-    color: gray;
-    text-align: left;
-    width: 13%;
-  }
-  
-  .candidateName {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 5px;
-    color: skyblue;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
-  .canNum {
-    color: gray;
-    font-weight: 200;
-  }
-  
-  td {
-    font-size: 12px;
-    font-weight: 600;
-  }
-  
-  .document {
-    text-align: right;
-  }
-  
-  .resumeDownload {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .document img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .list {
-    text-align: center;
-  }
-  
-  .list img {
-    cursor: pointer;
-  }
-  
-  .date {
-    color: gray;
-    font-weight: 300;
-  }
-  
-  .addedBy {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 5px;
-  }
-  
-  .rejected {
-    color: red;
-    font-weight: 600;
-    background-color: rgb(249, 178, 178);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
-  }
-  
-  .screening {
-    color: gray;
-    font-weight: 600;
-    background-color: rgb(217, 216, 216);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
-  }
-  
-  .DSRound {
-    color: gray;
-    font-weight: 600;
-    background-color: rgb(217, 216, 216);
-    width: 80px;
-    padding: 3px;
-    border-radius: 5px;
-  }
-  
-  .details {
-    height: 50px;
-    border-bottom: 1px solid rgb(205, 204, 204);
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-  }
-  
-  .sidenav {
-    position: fixed;
-    top: 0;
-    right: -700px;
-    height: 100%;
-    width: 700px;
-    z-index: 1;
-    background-color: #fff;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav-open {
-    right: 0;
-  }
-  
-  .sidenav-content {
-    height: 100%;
-  }
-  
-  .sidenav button {
-    display: flex;
-    margin-right: 0;
-    margin-left: auto;
-    cursor: pointer;
-    background-color: red;
-    color: #fff;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .ifEmpty {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
-    background-color: #ffffff;
-  }
-  
-  .emptyImg img {
-    height: 100px;
-  }
-  
-  /* Edit status popup */
-  
-  .editAdminSection {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 3;
-    background-color: #01010187;
-  }
-  .editAdmin {
-    padding: 24px;
-    border-radius: 18px;
-    min-width: 500px;
-    background-color: #ffffff;
-    position: absolute;
-    top: 30%;
-    left: 35%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  .editAdminHead {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    margin-bottom: 10px;
-    padding: 0 0 12px;
-  }
-  .editAdminHead img {
-    cursor: pointer;
-  }
-  .editAdmin form {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 25px;
-  }
-  .adminName,
-  .adminEmail,
-  .adminRole {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .adminSubmit {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .editAdmin button {
-    min-width: 120px;
-    cursor: pointer;
-    background-color: #191919;
-    color: #fff;
-    text-decoration: none;
-    height: 36px;
-    display: flex;
-    border-radius: 4px;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 14px;
-    border: 1px solid #191919;
-  }
-  
-  #toasterContainer {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 3;
-  }
-  
-  #toasterContainer.show {
-    opacity: 1;
-  }
-  
+  width: 100%;
+  height: 100%;
+  background-color: rgb(239, 237, 237);
+}
+
+.container {
+  padding: 30px;
+}
+
+.overviewHead h4 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: #000;
+  font-weight: 500;
+  line-height: 34px;
+}
+
+.overviewAndFilter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchAndFilter {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.search input {
+  background: url("../../images/search.png") no-repeat scroll 2px;
+  background-size: 12px;
+  padding-left: 17px;
+  padding-right: 10px;
+  border: none;
+  background-color: #fff;
+  height: 36px;
+  min-width: 250px !important;
+  padding: 0px 12px;
+  padding-left: 32px;
+  border: 1px solid #dddfe3;
+  outline: none;
+}
+
+.filter button {
+  width: 80px;
+  padding: 4px;
+  background-color: rgb(201, 200, 200);
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filterChips {
+  background-color: #fff;
+}
+
+.filterChips .filter {
+  background-color: black;
+  color: #fff;
+  padding: 8px;
+  display: inline-block;
+  border-radius: 15px;
+}
+
+.filterClose {
+  cursor: pointer;
+  background-color: #fff;
+  color: black;
+  padding: 2px;
+  border: none;
+  border-radius: 3px;
+}
+
+.addCandidate button {
+  width: 110px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0px 14px;
+  box-shadow: none !important;
+  cursor: pointer;
+  min-width: 120px;
+  height: 36px;
+}
+
+.filterSec {
+  background-color: #fff;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.filterSec select {
+  width: 150px;
+  height: 30px;
+  background-color: #efefef;
+  border: 1px solid #dddfe4;
+  border-radius: 4px;
+  align-items: center;
+  padding: 0px 12px;
+  min-width: 250px;
+}
+
+.startAndEndDate input {
+  height: 30px;
+  background-color: #efefef;
+  border: 1px solid #dddfe4;
+  border-radius: 4px;
+  min-width: 250px;
+}
+
+.candidateTable {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.candidateTable ul {
+  display: flex;
+  gap: 35px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(193, 192, 192);
+}
+
+.candidateTable ul li {
+  list-style-type: none;
+  white-space: nowrap;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+.candidateTable ul li.selected {
+  border-bottom: 2px solid black;
+}
+
+.candidateTable ul input[type="radio"] {
+  display: none;
+}
+
+.candidateTable ul li :active {
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
+
+.candidateTable ul li:target {
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
+
+.candidateTable input[type="radio"]:checked + .optionType {
+  border-bottom: 2px solid black;
+  font-weight: 800;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mainHead {
+  background-color: rgb(239, 237, 237);
+  height: 50px;
+}
+
+th {
+  font-size: 12px;
+  font-weight: 600;
+  color: gray;
+  text-align: left;
+  width: 13%;
+}
+
+.candidateName {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
+  color: skyblue;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.canNum {
+  color: gray;
+  font-weight: 200;
+}
+
+td {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.document {
+  text-align: right;
+}
+
+.resumeDownload {
+  width: 20px;
+  height: 20px;
+}
+
+.document img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.list {
+  text-align: center;
+}
+
+.list img {
+  cursor: pointer;
+}
+
+.date {
+  color: gray;
+  font-weight: 300;
+}
+
+.addedBy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
+}
+
+.rejected {
+  color: red;
+  font-weight: 600;
+  background-color: rgb(249, 178, 178);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.screening {
+  color: gray;
+  font-weight: 600;
+  background-color: rgb(217, 216, 216);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.DSRound {
+  color: gray;
+  font-weight: 600;
+  background-color: rgb(217, 216, 216);
+  width: 80px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.details {
+  height: 50px;
+  border-bottom: 1px solid rgb(205, 204, 204);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  right: -700px;
+  height: 100%;
+  width: 700px;
+  z-index: 1;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav-open {
+  right: 0;
+}
+
+.sidenav-content {
+  height: 100%;
+}
+
+.sidenav button {
+  display: flex;
+  margin-right: 0;
+  margin-left: auto;
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.ifEmpty {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  background-color: #ffffff;
+}
+
+.emptyImg img {
+  height: 100px;
+}
+
+.pipelineShow {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 500px;
+  height: 100vh;
+  overflow: scroll;
+  padding: 20px;
+  background: white;
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.3s ease;
+}
+
+.pipelineShowActive {
+  right: 0;
+  transition: all 0.3s ease;
+}
+
+/* Edit status popup */
+
+.editAdminSection {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  background-color: #01010187;
+}
+.editAdmin {
+  padding: 24px;
+  border-radius: 18px;
+  min-width: 500px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.editAdminHead {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  padding: 0 0 12px;
+}
+.editAdminHead img {
+  cursor: pointer;
+}
+.editAdmin form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 25px;
+}
+.adminName,
+.adminEmail,
+.adminRole {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.adminSubmit {
+  display: flex;
+  justify-content: flex-end;
+}
+.editAdmin button {
+  min-width: 120px;
+  cursor: pointer;
+  background-color: #191919;
+  color: #fff;
+  text-decoration: none;
+  height: 36px;
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 14px;
+  border: 1px solid #191919;
+}
+
+#toasterContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+#toasterContainer.show {
+  opacity: 1;
+}

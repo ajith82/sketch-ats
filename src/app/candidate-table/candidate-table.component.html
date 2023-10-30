@@ -96,3 +96,8 @@
     ></pagination-controls>
   </div>
 </div>
+<div class="pipelineShow" [ngClass]="{ pipelineShowActive: sidenavOpenStatus }">
+  <app-candidate-pipeline
+    [candidateStatus]="candidateStatus"
+  ></app-candidate-pipeline>
+</div>

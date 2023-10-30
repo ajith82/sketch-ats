@@ -38,8 +38,6 @@ export class CandidatePipelineComponent implements OnInit {
   }
 
   updateStatus() {
-    console.log(this.data);
-
     const statusUpdate = {
       status: this.updateCandidateStatus,
       remarks: this.comment,
