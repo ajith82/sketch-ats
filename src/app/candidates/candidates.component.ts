@@ -152,9 +152,7 @@ export class CandidatesComponent implements OnInit {
       this.dataSourceWithPageSize = new MatTableDataSource(
         this.candidateDetails
       );
-      this.dataSource = new MatTableDataSource(this.candidateDetails);
-      console.log(this.totalCandidate);
-      
+      this.dataSource = new MatTableDataSource(this.candidateDetails);    
     });
 
     this.selectedFilter = sessionStorage.getItem('selectedFilter') || '';
