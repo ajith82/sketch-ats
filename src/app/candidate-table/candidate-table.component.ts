@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CandidateTableComponent implements OnInit {
   @Input() candidateData: any = '';
   @Input() hideChipsFilter = true;
+  statusSideOpen: boolean = false;
   config: any;
   sidenavOpen: boolean = false;
   sidenavOpenStatus: boolean = false;
@@ -104,6 +105,7 @@ export class CandidateTableComponent implements OnInit {
 
   getCandDetails(data: any) {
     this.sidenavOpenStatus = true;
+    this.statusSideOpen = true;
     this.openPopup = true;
     this.id = data._id;
     this.profileService.pipeLine(this.id).subscribe((res) => {
@@ -132,5 +134,9 @@ export class CandidateTableComponent implements OnInit {
       this.candidateData = res.data.searchResults;
     });
     this.router.navigate(['candiadte'], { queryParams: { page: newPage } });
+  }
+
+  addItem(newItem: any) {
+    this.statusSideOpen = false;
   }
 }

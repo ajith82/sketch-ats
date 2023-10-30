@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 import { ProfileService } from '../profile.service';
 
 @Component({
@@ -9,10 +10,13 @@ import { ProfileService } from '../profile.service';
 export class CandidatePipelineComponent implements OnInit {
   @Input() candidateStatus: any;
   @Input() isCandidate: boolean = false;
+  @Output() newItemEvent = new EventEmitter<string>();
+
   pipeLineBtn = false;
   updateCandidateStatus: any;
   comment: any;
   data: any;
+  window = window;
 
   constructor(private profileService: ProfileService) {}
 
@@ -49,5 +53,9 @@ export class CandidatePipelineComponent implements OnInit {
     });
     this.profileService.pipeLine(statusUpdate._id).subscribe((res) => {});
     this.isCandidate = false;
+  }
+
+  closeStatusTab(value: any) {
+    this.newItemEvent.emit(value);
   }
 }

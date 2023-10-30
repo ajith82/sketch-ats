@@ -1,4 +1,3 @@
-
 .pipeLine .status {
   border-bottom: 1px solid #dddfe4;
   padding-top: 15px;
@@ -8,6 +7,39 @@
   padding-bottom: 16px;
   font-size: 18px;
   color: #575757;
+}
+
+.pipeLine .checkStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+}
+
+.pipeLine .statusCand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusCand img {
+  max-width: 25px;
+  cursor: pointer;
+}
+
+.statusCand button {
+  width: 110px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0px 14px;
+  box-shadow: none !important;
+  cursor: pointer;
+  min-width: 120px;
+  height: 36px;
 }
 
 .pipeLine .status p {
