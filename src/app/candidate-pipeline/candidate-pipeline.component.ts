@@ -58,4 +58,8 @@ export class CandidatePipelineComponent implements OnInit {
   closeStatusTab(value: any) {
     this.newItemEvent.emit(value);
   }
+
+  openPopup() {
+    this.isCandidate = true;
+  }
 }

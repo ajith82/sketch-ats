@@ -2,7 +2,7 @@
   <div *ngIf="window.location.pathname === '/candiadte'" class="checkStatus">
     <h2>Pipeline</h2>
     <div class="statusCand">
-      <button>Change Status</button>
+      <button (click)="openPopup()">Change Status</button>
       <img
         src="../../images/close.svg"
         alt="close"
@@ -10,6 +10,7 @@
       />
     </div>
   </div>
+
   <div class="status" *ngFor="let candStatus of candidateStatus">
     <div class="statusHead">
       <h3>Status: {{ candStatus.status }}</h3>
