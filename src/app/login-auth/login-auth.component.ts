@@ -40,7 +40,6 @@ export class LoginAuthComponent implements OnInit {
   ngOnInit(){
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
-      console.log('google inn');
       // @ts-ignore
       google.accounts.id.initialize({
         client_id: '934254784491-2nesacf8r403tr9hdbfpuln9g303nq11.apps.googleusercontent.com',
@@ -60,7 +59,6 @@ export class LoginAuthComponent implements OnInit {
   }
 
   async handleCredentialResponse(response:CredentialResponse ) {
-    console.log(response);
     this.googleLogin(response.credential);
   }
 

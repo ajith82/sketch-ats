@@ -55,6 +55,7 @@ export class DetailsComponent implements OnInit {
 
     this.profileService.getCandDetails().subscribe((res) => {
       this.data = res.data.getCandidates;
+      sessionStorage.setItem("data", JSON.stringify(this.data));
       this.fullName = `${this.data.firstName} ${this.data.lastName}`;
       this.phoneNumber = `${this.data.phoneNumber}`;
       this.expectedSalaryPerYear = `${this.data.expectedSalaryPerYear}`;
@@ -65,6 +66,15 @@ export class DetailsComponent implements OnInit {
       this.expectedJoiningDate = new Date(this.data.expectedJoiningDate)
         .toISOString()
         .substr(0, 10);
+        sessionStorage.setItem("data", JSON.stringify(this.data));
+        // sessionStorage.setItem("fullName", JSON.stringify(this.fullName));
+        // sessionStorage.setItem("phoneNumber", JSON.stringify(this.phoneNumber));
+        // sessionStorage.setItem("expectedSalaryPerYear", JSON.stringify(this.expectedSalaryPerYear));
+        // sessionStorage.setItem("expectedSalaryPerMonth", JSON.stringify(this.expectedSalaryPerMonth));
+        // sessionStorage.setItem("source", JSON.stringify(this.source));
+        // sessionStorage.setItem("notes", JSON.stringify(this.notes));
+        // sessionStorage.setItem("addedBy", JSON.stringify(this.addedBy));
+        // sessionStorage.setItem("expectedJoiningDate", JSON.stringify(this.expectedJoiningDate));
     });
 
     this.dropdownSettings = {
