@@ -19,20 +19,20 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {    
-    this.profileService.getDetails().subscribe((res) => {
-      this.details = res;
-      this.details.length
+    // this.profileService.getDetails().subscribe((res) => {
+    //   this.details = res;
+    //   this.details.length
 
-      this.location = location.href;
+    //   this.location = location.href;
       
 
 
-      // this.router.events.subscribe(event => {
-      //   if (event instanceof NavigationEnd) {
-      //     window.location.reload();
-      //   }
-      // });
-    })
+    //   // this.router.events.subscribe(event => {
+    //   //   if (event instanceof NavigationEnd) {
+    //   //     window.location.reload();
+    //   //   }
+    //   // });
+    // })
   }
 
 }

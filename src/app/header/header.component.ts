@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       this.userLogo = res;
       this.details = res;
       this.selectedOne = this.details[this.details.length - 1];
-      this.photoUrl = this.selectedOne.user.photoURL;
+      this.photoUrl = this.selectedOne?.user.photoURL;
     });
     this.isAdminPage = window.location.pathname === '/admin';
     this.isHomePage = window.location.pathname === '/';

@@ -147,8 +147,8 @@ export class CandidatesComponent implements OnInit {
         this.candidateIndo = res.data.searchResults;
       }
       this.filterMsg = res.message;
-      this.totalCandidate = res.data.totalCount;
-      this.candidateDetails = res.data.getCandidates;
+      this.totalCandidate = res.data?.totalCount;
+      this.candidateDetails = res.data?.getCandidates;
       this.dataSourceWithPageSize = new MatTableDataSource(
         this.candidateDetails
       );
@@ -411,8 +411,8 @@ export class CandidatesComponent implements OnInit {
   }
 
   date() {
-    const endDate = this.selected.endDate;
-    const endDateValue = endDate.get('date');
+    const endDate = this.selected?.endDate;
+    const endDateValue = endDate?.get('date');
   }
 
   addOption(event: any): void {

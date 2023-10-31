@@ -22,7 +22,7 @@ export class CandidatePipelineComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getCandDetails().subscribe((res) => {
-      this.data = res.data.getCandidates;
+      this.data = res.data?.getCandidates;
     });
   }
 
