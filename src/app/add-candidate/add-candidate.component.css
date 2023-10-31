@@ -27,10 +27,11 @@ form h3 {
   line-height: 34px;
   color: #575757;
   border-bottom: 1px solid #dddfe4;
+  padding-bottom: 4px;
 }
 
 form h3:nth-last-child(-n + 3) {
-  border-bottom: none;
+  /* border-bottom: none; */
 }
 
 form label {
@@ -40,7 +41,7 @@ form label {
 }
 
 .uploadResume {
-  padding-bottom: 10px;
+  padding-bottom: 18px;
 }
 
 .uploadResume h3 {
@@ -51,25 +52,31 @@ form label {
 
 .uploadResume label {
   padding-top: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  letter-spacing: 0.2px;
 }
 .basic {
   /* display: flex; */
 }
 
 .basicDetails {
-  display: flex;
-  gap: 20px;
+  gap: 24px;
   padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
 }
 
 .basicDetails input {
-  min-width: 400px;
-  height: 25px;
+  width: 100%;
+  height: 28px;
   border: 1px solid rgb(187, 186, 186);
+  border-radius: 4px;
 }
 
 .proDetails {
-  padding-top: 80px;
+  padding-top: 18px;
 }
 
 .proDetails h3 {
@@ -352,4 +359,99 @@ input:checked ~ .tab-content {
   display: flex;
   width: 92%;
   justify-content: right;
+}
+.basicDetails label{
+  display: block;
+  font-family: Apple-System, Arial, Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', STXihei, sans-serif;
+  margin-bottom: 12px;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+}
+
+.mandatoryIcon{
+  color: red;
+  position: relative;
+  top: 3px;
+  left: 4px;
+  font-weight: 500;
+}
+
+.heading h4{
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.7px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.formGroupTitle{
+  display: block;
+  padding-bottom: 10px;
+}
+
+.formField,.form_field_single input{
+  border-radius: 4px;
+  height: 35px;
+}
+
+.professionalDetailSection{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 30px 20px;
+}
+
+.formFields{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.formFields select, .formFields input, .form_field_single select, .form_field_single input{
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.angular-editor-toolbar{
+  background-color: transparent !important;
+  border: none !important;
+}
+
+::ng-deep .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button{
+  border: transparent !important;
+}
+
+::ng-deep .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button:hover ,
+::ng-deep .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button.active{
+  background-color: transparent !important;
+  color: #06c !important; 
+}
+
+.angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button.active:hover{
+  background-color:transparent !important;
+}
+
+::ng-deep .angular-editor-toolbar .angular-editor-toolbar-set{
+  margin-right : 4px !important;
+}
+
+::ng-deep .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button{
+  margin-inline: 2px;
+  font-size: 16px;
+  color: #737272;
+}
+
+::ng-deep .ae-font .ae-picker-options .ae-picker-item.focused, ::ng-deep .ae-font .ae-picker-options .ae-picker-item:hover{
+  background-color: lightgray !important;
+}
+
+::ng-deep .angular-editor-toolbar{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 6px 0 0 0 !important;
+  
+}
+
+::ng-deep .angular-editor{
+  border: 1px solid lightgrey;
 }

@@ -1,7 +1,7 @@
 <div class="main">
   <div class="container">
     <div class="heading">
-      <h4>Add Candidate</h4>
+      <h4 [routerLink]="['/candiadte']">Add Candidate</h4>
     </div>
     <div class="form">
       <form
@@ -11,7 +11,7 @@
         <div class="uploadResume">
           <h3>Upload Resume</h3>
           <ng-container *ngFor="let resume of resume">
-            <label for="">{{ resume.fieldDisplayName }}</label
+            <label for="">{{ resume.fieldDisplayName }}<span class="mandatoryIcon">*</span></label
             >
             <input
               (change)="onFileSelected($event)"
@@ -30,7 +30,7 @@
         <div class="basicDetails">
           <div *ngFor="let form of basicDetails; let i = index">
             <ng-container *ngIf="form.modelType == 'details'">
-              <label>{{ form.fieldDisplayName }}</label
+              <label>{{ form.fieldDisplayName }}<span class="mandatoryIcon">*</span></label
               >
               <input
                 [(ngModel)]="form.value"
@@ -44,7 +44,7 @@
             </ng-container>
           </div>
         </div>
-        <div class="proDetails">
+        <!-- <div class="proDetails">
           <h3>Professional Details</h3>
           <div class="exp">
             <h5>Total Experience</h5>
@@ -214,19 +214,219 @@
               </ng-container>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="proDetails">
+          <h3>Professional Details</h3>
+          <div class="professionalDetails">
+            <div class="professionalDetailSection pdSection1">
+              <div class="form-group">
+                <label class="formGroupTitle">Total Experience <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_totalExp formFields">
+                  <div>
+                    <label class="formGroupTitle">Years</label>
+                    <select name="totalExp" id="totalExp" class="formField" [(ngModel)] = "pdDetails.totalExperience">
+                      <option value="" disabled selected>Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>  
+                  </div>
+                  <div>
+                    <label class="formGroupTitle">Months</label>
+                    <select name="totalExp" id="totalExp" class="formField" [(ngModel)] = "pdDetails.totalMonthOfExperience">
+                      <option value="" disabled selected>Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>                      
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>  
+                  </div>    
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Relevant Experience <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_relevantExp formFields">
+                  <div>
+                    <label class="formGroupTitle">Years</label>
+                    <select name="totalExp" id="totalExp" class="formField" [(ngModel)] = "pdDetails.relevantExperience">
+                      <option value="" disabled selected>Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>  
+                  </div>
+                  <div>
+                    <label class="formGroupTitle">Months</label>
+                    <select name="totalExp" id="totalExp" class="formField" [(ngModel)] = "pdDetails.totalMonthOfRelevantExperience">
+                      <option value="" disabled selected>Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>                      
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>  
+                  </div>    
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Current Salary <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_currentSalary formFields">
+                  <div>
+                    <label class="formGroupTitle">Per Year</label>
+                    <input name="currentYearSalary" id="currentYearSalary" class="formField" [(ngModel)] = "pdDetails.currentSalaryPerYear">
+                  </div>
+                  <div>
+                    <label class="formGroupTitle">Per Month</label>
+                    <input name="currentMonthSalary" id="currentMonthSalary" class="formField" [(ngModel)] = "pdDetails.currentSalaryPerMonth">
+                  </div>    
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Expected Salary <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_expSalary formFields">
+                  <div>
+                    <label class="formGroupTitle">Per Year</label>
+                    <input name="expectedYearSalary" id="expectedYearSalary" class="formField" [(ngModel)] = "pdDetails.expectedSalaryPerYear">
+                  </div>
+                  <div>
+                    <label class="formGroupTitle">Per Month</label>
+                    <input name="expectedMonthSalary" id="expectedMonthSalary" class="formField" [(ngModel)] = "pdDetails.expectedSalaryPerMonth">
+                  </div>    
+                </div> 
+              </div> 
+              <div class="form-group">
+                <label class="formGroupTitle"> Applied role <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_currentJobTitle  form_field_single">
+                  <div>
+                    <select name="currentJobTitle" id="currentJobTitle" class="formField" [(ngModel)] = "pdDetails.currentJobTitle">
+                      <option value="" disabled selected>Select</option>
+                      <option value="UI/UX">UI/UX</option>
+                      <option value="React">React</option>
+                      <option value="Angular JS">Angular JS</option>
+                      <option value="React Native">React Native</option>
+                    </select>  
+                  </div>  
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Skills<span class="mandatoryIcon">*</span></label> 
+                <div class="formField_skillSet form_field_single">
+                  <div>
+                    <select name="totalExp" id="totalExp" class="formField" [(ngModel)] = "pdDetails.skillSet" multiple size="3">
+                      <option value="" disabled selected>Select</option>
+                      <option value="[{'label':'React','value':'React'}]">React</option>
+                      <option value="[{'label':'Angular Js','value':'Angular Js'}]">Angular JS</option>
+                      <option value="[{'label':'React Native','value':'React Native'}]">React Native</option>
+                      <option value="[{'label':'Angular','value':'Angular'}]">Angular</option>
+                      <option value="[{'label':'Vue Js'value':'Vue Js'}]">Vue Js</option>
+                    </select>  
+                  </div> 
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Expected Joining Date</label> 
+                <div class="formField_expectedJoiningDate form_field_single">
+                  <div>
+                    <input type="date"  name="expectedJoiningDate" id="expectedJoiningDate" class="formField" [(ngModel)] = "pdDetails.expectedJoiningDate">
+                  </div>    
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle"> Notice period <span class="mandatoryIcon">*</span></label> 
+                <div class="formField_noticePeriod form_field_single">
+                  <div>
+                    <select name="noticePeriod" id="noticePeriod" class="formField" [(ngModel)] = "pdDetails.noticePeriod">
+                      <option value="" disabled selected>Select</option>
+                      <option value="15 days">15 days</option>
+                      <option value="30 days">30 days</option>
+                      <option value="45 days">45 days</option>
+                      <option value="60 days">60 days</option>
+                      <option value="Immediate Joiner">Immediate Joiner</option>
+                    </select> 
+                  </div>
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle"> Other Offers </label> 
+                <div class="formField_otherOffers form_field_single">
+                  <div>
+                    <select name="otherOffers" id="otherOffers" class="formField" [(ngModel)] = "pdDetails.otherOffers">
+                      <option value=true>Yes</option>
+                      <option value=false>No</option>
+                    </select>  
+                  </div>  
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle"> Offered Value in LPA </label> 
+                <div class="formField_offeredValue form_field_single">
+                  <div>
+                     <input type="text" name="offeredValue" id="offeredValue" [(ngModel)]="pdDetails.offeredValue"
+                     [disabled]="pdDetails.otherOffers=='true' ? false : true"/>
+                  </div>  
+                </div> 
+              </div> 
+              <div class="form-group">
+                <label class="formGroupTitle">Serving Notice Period 
+                  <span>
+                    <input type="checkbox" for="isNegotiable" [(ngModel)]="pdDetails.isNegotiable" style="margin-inline: 10px;"/>
+                    <label id="isNegotiable">NP Negotiable</label>
+                  </span>
+                </label> 
+                <div class="formField_otherOffers form_field_single">
+                  <div>
+                    <select name="servedNoticePeriod" id="servedNoticePeriod" class="formField" [(ngModel)] = "pdDetails.servedNoticePeriod">
+                      <option value=true>Yes</option>
+                      <option value=false>No</option>
+                    </select>  
+                  </div>  
+                </div> 
+              </div>
+              <div class="form-group">
+                <label class="formGroupTitle">Source </label> 
+                <div class="formField_otherOffers form_field_single">
+                  <div>
+                    <select name="source" id="source" class="formField" [(ngModel)] = "pdDetails.source">
+                      <option value='Nakuri'>Nakuri</option>
+                      <option value='LinkedIn'>LinkedIn</option>
+                      <option value='Indeed'>Indeed</option>
+                      <option value='Referral'>Referral</option>
+                      <option value='Others'>Others</option>
+                    </select>  
+                  </div>  
+                </div> 
+              </div>                  
+            </div>
+          </div>
         </div>
-        <div class="notes" *ngFor="let notes of any">
-          <label for="">{{ notes.fieldDisplayName }}</label
-          >
-          <textarea
-            [(ngModel)]="notes.value"
-            name="{{ notes.fieldName }}"
-            id=""
-            cols="206"
-            rows="8"
-          ></textarea><br>
-          <span *ngIf="userForm.submitted && !notes.value" style="color: red;">{{notes.fieldName}} Required</span>
+
+        <div class="notes">
+          <label for="" style="display: block; padding-bottom: 20px;">Notes</label>
+          <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="pdDetails.remarks" [config]="editorConfig"></angular-editor>
+          <!-- <span *ngIf="userForm.submitted && !notes.value" style="color: red;">{{notes.fieldName}} Required</span> -->
         </div>
+
         <div class="address">
           <div class="tabs">
             <div class="tab">

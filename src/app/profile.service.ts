@@ -127,12 +127,12 @@ export class ProfileService {
   addCandidate(
     data: any,
     res: any,
-    skill: any,
+    // skill: any,
     edu: any,
     exp: any
   ): Observable<any> {
     let resume = res;
-    let skillSet = skill;
+    // let skillSet = skill;
     let eduArr = edu;
     let expArr = exp;
     var reqHeader = new HttpHeaders({
@@ -144,8 +144,9 @@ export class ProfileService {
     let map = Object.keys(data).map((key) => {
       fd.append(key, data[key]);
     });
+    // fd.append('status','Candidate');
     fd.append('resume', resume);
-    fd.append('skillSet', JSON.stringify(skillSet));
+    // fd.append('skillSet', JSON.stringify(skillSet));
     fd.append('educationInfo', JSON.stringify(eduArr));
     fd.append('experienceInfo', JSON.stringify(expArr));
 

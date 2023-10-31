@@ -39,7 +39,7 @@ import {
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import { CandidateTableComponent } from './candidate-table/candidate-table.component';
 import { CandidatePipelineComponent } from './candidate-pipeline/candidate-pipeline.component';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -80,8 +80,9 @@ import { CandidatePipelineComponent } from './candidate-pipeline/candidate-pipel
     MatSidenavModule,
     MatChipsModule,
     MatDialogModule,
-    NgMultiSelectDropDownModule.forRoot()
-    // QuillModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    // QuillModule.forRoot(),
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

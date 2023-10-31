@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { form } from '../formData/candidateForm';
+// import { form } from '../formData/candidateForm';
 import { resume } from '../formData/resume';
 import { basicDetails } from '../formData/basicDetails';
 import { professionalDetails } from '../formData/professionalDetails';
@@ -9,6 +9,7 @@ import { education } from '../formData/education';
 import { experience } from '../formData/experience';
 import { NgForm } from '@angular/forms';
 import { ProfileService } from '../profile.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-candidate',
@@ -19,7 +20,7 @@ export class AddCandidateComponent implements OnInit {
   resume = resume;
   basicDetails = basicDetails;
   professionalDetails = professionalDetails;
-  any = form;
+  // any = form;
   address = address;
   education = education;
   experience = experience;
@@ -118,6 +119,80 @@ export class AddCandidateComponent implements OnInit {
   };
 
   constructor(private profileService: ProfileService, private route: Router) {}
+
+  editorConfig: AngularEditorConfig = {
+      editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '150px',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'undo',
+        'redo',
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'fontName'
+      ],
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'customClasses',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'removeFormat',
+        'toggleEditorMode'
+      ]
+    ]
+  };
+
+  pdDetails : any = {
+    isNegotiable: false,
+    interviewBy : 'Ajith',
+    // status:'Canditate'
+  };
 
   ngOnInit(): void {}
 
@@ -382,18 +457,23 @@ export class AddCandidateComponent implements OnInit {
     this.detailsObject.expDetails = expDetails;
   }
 
+
   submitData(form: NgForm, resume: any) {
+    
     const detailsObject: any = {};
+    this.detailsObject.status = 'Candidate';
+    this.detailsObject = {...this.detailsObject ,...this.pdDetails};
+    console.log('this.detailsObject  ',this.detailsObject);
     if (form.valid) {
       this.basicDetails.forEach((detail) => {
         this.detailsObject[detail.fieldName] = detail.value;
       });
-      this.professionalDetails.forEach((detail) => {
-        this.detailsObject[detail.fieldName] = detail.value;
-      });
-      this.any.forEach((detail) => {
-        this.detailsObject[detail.fieldName] = detail.value;
-      });
+      // this.professionalDetails.forEach((detail) => {
+      //   this.detailsObject[detail.fieldName] = detail.value;
+      // });
+      // this.any.forEach((detail) => {
+      //   this.detailsObject[detail.fieldName] = detail.value;
+      // });
       this.address.forEach((detail) => {
         this.detailsObject[detail.fieldName] = detail.value;
       });
@@ -404,14 +484,15 @@ export class AddCandidateComponent implements OnInit {
 
       // this.detailsObject['educationInfo'] = this.items;
       // this.detailsObject['experienceInfo'] = this.exp;
-      this.detailsObject['isNegotiable'] = this.value;
-      this.detailsObject['servedNoticePeriod'] = this.evalue;
+      // this.detailsObject['isNegotiable'] = this.value;
+      // this.detailsObject['servedNoticePeriod'] = this.evalue;
+console.log(this.detailsObject,this.resumeCand,this.eduArr,this.expArr);
 
       this.profileService
         .addCandidate(
           this.detailsObject,
           this.resumeCand,
-          this.skills,
+          // this.skills,
           this.eduArr,
           this.expArr
         )
